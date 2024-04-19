@@ -1,0 +1,44 @@
+﻿<UserControl x:Class="Awake.model_download_list"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Awake"
+             mc:Ignorable="d" 
+                           xmlns:wv2="clr-namespace:Microsoft.Web.WebView2.Wpf;assembly=Microsoft.Web.WebView2.Wpf"
+                 xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+             d:DesignHeight="600" d:DesignWidth="850">
+    <Grid VerticalAlignment="Center" HorizontalAlignment="Center" Margin="5,5,5,5">
+        <ui:Card x:Name="模型版本展示" VerticalAlignment="Center" Width="250">
+          
+            <StackPanel x:Name="模型下载卡片列表">
+                <TextBlock x:Name="模型名称" Text="模型名称"   FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+
+                <StackPanel Orientation="Horizontal">
+                    <StackPanel.Background>
+                        <ImageBrush ImageSource="/Views/Pages/toolkit.png"/>
+                    </StackPanel.Background>
+                    <StackPanel Width="210" Height="210">
+                    </StackPanel>
+
+                </StackPanel>
+                <TextBlock x:Name="模型版本ID"></TextBlock>
+                <TextBlock x:Name="模型文件名称" Visibility="Collapsed"></TextBlock>
+                <TextBlock TextWrapping="Wrap" x:Name="模型下载源" Visibility="Collapsed"></TextBlock>
+                <TextBlock x:Name="模型大小"></TextBlock>
+                <TextBlock TextWrapping="Wrap"  x:Name="模型hash"></TextBlock>
+                <StackPanel Margin="5,5,5,0">
+                    <StackPanel Orientation="Horizontal">
+             
+                            <StackPanel HorizontalAlignment="Center">
+                                <ProgressBar x:Name="progressBar" Value="0" 
+                                             Height="40"  Width="210" />
+                            <Button Content="一键下载" x:Name="下载按钮" Height="40" Width="210" Margin="0,-40,0,0" Click="Download_Click" HorizontalAlignment="Center" ></Button>
+                            </StackPanel>
+                    </StackPanel>
+                </StackPanel>
+            </StackPanel>
+        </ui:Card>
+
+    </Grid>
+</UserControl>

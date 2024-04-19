@@ -1,0 +1,365 @@
+﻿<ui:UiPage x:Class="Awake.Views.Pages.DashboardPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:Awake.Views.Pages"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+    Title="DashboardPage"
+     Loaded="firstloded"
+
+    xmlns:wv2="clr-namespace:Microsoft.Web.WebView2.Wpf;assembly=Microsoft.Web.WebView2.Wpf"
+    d:DataContext="{d:DesignInstance local:DashboardPage, IsDesignTimeCreatable=False}"
+    d:DesignHeight="650"
+    d:DesignWidth="1010"
+    d:Background="{DynamicResource ApplicationBackgroundBrush}"
+    Foreground="{DynamicResource TextFillColorPrimaryBrush}"
+    mc:Ignorable="d">
+    <Page.Resources>
+
+
+
+
+
+
+
+
+
+
+        <!--用CSS修饰按钮样式-->
+
+        <Style x:Key="按钮容器样式" TargetType="Border">
+
+            <Style.Triggers>
+                <!--鼠标放到按钮上会发生的事情-->
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="BorderBrush" Value="#19000000"/>
+                    <Setter Property="Background" Value="#0CFFFFFF"/>
+                </Trigger>
+                <Trigger Property="IsMouseOver" Value="False">
+                    <Setter Property="BorderBrush" Value="Transparent"/>
+                    <Setter Property="Background" Value="#19FFFFFF">
+
+                    </Setter>
+
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="按钮容器样式2" TargetType="Border">
+
+            <Style.Triggers>
+                <!--鼠标放到按钮上会发生的事情-->
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="BorderBrush" Value="#19000000"/>
+                    <Setter Property="Background" Value="#0C000000"/>
+                </Trigger>
+                <Trigger Property="IsMouseOver" Value="False">
+                    <Setter Property="BorderBrush" Value="Transparent"/>
+                    <Setter Property="Background" Value="#19000000">
+
+                    </Setter>
+
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Page.Resources>
+
+
+
+
+
+    <Grid>
+
+
+
+        <ScrollViewer x:Name="总滚动列表"  ScrollChanged="总滚动列表_ScrollChanged" Margin="0,7,0,-7" >
+
+            <Grid Margin="0,0,0,0" >
+                <StackPanel>
+                    <StackPanel>
+
+
+
+                        <!--下面是模型资源中心的UI-->
+                        <Grid Height="350" Background="#00000000">
+
+                            <StackPanel VerticalAlignment="Bottom">
+                                <StackPanel Height="190" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,10
+                                            ">
+                                    <Border x:Name="宣传01" CornerRadius="15" Height="190" Width="920">
+                                        <Border.Background >
+                                            <ImageBrush x:Name="背景图"  Stretch="UniformToFill" ImageSource="/Views/Pages/004.png"/>
+                                        </Border.Background>
+
+                                        <Canvas>
+                                            <TextBlock Text="AIGODLIKE-开源AI冒险社区" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="627,10,0,0" FontSize="20" Foreground="#FF9A33A5" FontFamily="Alimama ShuHeiTi Bold"/>
+
+                                            <Border CornerRadius="10" Style="{DynamicResource 按钮容器样式2}" Canvas.Left="673" Canvas.Top="113" Width="190" HorizontalAlignment="Left" VerticalAlignment="Top" Height="60" MouseDown="Border_MouseDown" >
+                                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                                    <ui:SymbolIcon Symbol="Send20" Foreground="#FF420936" Width="35" Height="35" FontSize="35" Margin="0,0,10,0"/>
+                                                    <TextBlock Text="立即挑战" Foreground="#FF420936" FontSize="22" FontFamily="Alimama ShuHeiTi Bold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+                                                </StackPanel>
+                                            </Border>
+
+                                        </Canvas>
+                                    </Border>
+                                </StackPanel>
+
+
+                                <StackPanel Orientation="Horizontal"  HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,5">
+
+                                    <StackPanel Orientation="Horizontal" Height="140">
+                                        <Border x:Name="统计生成图片数量"   Style="{DynamicResource 按钮容器样式}" CornerRadius="15,0,0,15"  Width="110" Height="140" HorizontalAlignment="Left" Margin="0,0,2,0" MouseDown="统计生成图片数量_MouseDown" VerticalAlignment="Center">
+                                            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                                                <ui:SymbolIcon Symbol="ImageMultiple32" FontSize="30" Width="30" Height="30"/>
+
+                                                <TextBlock Text="统计图片数量" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Top" Canvas.Left="3" Canvas.Top="60"/>
+                                                <TextBlock x:Name="图片数量展示" HorizontalAlignment="Center" VerticalAlignment="Center" Canvas.Left="8" Canvas.Top="81" TextAlignment="Center" FontWeight="Bold" FontFamily="Alimama ShuHeiTi Bold"/>
+                                                <TextBlock Text="统计生成图片数量 &#xA;点击刷新统计数据" HorizontalAlignment="Center" VerticalAlignment="Top" Canvas.Left="7" Canvas.Top="80" Opacity="0.6"/>
+                                                <ui:SymbolIcon Symbol="ArrowCounterclockwise16" FontSize="30" Canvas.Left="100" Canvas.Top="100" Height="30"/>
+
+                                            </StackPanel>
+                                        </Border>
+
+                                        <StackPanel>
+                                            <Border x:Name="打开文生图文件夹"   Style="{DynamicResource 按钮容器样式}" CornerRadius="0,15,0,0"  Width="184" Height="69" HorizontalAlignment="Left" MouseDown="打开文生图文件夹_MouseDown">
+                                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                                    <ui:SymbolIcon Symbol="ImageAltText24" Width="35" Height="35" FontSize="35" Margin="0,0,5,0"/>
+                                                    <StackPanel Width="90">
+                                                        <TextBlock Text="文生图文件夹" FontSize="14" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="3" Canvas.Top="60"/>
+                                                        <TextBlock Text="text to image &#xA;生成的图片文件" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="7" Canvas.Top="80" Opacity="0.6"/>
+                                                    </StackPanel>
+
+                                                    <ui:SymbolIcon Symbol="Share16" FontSize="30" HorizontalAlignment="Left" Canvas.Left="100" Canvas.Top="100" VerticalAlignment="Center"/>
+
+                                                </StackPanel>
+
+                                            </Border>
+                                            <Border x:Name="打开图生图文件夹"   Style="{DynamicResource 按钮容器样式}" CornerRadius="0,0,15,0"  Width="184" Height="69" HorizontalAlignment="Left" MouseDown="打开图生图文件夹_MouseDown" Margin="0,2,0,0">
+                                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                                    <ui:SymbolIcon Symbol="ImageAdd24" Width="35" Height="35" Margin="0,0,5,0" FontSize="35"/>
+                                                    <StackPanel Width="90">
+                                                        <TextBlock Text="图生图文件夹" FontSize="14" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="3" Canvas.Top="60"/>
+                                                        <TextBlock Text="image to image&#xA;生成的图片文件" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="7" Canvas.Top="80" Opacity="0.6"/>
+                                                    </StackPanel>
+                                                    <ui:SymbolIcon Symbol="Share16" FontSize="30" HorizontalAlignment="Left" Canvas.Left="100" Canvas.Top="100" VerticalAlignment="Center"/>
+
+                                                </StackPanel>
+                                            </Border>
+                                        </StackPanel>
+                                    </StackPanel>
+
+                                    <StackPanel Orientation="Horizontal" Height="140" Margin="16,0,0,0">
+                                        <Border x:Name="打开WebUI文件夹"   Style="{DynamicResource 按钮容器样式}" CornerRadius="15,0,0,15"  Width="110" Height="140" MouseDown="打开WebUI文件夹_MouseDown" Margin="0,0,2,0" VerticalAlignment="Center">
+
+                                            <StackPanel VerticalAlignment="Center">
+                                                <TextBlock Text="&#xF89A;" FontFamily="Segoe MDL2 Assets" Width="30" Height="30" FontSize="30"/>
+                                                <TextBlock Text="WebUI根目录" HorizontalAlignment="Center" VerticalAlignment="Top" Canvas.Top="60" FontSize="14"/>
+                                                <TextBlock Text="管理WebUI文件" VerticalAlignment="Top" Canvas.Top="80" HorizontalAlignment="Center" Opacity="0.6"/>
+                                                <ui:SymbolIcon Symbol="Share16" FontSize="30" HorizontalAlignment="Center" Canvas.Left="55" Canvas.Top="100" VerticalAlignment="Top"/>
+
+                                            </StackPanel>
+
+                                        </Border>
+                                        <StackPanel>
+                                            <Border x:Name="打开SD模型文件夹"   Style="{DynamicResource 按钮容器样式}" CornerRadius="0,15,0,0"  Width="184" Height="69" MouseDown="打开SD模型文件夹_MouseDown">
+                                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                                    <ui:SymbolIcon Symbol="Pair20" Width="35" Height="35" FontSize="35" Margin="0,0,5,0"/>
+
+                                                    <StackPanel VerticalAlignment="Center">
+                                                        <TextBlock Text="SD模型文件夹" FontSize="14" HorizontalAlignment="Left" VerticalAlignment="Center" Canvas.Left="35" Canvas.Top="10"/>
+                                                        <TextBlock TextWrapping="Wrap" Text="StableDiffusion模型也称扩散模型" HorizontalAlignment="Left" VerticalAlignment="Center" Canvas.Left="35" Canvas.Top="30" Width="90" Opacity="0.6"/>
+                                                    </StackPanel>
+                                                    <ui:SymbolIcon Symbol="Share16" FontSize="30" HorizontalAlignment="Center" Canvas.Left="55" Canvas.Top="100" VerticalAlignment="Center"/>
+                                                </StackPanel>
+                                            </Border>
+                                            <Border x:Name="打开lora模型文件夹"   Style="{DynamicResource 按钮容器样式}" CornerRadius="0,0,15,0"  Width="184" Height="69" MouseDown="打开lora模型文件夹_MouseDown" Margin="0,2,0,0">
+
+                                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                                    <ui:SymbolIcon Symbol="PlugConnectedAdd20" Width="35" Height="35" FontSize="35" Margin="0,0,5,0"/>
+                                                    <StackPanel>
+                                                        <TextBlock Text="LoRA文件夹" FontSize="14" HorizontalAlignment="Left" Canvas.Left="82" Canvas.Top="16"/>
+                                                        <TextBlock TextWrapping="Wrap" Text="Lora模型使用需要依赖对应的扩散模型" HorizontalAlignment="Left" VerticalAlignment="Center" Canvas.Left="80" Canvas.Top="41" Width="90" Opacity="0.6"/>
+                                                    </StackPanel>
+                                                    <ui:SymbolIcon Symbol="Share16" FontSize="30" HorizontalAlignment="Center" Canvas.Left="55" Canvas.Top="100" VerticalAlignment="Center"/>
+
+                                                </StackPanel>
+
+                                            </Border>
+
+
+
+
+                                        </StackPanel>
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" Margin="16,0,0,0">
+                                        <StackPanel Height="140">
+                                            <Border x:Name="打开VAE模型文件夹"   Style="{DynamicResource 按钮容器样式}" CornerRadius="15,0,0,0"  Width="147" Height="69" MouseDown="打开VAE模型文件夹_MouseDown">
+                                                <StackPanel VerticalAlignment="Center" Orientation="Horizontal" HorizontalAlignment="Center">
+                                                    <ui:SymbolIcon Symbol="DatabasePlugConnected20" Width="30" Height="30" Margin="0,0,5,0" FontSize="30"/>
+                                                    <StackPanel Width="90">
+                                                        <TextBlock Text="VAE文件夹" FontSize="14" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                                                        <TextBlock Text="变分自动编码器" HorizontalAlignment="Left" VerticalAlignment="Top" Opacity="0.6"/>
+
+                                                    </StackPanel>
+
+                                                </StackPanel>
+                                            </Border>
+                                            <Border x:Name="打开EMB模型文件夹"   Style="{DynamicResource 按钮容器样式}" CornerRadius="0,0,0,15"  Width="147" Height="69" MouseDown="打开EMB模型文件夹_MouseDown" Margin="0,2,0,0">
+                                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                                    <ui:SymbolIcon Symbol="GridKanban20" Width="30" Height="30" Margin="0,0,5,0" FontSize="30"/>
+                                                    <StackPanel Width="90">
+
+                                                        <TextBlock Text="Emb文件夹" FontSize="14" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                                                        <TextBlock Text="embeddings" HorizontalAlignment="Left" VerticalAlignment="Top" Opacity="0.6"/>
+                                                    </StackPanel>
+
+                                                </StackPanel>
+                                            </Border>
+                                        </StackPanel>
+                                        <StackPanel HorizontalAlignment="Center" Margin="2,0,0,0">
+                                            <Border x:Name="打开HYP模型文件夹"   Style="{DynamicResource 按钮容器样式}" CornerRadius="0,15,0,0"  Width="147" Height="69" MouseDown="打开HYP模型文件夹_MouseDown">
+                                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                                    <ui:SymbolIcon Symbol="Connected20" Width="30" Height="30" Margin="0,0,5,0" FontSize="30"/>
+                                                    <StackPanel VerticalAlignment="Center" Width="90">
+
+                                                        <TextBlock Text="超网络文件夹" FontSize="14" HorizontalAlignment="Left" VerticalAlignment="Center" FontFamily="Microsoft YaHei"/>
+                                                        <TextBlock Text="HyperNetwork" HorizontalAlignment="Left" VerticalAlignment="Top" Opacity="0.6"/>
+                                                    </StackPanel>
+
+                                                </StackPanel>
+                                            </Border>
+                                            <Border x:Name="打开扩展模型文件夹"   Style="{DynamicResource 按钮容器样式}" CornerRadius="0,0,15,0"  Width="147" Height="69" MouseDown="打开扩展模型文件夹_MouseDown" Margin="0,2,0,0">
+                                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                                    <ui:SymbolIcon Symbol="ExtendedDock20" Width="30" Height="30" FontSize="30" Margin="0,0,5,0"/>
+                                                    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Width="90">
+
+                                                        <TextBlock Text="扩展文件夹" FontSize="14" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                                                        <TextBlock Text="extensions拓展" HorizontalAlignment="Left" VerticalAlignment="Top" Opacity="0.6"/>
+                                                    </StackPanel>
+                                                </StackPanel>
+                                            </Border>
+
+                                        </StackPanel>
+                                    </StackPanel>
+                                </StackPanel>
+
+
+                            </StackPanel>
+                        </Grid>
+
+
+
+                        <!--下面是模型资源中心的UI-->
+                        <StackPanel x:Name="搜索栏" Height="35" Orientation="Horizontal" VerticalAlignment="Center" Margin="8,10,8,5" HorizontalAlignment="Center" Width="930" IsVisibleChanged="搜索栏_IsVisibleChanged">
+                            <ComboBox x:Name="模型类型选择器"  SelectedIndex="0" Width="200" VerticalAlignment="Center" DropDownClosed="模型类型选择器_DropDownClosed" Margin="8,0,0,0" >
+                                <ComboBoxItem Content="模型类型：全部类型"/>
+                                <ComboBoxItem Content="LoRA"/>
+                                <ComboBoxItem Content="LyCORIS"/>
+                                <ComboBoxItem Content="Controlnet"/>
+                                <ComboBoxItem Content="Checkpoint"/>
+                                <ComboBoxItem Content="Textual Inversion"/>
+                            </ComboBox>
+
+                            <ui:TextBox x:Name="搜索框"  PlaceholderText="搜索模型关键词,作者或模型类型"  Width="300" Margin="5,0,10,0" GotFocus="搜索框_GotFocus" IsVisibleChanged="搜索框_IsVisibleChanged" LostFocus="搜索框_LostFocus"/>
+                            <ui:Button x:Name="搜素按钮" Height="35" Click="搜素按钮_Click">
+                                <StackPanel Orientation="Horizontal">
+                                    <ui:SymbolIcon Symbol="Search24" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="18"/>
+                                    <TextBlock Text="搜索模型"/>
+                                </StackPanel>
+                            </ui:Button>
+                            <TextBlock Text="排序方式" VerticalAlignment="Center" Margin="10,0,0,0" FontSize="14"/>
+                            <StackPanel x:Name="排序表" Orientation="Horizontal" VerticalAlignment="Center" Margin="10,0,0,0">
+                                <RadioButton x:Name="推荐" IsChecked="True"  Content="推荐" Click="推荐_Click"  />
+                                <RadioButton x:Name="最新" Content="最新" Margin="-45,0,0,0" Click="最新_Click"/>
+                                <RadioButton x:Name="最热" Content="最热" Margin="-45,0,0,0" Click="最热_Click" />
+                            </StackPanel>
+                        </StackPanel>
+                        <!--<TextBlock x:Name="调试" TextWrapping="Wrap" Height="250"></TextBlock>-->
+
+                        <StackPanel HorizontalAlignment="Center">
+
+                            <WrapPanel   x:Name="模型资源列表" HorizontalAlignment="Left"/>
+                            <StackPanel Width="900">
+                                <Button x:Name="加载更多" Content="刷新更多"  Click="加载更多_Click" FontSize="18" HorizontalAlignment="Stretch" VerticalAlignment="Center" Height="35" Width="300"/>
+
+
+                            </StackPanel>
+                            <StackPanel Margin="0,150,0,0">
+                                <StackPanel Orientation="Horizontal">
+                                    <ui:SymbolIcon Symbol="TagQuestionMark32" Width="20" Height="20" FontSize="20"/>
+                                    <ui:Hyperlink NavigateUri="https://github.com/AUTOMATIC1111/stable-diffusion-webui/wiki" FontSize="14" HorizontalAlignment="Center" Content="获取帮助"/>
+
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <ui:SymbolIcon Symbol="CommentCheckmark24" Width="20" Height="20" FontSize="20"/>
+                                    <ui:Hyperlink FontSize="14" NavigateUri="https://github.com/AUTOMATIC1111/stable-diffusion-webui/issues" Content="提供反馈"/>
+
+                                </StackPanel>
+                            </StackPanel>
+
+
+                        </StackPanel>
+
+
+                        <!--<ListBox x:Name="charListBox" Height="250" SelectionChanged="charListBox_SelectionChanged" >
+                <ListBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel Orientation="Horizontal" ></WrapPanel>
+                    </ItemsPanelTemplate>
+
+                </ListBox.ItemsPanel>
+                </ListBox>-->
+
+                    </StackPanel>
+
+                </StackPanel>
+                <!--<wv2:WebView2 Name="webView2" ScrollViewer.VerticalScrollBarVisibility="Hidden" 
+                  Source="https://www.aigodlike.com/" ZoomFactor="0.5"
+   />
+       
+        <CheckBox  Content="自动优化" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,25,0,0"/>-->
+
+            </Grid>
+        </ScrollViewer>
+
+        <StackPanel   x:Name="搜索栏2"   Height="70"  HorizontalAlignment="Center"  Margin="0,0,0,8" VerticalAlignment="Top" Visibility="Visible" >
+
+            <StackPanel Height="70" Width="1000" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <ProgressBar VerticalAlignment="Center" Value="100" Height="70" Width="1000"/>
+                <StackPanel  Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Height="70" Width="1000" Margin="0,-70,0,0"  >
+                    <ComboBox x:Name="模型类型选择器2"  SelectedIndex="0" Width="200" VerticalAlignment="Center" DropDownClosed="模型类型选择器2_DropDownClosed" Margin="8,0,0,0" Background="#33FFFFFF" Foreground="White" >
+                        <ComboBoxItem Content="模型类型：全部类型"/>
+                        <ComboBoxItem Content="LoRA"/>
+                        <ComboBoxItem Content="LyCORIS"/>
+                        <ComboBoxItem Content="Controlnet"/>
+                        <ComboBoxItem Content="Checkpoint"/>
+                        <ComboBoxItem Content="Textual Inversion"/>
+                    </ComboBox>
+
+                    <ui:TextBox x:Name="搜索框2"  PlaceholderText="搜索模型关键词,作者或模型类型"  Width="300" Margin="5,0,10,0"   LostFocus="搜索框2_LostFocus" SelectionTextBrush="#FF375398" Background="#33FFFFFF" Height="36" Cursor="IBeam"/>
+                    <ui:Button  x:Name="搜素按钮2" Height="35" Click="搜素按钮2_Click" Background="#33FFFFFF">
+                        <StackPanel Orientation="Horizontal">
+                            <ui:SymbolIcon Symbol="Search24" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="18" Foreground="White"/>
+                            <TextBlock Text="搜索模型" Foreground="White"/>
+                        </StackPanel>
+                    </ui:Button>
+                    <TextBlock Text="排序方式" VerticalAlignment="Center" Margin="10,0,0,0" FontSize="14" Foreground="White"/>
+                    <StackPanel x:Name="排序表2" Orientation="Horizontal" VerticalAlignment="Center" Margin="10,0,0,0">
+
+                        <RadioButton x:Name="推荐2" IsChecked="True"  Content="推荐" Click="推荐_Click" Background="White" Foreground="White"  />
+                        <RadioButton x:Name="最新2" Content="最新" Margin="-45,0,0,0" Click="最新_Click" Background="White" Foreground="White"/>
+                        <RadioButton x:Name="最热2" Content="最热" Margin="-45,0,0,0" Click="最热_Click" Background="White" Foreground="White" />
+                    </StackPanel>
+                </StackPanel>
+
+            </StackPanel>
+
+
+        </StackPanel>
+
+
+
+    </Grid>
+</ui:UiPage>
