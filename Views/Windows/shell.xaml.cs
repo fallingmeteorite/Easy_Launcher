@@ -8,7 +8,7 @@ using System.Windows.Controls;
 using System.Windows.Media.Animation;
 using System.Windows.Threading;
 using Wpf.Ui.Controls;
-using static Awake.initialize;//这里引入全局参数库
+using static Awake.Initialize;//这里引入全局参数库
 namespace Awake.Views.Windows
 {
     public partial class shell : UiWindow
@@ -93,13 +93,13 @@ namespace Awake.Views.Windows
             }
             async Task GetSystemInfo()
             {
-                cpuname = await Task.Run(() => hardinfo.GetCpuName());
-                Machinename = await Task.Run(() => hardinfo.GetComputerName());
-                systemType = await Task.Run(() => hardinfo.GetSystemType());
+                cpuname = await Task.Run(() => Hardinfo.GetCpuName());
+                Machinename = await Task.Run(() => Hardinfo.GetComputerName());
+                systemType = await Task.Run(() => Hardinfo.GetSystemType());
 
-                memorysize = await Task.Run(() => hardinfo.GetPhysicalMemory());
-                memorynum = await Task.Run(() => hardinfo.MemoryNumberCount());
-                gpuname = await Task.Run(() => hardinfo.GPUName());
+                memorysize = await Task.Run(() => Hardinfo.GetPhysicalMemory());
+                memorynum = await Task.Run(() => Hardinfo.MemoryNumberCount());
+                gpuname = await Task.Run(() => Hardinfo.GPUName());
                 标准输出流.AppendText("StableDiffusionWebUI正在启动，请耐心等待" + Environment.NewLine);
                 标准输出流.AppendText("光源AI绘画启动核心版本：Release Version 2024/4/8" + Environment.NewLine);
                 标准输出流.AppendText("关注bilibili@Ray_Source光源 获取最新支持" + Environment.NewLine);

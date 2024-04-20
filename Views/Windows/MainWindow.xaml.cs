@@ -11,7 +11,7 @@ using System.Windows.Media.Imaging;
 using Wpf.Ui.Appearance;
 using Wpf.Ui.Controls.Interfaces;
 using Wpf.Ui.Mvvm.Contracts;
-using static Awake.initialize;
+using static Awake.Initialize;
 using Application = System.Windows.Application;
 
 namespace Awake.Views.Windows
@@ -56,15 +56,15 @@ namespace Awake.Views.Windows
                 async void GetSystemInfo()
                 {
 
-                    string gpuname = await Task.Run(() => hardinfo.getGPUNamelist());//这个函数内部对GPU写入了List,仅return GPUname供展示
+                    string gpuname = await Task.Run(() => Hardinfo.getGPUNamelist());//这个函数内部对GPU写入了List,仅return GPUname供展示
                     try
                     {
-                        _UseGPUindex = initialize.显卡列表.Count - 1;//默认启动后选最后一张GPU，核显什么的排在前面
+                        _UseGPUindex = Initialize.显卡列表.Count - 1;//默认启动后选最后一张GPU，核显什么的排在前面
                     }
                     catch (Exception ex) { }
 
 
-                    _GPUname = initialize.显卡列表.Last();//开始对GPUname判断
+                    _GPUname = Initialize.显卡列表.Last();//开始对GPUname判断
                     if (_GPUname.Contains("Radeon"))
                     {
                         _显卡类型 = "Radeon";

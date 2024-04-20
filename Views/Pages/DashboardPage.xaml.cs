@@ -29,12 +29,12 @@ namespace Awake.Views.Pages
         int 模型排列 = 0;//模型排列优先级状态量
         string 模型种类 = "[]";//默认所有模型种类
         int 加载页数 = 1;//第一页的模型
-        private string 模型名称;
-        private string 模型封面地址;
-        private string 模型作者名称;
-        private string 模型作者头像地址;
-        private string 模型种类名称;
-        private string 模型UUID;
+        private string 模型名称 = "";
+        private string 模型封面地址 = "";
+        private string 模型作者名称 = "";
+        private string 模型作者头像地址 = "";
+        private string 模型种类名称 = "";
+        private string 模型UUID = "";
 
 
         private readonly List<string> _imagePaths;
@@ -373,19 +373,19 @@ namespace Awake.Views.Pages
         }
         private void 打开WebUI文件夹_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            Process.Start("explorer.exe", initialize.工作路径);
+            Process.Start("explorer.exe", Initialize.工作路径);
         }
 
         private void 打开文生图文件夹_MouseDown(object sender, MouseButtonEventArgs e)
         {
             if (programpath.Length == 1)
             {
-                string 文生图文件路径 = initialize.工作路径 + "outputs\\txt2img-images";
+                string 文生图文件路径 = Initialize.工作路径 + "outputs\\txt2img-images";
                 Process.Start("explorer.exe", 文生图文件路径);
             }
             else
             {
-                string 文生图文件路径 = initialize.工作路径 + "\\outputs\\txt2img-images";
+                string 文生图文件路径 = Initialize.工作路径 + "\\outputs\\txt2img-images";
                 Process.Start("explorer.exe", 文生图文件路径);
             }
         }
@@ -394,12 +394,12 @@ namespace Awake.Views.Pages
         {
             if (programpath.Length == 1)
             {
-                string 图生图文件路径 = initialize.工作路径 + "outputs\\img2img-images";
+                string 图生图文件路径 = Initialize.工作路径 + "outputs\\img2img-images";
                 Process.Start("explorer.exe", 图生图文件路径);
             }
             else
             {
-                string 图生图文件路径 = initialize.工作路径 + "\\outputs\\img2img-images";
+                string 图生图文件路径 = Initialize.工作路径 + "\\outputs\\img2img-images";
                 Process.Start("explorer.exe", 图生图文件路径);
             }
 
@@ -407,20 +407,20 @@ namespace Awake.Views.Pages
 
         private void 统计生成图片数量_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            initialize.相册计数();
-            图片数量展示.Text = initialize.相册图片数量;
+            Initialize.相册计数();
+            图片数量展示.Text = Initialize.相册图片数量;
         }
 
         private void 打开SD模型文件夹_MouseDown(object sender, MouseButtonEventArgs e)
         {
             if (programpath.Length == 1)
             {
-                string SD模型文件路径 = initialize.工作路径 + "models\\Stable-diffusion";
+                string SD模型文件路径 = Initialize.工作路径 + "models\\Stable-diffusion";
                 Process.Start("explorer.exe", SD模型文件路径);
             }
             else
             {
-                string SD模型文件路径 = initialize.工作路径 + "\\models\\Stable-diffusion";
+                string SD模型文件路径 = Initialize.工作路径 + "\\models\\Stable-diffusion";
                 Process.Start("explorer.exe", SD模型文件路径);
             }
 
@@ -430,12 +430,12 @@ namespace Awake.Views.Pages
         {
             if (programpath.Length == 1)
             {
-                string LORA模型文件路径 = initialize.工作路径 + "models\\Lora";
+                string LORA模型文件路径 = Initialize.工作路径 + "models\\Lora";
                 Process.Start("explorer.exe", LORA模型文件路径);
             }
             else
             {
-                string LORA模型文件路径 = initialize.工作路径 + "\\models\\Lora";
+                string LORA模型文件路径 = Initialize.工作路径 + "\\models\\Lora";
                 Process.Start("explorer.exe", LORA模型文件路径);
             }
 
@@ -445,12 +445,12 @@ namespace Awake.Views.Pages
         {
             if (programpath.Length == 1)
             {
-                string VAE模型文件路径 = initialize.工作路径 + "models\\VAE";
+                string VAE模型文件路径 = Initialize.工作路径 + "models\\VAE";
                 Process.Start("explorer.exe", VAE模型文件路径);
             }
             else
             {
-                string VAE模型文件路径 = initialize.工作路径 + "\\models\\VAE";
+                string VAE模型文件路径 = Initialize.工作路径 + "\\models\\VAE";
                 Process.Start("explorer.exe", VAE模型文件路径);
             }
 
@@ -461,12 +461,12 @@ namespace Awake.Views.Pages
         {
             if (programpath.Length == 1)
             {
-                string EMB模型文件路径 = initialize.工作路径 + "embeddings";
+                string EMB模型文件路径 = Initialize.工作路径 + "embeddings";
                 Process.Start("explorer.exe", EMB模型文件路径);
             }
             else
             {
-                string EMB模型文件路径 = initialize.工作路径 + "\\embeddings";
+                string EMB模型文件路径 = Initialize.工作路径 + "\\embeddings";
                 Process.Start("explorer.exe", EMB模型文件路径);
             }
 
@@ -477,12 +477,12 @@ namespace Awake.Views.Pages
         {
             if (programpath.Length == 1)
             {
-                string HYP模型文件路径 = initialize.工作路径 + "models\\hypernetworks";
+                string HYP模型文件路径 = Initialize.工作路径 + "models\\hypernetworks";
                 Process.Start("explorer.exe", HYP模型文件路径);
             }
             else
             {
-                string HYP模型文件路径 = initialize.工作路径 + "\\models\\hypernetworks";
+                string HYP模型文件路径 = Initialize.工作路径 + "\\models\\hypernetworks";
                 Process.Start("explorer.exe", HYP模型文件路径);
             }
 
@@ -493,12 +493,12 @@ namespace Awake.Views.Pages
         {
             if (programpath.Length == 1)
             {
-                string 扩展模型文件夹 = initialize.工作路径 + "extensions";
+                string 扩展模型文件夹 = Initialize.工作路径 + "extensions";
                 Process.Start("explorer.exe", 扩展模型文件夹);
             }
             else
             {
-                string 扩展模型文件夹 = initialize.工作路径 + "\\extensions";
+                string 扩展模型文件夹 = Initialize.工作路径 + "\\extensions";
                 Process.Start("explorer.exe", 扩展模型文件夹);
             }
 

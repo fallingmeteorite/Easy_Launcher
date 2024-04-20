@@ -37,7 +37,7 @@ namespace Awake.Views.Windows
         public Model_content(string uuid, string nickname, string avatar, string modelType, string imageURL)
         {
             InitializeComponent();
-            if (initialize.背景颜色 == "Mica")
+            if (Initialize.背景颜色 == "Mica")
             {
                 try
                 {
@@ -52,7 +52,7 @@ namespace Awake.Views.Windows
 
 
             }
-            if (initialize.背景颜色 == "Acrylic")
+            if (Initialize.背景颜色 == "Acrylic")
             {
                 try
                 {
@@ -66,7 +66,7 @@ namespace Awake.Views.Windows
                 }
 
             }
-            if (initialize.背景颜色 == "Tabbed")
+            if (Initialize.背景颜色 == "Tabbed")
             {
                 try
                 {
@@ -80,7 +80,7 @@ namespace Awake.Views.Windows
                 }
 
             }
-            if (initialize.背景颜色 == "Auto")
+            if (Initialize.背景颜色 == "Auto")
             {
                 try
                 {
@@ -94,7 +94,7 @@ namespace Awake.Views.Windows
                 }
 
             }
-            if (initialize.背景颜色 == "None")
+            if (Initialize.背景颜色 == "None")
             {
                 try
                 {
@@ -108,13 +108,13 @@ namespace Awake.Views.Windows
                 }
 
             }
-            if (initialize.背景颜色 == "Picture")
+            if (Initialize.背景颜色 == "Picture")
             {
                 try
                 {
-                    图片亮度.Value = initialize.背景亮度;
+                    图片亮度.Value = Initialize.背景亮度;
                     主题背景图.Opacity = 图片亮度.Value / 100;
-                    string imagepath = initialize.背景图片; // 获取选择的文件路径+文件名  
+                    string imagepath = Initialize.背景图片; // 获取选择的文件路径+文件名  
                     ImageSource imageSource = new BitmapImage(new Uri(imagepath)); // 设置Image的ImageSource为选择的图片  
                     主题背景图.ImageSource = imageSource; // 将选择的图片显示在Image控件中  
 

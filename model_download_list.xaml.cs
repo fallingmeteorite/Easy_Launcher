@@ -47,40 +47,40 @@ namespace Awake
         {
             InitializeComponent();
             _uuid = uuid;
-            _Hash = GenerateHash(initialize.工作路径);
+            _Hash = GenerateHash(Initialize.工作路径);
             if (_modelType == "Checkpoint")
             {
-                模型保存路径 = initialize.工作路径 + "\\models\\Stable-diffusion";
+                模型保存路径 = Initialize.工作路径 + "\\models\\Stable-diffusion";
                 模型保存名称 = _模型名 + _modelname + ".safetensors";
             }
             if (_modelType == "LORA")
             {
-                模型保存路径 = initialize.工作路径 + "\\models\\Lora";
+                模型保存路径 = Initialize.工作路径 + "\\models\\Lora";
                 模型保存名称 = _模型名 + _modelname + ".safetensors";
 
             }
 
             if (_modelType == "Textual Inversion")
             {
-                模型保存路径 = initialize.工作路径 + "\\embeddings";
+                模型保存路径 = Initialize.工作路径 + "\\embeddings";
                 模型保存名称 = _模型名 + _modelname + ".pt";
 
             }
             if (_modelType == "LyCORIS")
             {
-                模型保存路径 = initialize.工作路径 + "\\models\\LyCORIS";
+                模型保存路径 = Initialize.工作路径 + "\\models\\LyCORIS";
                 模型保存名称 = _模型名 + _modelname + ".safetensors";
 
             }
             if (_modelType == "Controlnet")
             {
-                模型保存路径 = initialize.工作路径 + "\\models\\ControlNet";
+                模型保存路径 = Initialize.工作路径 + "\\models\\ControlNet";
                 模型保存名称 = _模型名 + _modelname + ".safetensors";
 
             }
             if (_modelType == "Hypernetwork")
             {
-                模型保存路径 = initialize.工作路径 + "\\models\\ControlNet";
+                模型保存路径 = Initialize.工作路径 + "\\models\\ControlNet";
                 模型保存名称 = _模型名 + _modelname + ".safetensors";
 
             }

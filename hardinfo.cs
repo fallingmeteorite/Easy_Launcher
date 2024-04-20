@@ -2,7 +2,7 @@
 using System.Management;
 namespace Awake
 {
-    internal class hardinfo
+    internal class Hardinfo
     {
         public static string GetCpuName()//获得计算机CPU名字
         {
@@ -13,7 +13,7 @@ namespace Awake
                 var managementObject = (ManagementObject)baseObject;
                 CPUName = managementObject["Name"].ToString();
             }
-            return CPUName;
+            return CPUName ;
         }
         public static string GetComputerName()//获得计算机名称
         {
@@ -85,7 +85,7 @@ namespace Awake
                 count++;
                 DisplayName += "显卡型号：" + count.ToString() + " " + mo["Name"].ToString() + "   " + "\n";
                 显卡名称 = mo["Name"].ToString();
-                initialize.显卡列表.Add(显卡名称);
+                Initialize.显卡列表.Add(显卡名称);
             }
             mn.Dispose();
             m.Dispose();

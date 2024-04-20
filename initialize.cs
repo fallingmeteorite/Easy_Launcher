@@ -5,7 +5,7 @@ using System.IO;
 using System.Windows.Forms;
 namespace Awake
 {
-    class initialize//这里负责整个启动器的初始化，也是回复默认设置
+    class Initialize//这里负责整个启动器的初始化，也是回复默认设置
     {
 
 

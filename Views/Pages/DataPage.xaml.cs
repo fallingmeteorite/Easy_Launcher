@@ -1,7 +1,8 @@
 ﻿using System;
+using System.IO;
 using System.Threading.Tasks;
 using Wpf.Ui.Common.Interfaces;
-using static Awake.initialize;//这里引入全局参数库
+using static Awake.Initialize;//这里引入全局参数库
 namespace Awake.Views.Pages
 {
     /// <summary>
@@ -16,18 +17,23 @@ namespace Awake.Views.Pages
             ViewModel = viewModel;
             InitializeComponent();
             GetSystemInfo();
-            foreach (string 显卡名 in initialize.显卡列表)
+            foreach (string 显卡名 in Initialize.显卡列表)
             {
                 try
                 {
                     显卡选择器.Items.Add(显卡名);
-                    显卡选择器.SelectedIndex = initialize.显卡列表.Count - 1;
+                    显卡选择器.SelectedIndex = Initialize.显卡列表.Count - 1;
                 }
-                catch (Exception ex) { }
+                catch (Exception error)
+                {
+                    string str1 = error.Message;
+                    File.WriteAllText(@".\logs\error.txt", str1);
+                    throw;
+                }
             }
             更新控件状态();
-            initialize._GPUname = 显卡选择器.SelectedItem.ToString();
-            initialize._UseGPUindex = 显卡选择器.SelectedIndex;
+            Initialize._GPUname = 显卡选择器.SelectedItem.ToString();
+            Initialize._UseGPUindex = 显卡选择器.SelectedIndex;
             if (_GPUname.Contains("Radeon"))
             {
                 _显卡类型 = "Radeon";
@@ -65,12 +71,12 @@ namespace Awake.Views.Pages
         }
         public async void GetSystemInfo()
         {
-            string cpuname = await Task.Run(() => hardinfo.GetCpuName());
-            string Machinename = await Task.Run(() => hardinfo.GetComputerName());
-            string systemType = await Task.Run(() => hardinfo.GetSystemType());
-            float memorysize = await Task.Run(() => hardinfo.GetPhysicalMemory());
-            int memorynum = await Task.Run(() => hardinfo.MemoryNumberCount());
-            string gpuname = await Task.Run(() => hardinfo.GPUName());
+            string cpuname = await Task.Run(() => Hardinfo.GetCpuName());
+            string Machinename = await Task.Run(() => Hardinfo.GetComputerName());
+            string systemType = await Task.Run(() => Hardinfo.GetSystemType());
+            float memorysize = await Task.Run(() => Hardinfo.GetPhysicalMemory());
+            int memorynum = await Task.Run(() => Hardinfo.MemoryNumberCount());
+            string gpuname = await Task.Run(() => Hardinfo.GPUName());
             计算机CPU信息.Text = "CPU信息：" + cpuname;
             计算机名称类型.Text = "系统名称：" + Machinename + "   系统类型：" + systemType;
             计算机内存信息.Text = "内存信息：" + memorynum + " 插槽" + "  共计" + memorysize + " GB";
@@ -81,14 +87,14 @@ namespace Awake.Views.Pages
         private void 启动后自动打开浏览器开关_Click(object sender, System.Windows.RoutedEventArgs e)
         {
 
-            if (initialize.浏览器启动 == true)
+            if (Initialize.浏览器启动 == true)
             {
-                initialize.浏览器启动 = true;
+                Initialize.浏览器启动 = true;
                 启动后自动打开浏览器开关.IsChecked = true;
             }
             else
             {
-                initialize.浏览器启动 = false;
+                Initialize.浏览器启动 = false;
                 启动后自动打开浏览器开关.IsChecked = false;
             }
         }
@@ -102,19 +108,19 @@ namespace Awake.Views.Pages
         private void 使用CPU进行推理_Click(object sender, System.Windows.RoutedEventArgs e)
         {
             if (使用CPU进行推理.IsChecked == true)
-            { initialize.使用CPU进行推理 = true; }
-            else { initialize.使用CPU进行推理 = false; }
+            { Initialize.使用CPU进行推理 = true; }
+            else { Initialize.使用CPU进行推理 = false; }
         }
 
         private void 关闭模型hash计算_Click(object sender, System.Windows.RoutedEventArgs e)
         {
             if (关闭模型hash计算.IsChecked == true)
             {
-                initialize.关闭模型hash计算 = true;
+                Initialize.关闭模型hash计算 = true;
             }
             else
             {
-                initialize.关闭模型hash计算 = false;
+                Initialize.关闭模型hash计算 = false;
             }
         }
 
@@ -122,11 +128,11 @@ namespace Awake.Views.Pages
         {
             if (启用替代布局.IsChecked == true)
             {
-                initialize.启用替代布局 = true;
+                Initialize.启用替代布局 = true;
             }
             else
             {
-                initialize.启用替代布局 = false;
+                Initialize.启用替代布局 = false;
             }
         }
 
@@ -176,8 +182,8 @@ namespace Awake.Views.Pages
         }
         private void 显卡选择器_DropDownClosed(object sender, EventArgs e)
         {
-            initialize._GPUname = 显卡选择器.SelectedItem.ToString();
-            initialize._UseGPUindex = 显卡选择器.SelectedIndex;
+            Initialize._GPUname = 显卡选择器.SelectedItem.ToString();
+            Initialize._UseGPUindex = 显卡选择器.SelectedIndex;
             if (_GPUname.Contains("Radeon"))
             {
                 _显卡类型 = "Radeon";
@@ -208,9 +214,9 @@ namespace Awake.Views.Pages
         {
             if (WebUI主题颜色设置.SelectedIndex == 0) { }
             if (WebUI主题颜色设置.SelectedIndex == 1)
-            { initialize._WebUI主题颜色 = " --theme light"; }
+            { Initialize._WebUI主题颜色 = " --theme light"; }
             if (WebUI主题颜色设置.SelectedIndex == 2)
-            { initialize._WebUI主题颜色 = " --theme dark"; }
+            { Initialize._WebUI主题颜色 = " --theme dark"; }
         }
         private void 分享WebUI到公网_Click(object sender, System.Windows.RoutedEventArgs e)
         {
@@ -229,17 +235,17 @@ namespace Awake.Views.Pages
 
         private void 缩放点积交叉_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            if (initialize.缩放点积交叉 == false)
-            { initialize.缩放点积交叉 = true; }
+            if (Initialize.缩放点积交叉 == false)
+            { Initialize.缩放点积交叉 = true; }
             else
-            { initialize.缩放点积交叉 = false; }
+            { Initialize.缩放点积交叉 = false; }
         }
         private void 快速启动_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            if (initialize.快速启动 == false)
-            { initialize.快速启动 = true; }
+            if (Initialize.快速启动 == false)
+            { Initialize.快速启动 = true; }
             else
-            { initialize.快速启动 = false; }
+            { Initialize.快速启动 = false; }
         }
     }
 }

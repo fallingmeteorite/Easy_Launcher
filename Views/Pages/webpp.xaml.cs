@@ -8,7 +8,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Threading;
-using static Awake.initialize;
+using static Awake.Initialize;
 
 namespace Awake.Views.Pages
 {
@@ -27,13 +27,13 @@ namespace Awake.Views.Pages
         public string speedInfo = "";
         public async void GetSystemInfo()
         {
-            string cpuname = await Task.Run(() => hardinfo.GetCpuName());
-            string Machinename = await Task.Run(() => hardinfo.GetComputerName());
-            string systemType = await Task.Run(() => hardinfo.GetSystemType());
+            string cpuname = await Task.Run(() => Hardinfo.GetCpuName());
+            string Machinename = await Task.Run(() => Hardinfo.GetComputerName());
+            string systemType = await Task.Run(() => Hardinfo.GetSystemType());
 
-            float memorysize = await Task.Run(() => hardinfo.GetPhysicalMemory());
-            int memorynum = await Task.Run(() => hardinfo.MemoryNumberCount());
-            string gpuname = await Task.Run(() => hardinfo.GPUName());
+            float memorysize = await Task.Run(() => Hardinfo.GetPhysicalMemory());
+            int memorynum = await Task.Run(() => Hardinfo.MemoryNumberCount());
+            string gpuname = await Task.Run(() => Hardinfo.GPUName());
 
             计算机CPU信息.Text = "CPU信息：" + cpuname;
             计算机名称类型.Text = "系统名称：" + Machinename + "   系统类型：" + systemType;
@@ -55,7 +55,7 @@ namespace Awake.Views.Pages
         {
             InitializeComponent();
             GetSystemInfo();
-            double freeSpaceGB = GetFreeSpaceGB(initialize.工作路径);
+            double freeSpaceGB = GetFreeSpaceGB(Initialize.工作路径);
             磁盘剩余显示.Text = $"磁盘剩余空间：{freeSpaceGB:0.00} GB";
             if (freeSpaceGB == 0)
             {
@@ -71,9 +71,9 @@ namespace Awake.Views.Pages
 
 
             //检查WebUI安装状态
-            initialize.已下载WebUI = initialize.CheckWebUIdownloaded();
-            initialize.已安装WebUI = initialize.CheckWebUIinstelled();
-            initialize.已解压WebUI = initialize.CheckWebUIunzip();
+            Initialize.已下载WebUI = Initialize.CheckWebUIdownloaded();
+            Initialize.已安装WebUI = Initialize.CheckWebUIinstelled();
+            Initialize.已解压WebUI = Initialize.CheckWebUIunzip();
             if (已下载WebUI == true)
             {
                 if (已解压WebUI == false)//未解压：解压安装组控件
@@ -145,11 +145,11 @@ namespace Awake.Views.Pages
         }
         private void 运行路径选择_Click(object sender, RoutedEventArgs e)
         {
-            initialize.选择工作路径();
+            Initialize.选择工作路径();
             //检查WebUI安装状态
-            initialize.已下载WebUI = initialize.CheckWebUIdownloaded();
-            initialize.已安装WebUI = initialize.CheckWebUIinstelled();
-            initialize.已解压WebUI = initialize.CheckWebUIunzip();
+            Initialize.已下载WebUI = Initialize.CheckWebUIdownloaded();
+            Initialize.已安装WebUI = Initialize.CheckWebUIinstelled();
+            Initialize.已解压WebUI = Initialize.CheckWebUIunzip();
             if (已下载WebUI == true)
             {
                 if (已解压WebUI == false)//未解压：解压安装组控件
@@ -213,7 +213,7 @@ namespace Awake.Views.Pages
             }
 
             工作路径展示.Text = 工作路径;
-            double freeSpaceGB = GetFreeSpaceGB(initialize.工作路径);
+            double freeSpaceGB = GetFreeSpaceGB(Initialize.工作路径);
             磁盘剩余显示.Text = $"磁盘剩余空间：{freeSpaceGB:0.00} GB";
             if (freeSpaceGB < 5)
             {
@@ -229,24 +229,24 @@ namespace Awake.Views.Pages
 
             if (启用自定义路径.IsChecked == true)
             {
-                initialize.启用自定义路径 = true;
+                Initialize.启用自定义路径 = true;
             }
             else
             {
-                initialize.启用自定义路径 = false;
+                Initialize.启用自定义路径 = false;
             
             }
         }
 
         private void Git路径选择_Click(object sender, RoutedEventArgs e)
         {
-            initialize.选择Git路径();
+            Initialize.选择Git路径();
             Git路径展示.Text = gitPath;
         }
 
         private void VENV路径选择_Click(object sender, RoutedEventArgs e)
         {
-            initialize.选择VENV路径();
+            Initialize.选择VENV路径();
             VENV路径展示.Text = venvPath;
         }
 
@@ -264,17 +264,17 @@ namespace Awake.Views.Pages
                 {
                     try
                     {
-                        if (Directory.Exists(initialize.工作路径))
+                        if (Directory.Exists(Initialize.工作路径))
                         {
 
                         }
                         else
                         {
-                            Directory.CreateDirectory(initialize.工作路径);
+                            Directory.CreateDirectory(Initialize.工作路径);
                         }
                         WebUI下载按钮.IsEnabled = false;
 
-                        string modelpath = System.IO.Path.Combine(initialize.工作路径, Packname);
+                        string modelpath = System.IO.Path.Combine(Initialize.工作路径, Packname);
                         WebRequest request = WebRequest.Create(downloadUrl);
                         WebResponse respone = request.GetResponse();
                         progressBar.Maximum = respone.ContentLength;
@@ -324,7 +324,7 @@ namespace Awake.Views.Pages
                             WebUI下载按钮.Dispatcher.BeginInvoke(new Action(() => WebUI下载按钮.Content = speedInfo), null);
                             WebUI下载按钮.Dispatcher.BeginInvoke(new Action(() =>
                             {
-                                double freeSpaceGB = GetFreeSpaceGB(initialize.工作路径);
+                                double freeSpaceGB = GetFreeSpaceGB(Initialize.工作路径);
                                 磁盘剩余显示.Text = $"磁盘剩余空间：{freeSpaceGB:0.00} GB";
                                 if (freeSpaceGB < 5)
                                 {
@@ -333,8 +333,8 @@ namespace Awake.Views.Pages
                                 }
                                 WebUI下载按钮.Content = speedInfo;
                                 下载组.Visibility = Visibility.Collapsed;
-                                WebUI下载按钮.Content = "下载完成,保存在:" + initialize.工作路径 + " 点击解压";
-                                string filePath = initialize.工作路径 + @"\WebUIpackcatch.7z";
+                                WebUI下载按钮.Content = "下载完成,保存在:" + Initialize.工作路径 + " 点击解压";
+                                string filePath = Initialize.工作路径 + @"\WebUIpackcatch.7z";
                                 if (File.Exists(filePath))
                                 {
                                     // 如果文件存在，将其改名为WebUIpack.7z  
@@ -342,13 +342,13 @@ namespace Awake.Views.Pages
                                     File.Move(filePath, renamedFilePath);
 
                                 }
-                                string filePath2 = initialize.工作路径 + @"\WebUIpack.7z";
+                                string filePath2 = Initialize.工作路径 + @"\WebUIpack.7z";
                                 if (File.Exists(filePath2))
                                 {
                                     {
                                         WebUI下载按钮.IsEnabled = true;
                                         is_downloaded = true;
-                                        initialize.已下载WebUI = true;
+                                        Initialize.已下载WebUI = true;
                                         解压组.Visibility = Visibility.Visible;
                                     }
                                 }
@@ -399,7 +399,7 @@ namespace Awake.Views.Pages
             ProcessStartInfo 解压术式 = new ProcessStartInfo();
 
             解压术式.FileName = SevenZipPath;
-            解压术式.Arguments = $"x -y {initialize.工作路径 + "//WebUIpack.7z"} -o{initialize.工作路径}";
+            解压术式.Arguments = $"x -y {Initialize.工作路径 + "//WebUIpack.7z"} -o{Initialize.工作路径}";
             解压术式.UseShellExecute = false;
             解压术式.RedirectStandardOutput = true;
             解压术式.CreateNoWindow = true;
@@ -434,7 +434,7 @@ namespace Awake.Views.Pages
                     {
                         解压组.Visibility = Visibility.Collapsed;
                         安装组.Visibility = Visibility.Visible;
-                        double freeSpaceGB = GetFreeSpaceGB(initialize.工作路径);
+                        double freeSpaceGB = GetFreeSpaceGB(Initialize.工作路径);
                         磁盘剩余显示.Text = $"磁盘剩余空间：{freeSpaceGB:0.00} GB";
                         if (freeSpaceGB < 5)
                         {
@@ -468,9 +468,9 @@ namespace Awake.Views.Pages
             WebUI复制按钮.Content = "正在拼命安装，（8分钟）请稍候....";
             WebUI复制按钮.IsEnabled = false;
             // 源文件夹路径  
-            string sourceDirectory = initialize.工作路径 + @"\2.0.9\stable-diffusion-webui";
+            string sourceDirectory = Initialize.工作路径 + @"\2.0.9\stable-diffusion-webui";
             // 目标文件夹路径  
-            string destinationDirectory = initialize.工作路径;
+            string destinationDirectory = Initialize.工作路径;
             // 使用异步方法移动文件夹  
             try
             {
@@ -484,7 +484,7 @@ namespace Awake.Views.Pages
             安装组.Visibility = Visibility.Collapsed;
             下载组.Visibility = Visibility.Visible;
             WebUI下载按钮.Content = "安装完毕，点击一键启动";
-            initialize.已安装WebUI = true;
+            Initialize.已安装WebUI = true;
 
         }
 
