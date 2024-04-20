@@ -1,38 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-
 using System.Windows.Forms;
 namespace Awake
 {
-    class Initialize//这里负责整个启动器的初始化，也是回复默认设置
+    class initialize//这里负责整个启动器的初始化，也是回复默认设置
     {
-
-
-
-
-
 
         public static bool CheckDirectory()//首先查找启动器所在目录是否有工作目录，在启动器所在目录创建工作目录
         {
-            try
+
+            if (Directory.Exists(@".AI_launther_log"))
             {
-                if (Directory.Exists(@".AI_launther_log"))
-                {
-                    return true;
-                }
-                else
-                {
-                    Directory.CreateDirectory(@".AI_launther_log");
-                    return false;
-                }
+                return true;
             }
-            catch (Exception error)
+            else
             {
-                string str1 = error.Message;
-                File.WriteAllText(@".\logs\error.txt", str1);
-                throw;
+                Directory.CreateDirectory(@".AI_launther_log");
+                return false;
             }
+
         }
 
         public static List<string> 显卡列表 = new List<string>();
@@ -85,263 +72,155 @@ namespace Awake
 
         public static void 选择工作路径()
         {
-            try
+            FolderBrowserDialog folder = new FolderBrowserDialog();
+            folder.Description = "请选择WebUI工作目录，至少保留25GB硬盘空间";
+            if (folder.ShowDialog() == DialogResult.OK)
             {
-                FolderBrowserDialog folder = new FolderBrowserDialog();
-                folder.Description = "请选择WebUI工作目录，至少保留25GB硬盘空间";
-                if (folder.ShowDialog() == DialogResult.OK)
-                {
-                    工作路径 = folder.SelectedPath;
-                    File.WriteAllText(@".AI_launther_log\startpath.txt", 工作路径);
-                }
-            }
-            catch (Exception error)
-            {
-                string str1 = error.Message;
-                File.WriteAllText(@".\logs\error.txt", str1);
-                throw;
+                工作路径 = folder.SelectedPath;
+                File.WriteAllText(@".AI_launther_log\startpath.txt", 工作路径);
             }
         }
         public static void 选择Git路径()
         {
-            try
+            FolderBrowserDialog folder = new FolderBrowserDialog();
+            folder.Description = "请选择Git.exe所在目录";
+            if (folder.ShowDialog() == DialogResult.OK)
             {
-                FolderBrowserDialog folder = new FolderBrowserDialog();
-                folder.Description = "请选择Git.exe所在目录";
-                if (folder.ShowDialog() == DialogResult.OK)
-                {
-                    gitPath = folder.SelectedPath;
-                    File.WriteAllText(@".AI_launther_log\gitpath.txt", gitPath);
+                gitPath = folder.SelectedPath;
+                File.WriteAllText(@".AI_launther_log\gitpath.txt", gitPath);
 
-                }
-            }
-            catch (Exception error)
-            {
-                string str1 = error.Message;
-                File.WriteAllText(@".\logs\error.txt", str1);
-                throw;
             }
         }
         public static void 选择VENV路径()
         {
-            try
+            FolderBrowserDialog folder = new FolderBrowserDialog();
+            folder.Description = "请选择虚拟环境所在目录";
+            if (folder.ShowDialog() == DialogResult.OK)
             {
-                FolderBrowserDialog folder = new FolderBrowserDialog();
-                folder.Description = "请选择虚拟环境所在目录";
-                if (folder.ShowDialog() == DialogResult.OK)
-                {
-                    venvPath = folder.SelectedPath;
-                    File.WriteAllText(@".AI_launther_log\venvpath.txt", venvPath);
+                venvPath = folder.SelectedPath;
+                File.WriteAllText(@".AI_launther_log\venvpath.txt", venvPath);
 
-                }
-            }
-            catch (Exception error)
-            {
-                string str1 = error.Message;
-                File.WriteAllText(@".\logs\error.txt", str1);
-                throw;
             }
         }
         public static void 获取程序同目录路径()
         {
-            try
-            {
-                // 获取程序所在目录
-                程序所在目录 = Directory.GetCurrentDirectory();
-            }
-            catch (Exception error)
-            {
-                string str1 = error.Message;
-                File.WriteAllText(@".\logs\error.txt", str1);
-                throw;
-            }
+            // 获取程序所在目录
+            程序所在目录 = Directory.GetCurrentDirectory();
+
         }
         public static bool CheckWebUIdownloaded() //检查WebUI是否下载
         {
-            try
+            string instellPath = 工作路径 + @"\WebUIpack.7z";
+            if (File.Exists(instellPath))
             {
-                string instellPath = 工作路径 + @"\WebUIpack.7z";
-                if (File.Exists(instellPath))
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
+                return true;
             }
-            catch (Exception error)
+            else
             {
-                string str1 = error.Message;
-                File.WriteAllText(@".\logs\error.txt", str1);
-                throw;
+                return false;
             }
         }
         public static bool CheckWebUIunzip() //检查WebUI是否解压
         {
-            try
+            string instellPath = 工作路径 + @"\2.0.9\stable-diffusion-webui\webui-user.bat";
+            if (File.Exists(instellPath))
             {
-                string instellPath = 工作路径 + @"\2.0.9\stable-diffusion-webui\webui-user.bat";
-                if (File.Exists(instellPath))
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
-
+                return true;
             }
-            catch (Exception error)
+            else
             {
-                string str1 = error.Message;
-                File.WriteAllText(@".\logs\error.txt", str1);
-                throw;
+                return false;
             }
 
         }
         public static bool CheckWebUIinstelled() //检查WebUI是否安装
         {
-            try
+            string instellPath = 工作路径 + @"\webui-user.bat";
+            if (File.Exists(instellPath))
             {
-                string instellPath = 工作路径 + @"\webui-user.bat";
-                if (File.Exists(instellPath))
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
+                return true;
             }
-            catch (Exception error)
+            else
             {
-                string str1 = error.Message;
-                File.WriteAllText(@".\logs\error.txt", str1);
-                throw;
+                return false;
             }
 
         }
         public static void CheckCommandline()//这里在初始化后从log里读取保存的args
         {
-            try
+            string filePath = @".AI_launther_log\argspath.txt";
+            if (File.Exists(filePath))
             {
-                string filePath = @".AI_launther_log\argspath.txt";
-                if (File.Exists(filePath))
-                {
-                    // 如果文件存在，读取其中的内容到startpath全局变量中
-                    命令列表 = File.ReadAllText(filePath);
+                // 如果文件存在，读取其中的内容到startpath全局变量中
+                命令列表 = File.ReadAllText(filePath);
 
-                }
-            }
-            catch (Exception error)
-            {
-                string str1 = error.Message;
-                File.WriteAllText(@".\logs\error.txt", str1);
-                throw;
             }
         }
         public static void CheckStartPathFile()//这里在初始化后从log里读取工作路径
         {
-            try
+            string filePath = @".AI_launther_log\startpath.txt";
+            if (File.Exists(filePath))
             {
-                string filePath = @".AI_launther_log\startpath.txt";
-                if (File.Exists(filePath))
-                {
-                    // 如果文件存在，读取其中的内容到startpath全局变量中
-                    工作路径 = File.ReadAllText(filePath);
+                // 如果文件存在，读取其中的内容到startpath全局变量中
+                工作路径 = File.ReadAllText(filePath);
 
-                }
-                else
-                {
-                    // 如果文件不存在，创建文件并将默认值写入
-                    路径状态 = "1";
-                }
             }
-            catch (Exception error)
+            else
             {
-                string str1 = error.Message;
-                File.WriteAllText(@".\logs\error.txt", str1);
-                throw;
+                // 如果文件不存在，创建文件并将默认值写入
+                路径状态 = "1";
             }
 
         }
         public static void CheckgitPathFile()//这里在初始化后从log里读取git路径
         {
-            try
+            string filePath = @".AI_launther_log\gitpath.txt";
+            if (File.Exists(filePath))
             {
-                string filePath = @".AI_launther_log\gitpath.txt";
-                if (File.Exists(filePath))
-                {
-                    // 如果文件存在，读取其中的内容到gitpath全局变量中
-                    gitPath = File.ReadAllText(filePath);
-                }
-            }
-            catch (Exception error)
-            {
-                string str1 = error.Message;
-                File.WriteAllText(@".\logs\error.txt", str1);
-                throw;
+                // 如果文件存在，读取其中的内容到gitpath全局变量中
+                gitPath = File.ReadAllText(filePath);
             }
         }
         public static void CheckVENVPathFile()//这里在初始化后从log里读取VENV的路径
         {
-            try
+            string filePath = @".AI_launther_log\venvpath.txt";
+            if (File.Exists(filePath))
             {
-                string filePath = @".AI_launther_log\venvpath.txt";
-                if (File.Exists(filePath))
-                {
-                    // 如果文件存在，读取其中的内容到venvpath全局变量中
-                    venvPath = File.ReadAllText(filePath);
-                }
-            }
-            catch (Exception error)
-            {
-                string str1 = error.Message;
-                File.WriteAllText(@".\logs\error.txt", str1);
-                throw;
+                // 如果文件存在，读取其中的内容到venvpath全局变量中
+                venvPath = File.ReadAllText(filePath);
             }
         }
         public static void 相册计数()
         {
-            try
+            string 相册路径 = 工作路径 + "\\outputs";
+            if (!Directory.Exists(相册路径))
             {
-                string 相册路径 = 工作路径 + "\\outputs";
-                if (!Directory.Exists(相册路径))
+                // 如果不存在，将"未找到相册"赋值给A1
+                相册图片数量 = "未找到相册";
+            }
+            else//相册计数功能
+            {
+                int imageFileCount = 0;
+                // 遍历outputs文件夹及其子文件夹
+                foreach (string directory in Directory.GetDirectories(相册路径, "*", SearchOption.AllDirectories))
                 {
-                    // 如果不存在，将"未找到相册"赋值给A1
-                    相册图片数量 = "未找到相册";
-                }
-                else//相册计数功能
-                {
-                    int imageFileCount = 0;
-                    // 遍历outputs文件夹及其子文件夹
-                    foreach (string directory in Directory.GetDirectories(相册路径, "*", SearchOption.AllDirectories))
+                    // 遍历当前目录下的所有文件
+                    foreach (string file in Directory.GetFiles(directory))
                     {
-                        // 遍历当前目录下的所有文件
-                        foreach (string file in Directory.GetFiles(directory))
+                        // 获取文件后缀名
+                        string extension = Path.GetExtension(file);
+                        // 判断是否为图片文件
+                        if (extension == ".png" || extension == ".jpg" || extension == ".jpeg" || extension == ".gif")
                         {
-                            // 获取文件后缀名
-                            string extension = Path.GetExtension(file);
-                            // 判断是否为图片文件
-                            if (extension == ".png" || extension == ".jpg" || extension == ".jpeg" || extension == ".gif")
-                            {
-                                // 如果是图片文件，图片文件数量加1
-                                imageFileCount++;
-                            }
+                            // 如果是图片文件，图片文件数量加1
+                            imageFileCount++;
                         }
                     }
-                    // 将图片文件数量写入变量AI
-                    int AI = imageFileCount;
-                    相册图片数量 = AI.ToString();
-
                 }
-            }
-            catch (Exception error)
-            {
-                string str1 = error.Message;
-                File.WriteAllText(@".\logs\error.txt", str1);
-                throw;
+                // 将图片文件数量写入变量AI
+                int AI = imageFileCount;
+                相册图片数量 = AI.ToString();
+
             }
         }
 

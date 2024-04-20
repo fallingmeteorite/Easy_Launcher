@@ -33,7 +33,7 @@
                                 <TextBlock x:Name="磁盘剩余显示" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="20,0,0,0"/>
 
                             </StackPanel>
-                            <TextBlock Text="在这里管理StableDiffusionWebUI的版本与部署位置  第三方整合包需单独配置环境" FontSize="14" HorizontalAlignment="Left" Margin="10,15,0,0"/>
+                            <TextBlock Text="在这里管理StableDiffusionWebUI的版本与部署位置  第三方整合包需单独在下方配置环境" FontSize="14" HorizontalAlignment="Left" Margin="10,15,0,0"/>
                         </StackPanel>
 
                     </ui:Card>
@@ -72,7 +72,7 @@
                                     <TextBlock TextWrapping="Wrap" Text="&#xED25;" FontFamily="Segoe MDL2 Assets"   FontSize="36" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Width="40" Height="40"/>
                                     <StackPanel Margin="15,0,0,0" Width="350">
                                         <TextBlock Text="选择StableDiffusion的部署位置"   FontSize="16" Margin="0,0,0,5"/>
-                                        <TextBlock Text="无论全新安装WebUI或选择已经部署WebUI" FontSize="12"/>
+                                        <TextBlock Text="全新安装WebUI路径" FontSize="12"/>
 
                                     </StackPanel>
                                     <TextBlock x:Name="工作路径展示" Text="暂未设置部署路径"   FontSize="16" VerticalAlignment="Center"/>
@@ -177,7 +177,7 @@
 
                                     <TextBlock
 
-                                        Text="非启动器所安装的整合包需要在下面设置必要路径,以确保软件正常运行" Margin="10,15,0,0" HorizontalAlignment="Left" FontSize="14"/>
+                                        Text="其他整合包需要在下面设置必要路径,以确保软件正常运行,你将不用进行上述操作" Margin="10,15,0,0" HorizontalAlignment="Left" FontSize="14"/>
 
                                 </StackPanel>
 
@@ -189,7 +189,7 @@
                                     <ui:SymbolIcon Symbol="Location20" Width="36" Height="36" FontSize="36"/>
                                     <StackPanel Margin="15,0,0,0" Width="780">
                                         <TextBlock Text="启用自定义路径" FontSize="16" Margin="0,0,0,5"/>
-                                        <TextBlock Text="萌新请勿修改选项,请确保自己知道怎么做" FontSize="12"/>
+                                        <TextBlock Text="请确保自己知道怎么做,若是下载上述整合包则不用启用" FontSize="12"/>
 
                                     </StackPanel>
                                     <ui:ToggleSwitch x:Name="启用自定义路径" IsChecked="False" Click="启用自定义路径_Click" Background="#FFFF3D48" />
@@ -238,6 +238,21 @@
                             </ui:CardAction>
 
                         </StackPanel>
+                        <ui:CardAction x:Name="运行路径选择_Copy" Click="运行路径选择_Click" Width="930" Height="75" Background="#0FFFFFFF"  Margin="0,-8,0,0" >
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock TextWrapping="Wrap" Text="&#xED25;" FontFamily="Segoe MDL2 Assets"   FontSize="36" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Width="40" Height="40"/>
+                                <StackPanel Margin="15,0,0,0" Width="350">
+                                    <TextBlock Text="选择StableDiffusion的部署位置"   FontSize="16" Margin="0,0,0,5"/>
+                                    <TextBlock Text="选择已经部署WebUI" FontSize="12"/>
+
+                                </StackPanel>
+                                <TextBlock x:Name="工作路径展示1" Text="暂未设置部署路径"   FontSize="16" VerticalAlignment="Center"/>
+                                <StackPanel Orientation="Vertical"/>
+
+
+                            </StackPanel>
+
+                        </ui:CardAction>
 
 
                     </StackPanel>

@@ -9,12 +9,12 @@
                  xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
              d:DesignHeight="600" d:DesignWidth="850">
     <Grid VerticalAlignment="Center" HorizontalAlignment="Center" Margin="5,5,5,5">
-        <ui:Card x:Name="模型版本展示" VerticalAlignment="Center" Width="250">
-          
-            <StackPanel x:Name="模型下载卡片列表">
+        <ui:Card x:Name="模型版本展示" Width="250">
+
+            <StackPanel x:Name="模型下载卡片列表" Margin="-15,0,-15,0">
                 <TextBlock x:Name="模型名称" Text="模型名称"   FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Center"/>
 
-                <StackPanel Orientation="Horizontal">
+                <StackPanel Orientation="Horizontal" Height="214" Width="214">
                     <StackPanel.Background>
                         <ImageBrush ImageSource="/Views/Pages/toolkit.png"/>
                     </StackPanel.Background>
@@ -29,12 +29,12 @@
                 <TextBlock TextWrapping="Wrap"  x:Name="模型hash"></TextBlock>
                 <StackPanel Margin="5,5,5,0">
                     <StackPanel Orientation="Horizontal">
-             
-                            <StackPanel HorizontalAlignment="Center">
-                                <ProgressBar x:Name="progressBar" Value="0" 
-                                             Height="40"  Width="210" />
-                            <Button Content="一键下载" x:Name="下载按钮" Height="40" Width="210" Margin="0,-40,0,0" Click="Download_Click" HorizontalAlignment="Center" ></Button>
-                            </StackPanel>
+
+                        <StackPanel Width="240">
+                            <ProgressBar x:Name="progressBar" Value="0" Margin="0,0,0,0"
+                                             Height="40"  Width="240" />
+                            <Button Content="一键下载" x:Name="下载按钮" Height="40" Width="240" Margin="0,-40,0,0" Click="Download_Click" HorizontalAlignment="Center" ></Button>
+                        </StackPanel>
                     </StackPanel>
                 </StackPanel>
             </StackPanel>

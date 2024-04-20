@@ -26,11 +26,11 @@ namespace Awake.ViewModels
 
         public MainWindowViewModel(INavigationService navigationService)
         {
-            Initialize.获取程序同目录路径();
-            Initialize.CheckDirectory();//对类库中的创建工作目录进行初始化
-            Initialize.CheckCommandline();//对类库中的检查保存的的路径进行加载
-            Initialize.CheckStartPathFile();//对读取设置的启动目录路径进行初始化
-            Initialize.相册计数();//获取相册数量
+            initialize.获取程序同目录路径();
+            initialize.CheckDirectory();//对类库中的创建工作目录进行初始化
+            initialize.CheckCommandline();//对类库中的检查保存的的路径进行加载
+            initialize.CheckStartPathFile();//对读取设置的启动目录路径进行初始化
+            initialize.相册计数();//获取相册数量
             if (!_isInitialized)
                 InitializeViewModel();
 

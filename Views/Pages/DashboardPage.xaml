@@ -282,7 +282,7 @@
 
                             <WrapPanel   x:Name="模型资源列表" HorizontalAlignment="Left"/>
                             <StackPanel Width="900">
-                                <Button x:Name="加载更多" Content="刷新更多"  Click="加载更多_Click" FontSize="18" HorizontalAlignment="Stretch" VerticalAlignment="Center" Height="35" Width="300"/>
+                                <Button x:Name="加载更多" Content="刷新更多"  Click="加载更多_Click" FontSize="18" HorizontalAlignment="Stretch" Height="35" Width="427"/>
 
 
                             </StackPanel>
@@ -324,37 +324,9 @@
             </Grid>
         </ScrollViewer>
 
-        <StackPanel   x:Name="搜索栏2"   Height="70"  HorizontalAlignment="Center"  Margin="0,0,0,8" VerticalAlignment="Top" Visibility="Visible" >
+        <StackPanel   x:Name="搜索栏2"   Height="60"  HorizontalAlignment="Center" VerticalAlignment="Top" Visibility="Visible" >
 
-            <StackPanel Height="70" Width="1000" HorizontalAlignment="Center" VerticalAlignment="Center">
-                <ProgressBar VerticalAlignment="Center" Value="100" Height="70" Width="1000"/>
-                <StackPanel  Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Height="70" Width="1000" Margin="0,-70,0,0"  >
-                    <ComboBox x:Name="模型类型选择器2"  SelectedIndex="0" Width="200" VerticalAlignment="Center" DropDownClosed="模型类型选择器2_DropDownClosed" Margin="8,0,0,0" Background="#33FFFFFF" Foreground="White" >
-                        <ComboBoxItem Content="模型类型：全部类型"/>
-                        <ComboBoxItem Content="LoRA"/>
-                        <ComboBoxItem Content="LyCORIS"/>
-                        <ComboBoxItem Content="Controlnet"/>
-                        <ComboBoxItem Content="Checkpoint"/>
-                        <ComboBoxItem Content="Textual Inversion"/>
-                    </ComboBox>
-
-                    <ui:TextBox x:Name="搜索框2"  PlaceholderText="搜索模型关键词,作者或模型类型"  Width="300" Margin="5,0,10,0"   LostFocus="搜索框2_LostFocus" SelectionTextBrush="#FF375398" Background="#33FFFFFF" Height="36" Cursor="IBeam"/>
-                    <ui:Button  x:Name="搜素按钮2" Height="35" Click="搜素按钮2_Click" Background="#33FFFFFF">
-                        <StackPanel Orientation="Horizontal">
-                            <ui:SymbolIcon Symbol="Search24" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="18" Foreground="White"/>
-                            <TextBlock Text="搜索模型" Foreground="White"/>
-                        </StackPanel>
-                    </ui:Button>
-                    <TextBlock Text="排序方式" VerticalAlignment="Center" Margin="10,0,0,0" FontSize="14" Foreground="White"/>
-                    <StackPanel x:Name="排序表2" Orientation="Horizontal" VerticalAlignment="Center" Margin="10,0,0,0">
-
-                        <RadioButton x:Name="推荐2" IsChecked="True"  Content="推荐" Click="推荐_Click" Background="White" Foreground="White"  />
-                        <RadioButton x:Name="最新2" Content="最新" Margin="-45,0,0,0" Click="最新_Click" Background="White" Foreground="White"/>
-                        <RadioButton x:Name="最热2" Content="最热" Margin="-45,0,0,0" Click="最热_Click" Background="White" Foreground="White" />
-                    </StackPanel>
-                </StackPanel>
-
-            </StackPanel>
+            <StackPanel Height="60" Width="1000" HorizontalAlignment="Center"/>
 
 
         </StackPanel>

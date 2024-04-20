@@ -11,9 +11,6 @@ namespace Awake
 {
 
 
-
-
-
     /// <summary>
     //不使用第三方库写一个简单的.NET6 C# WPF程序，由一个“下载”按钮，一个“取消”按钮与一个“进度条”组成，在按下“下载”按钮时开始下载，开始下载后按下“下载”按钮暂停，暂停后按下“下载”按钮继续下载之前暂停的同一任务，按下取消按钮后取消之前的下载任务并删除下载缓存.在下载过程中将下载进度显示到进度条
     /// </summary>
@@ -31,11 +28,6 @@ namespace Awake
 
         string downloadUrl = string.Empty;
         string modelNme = string.Empty;
-        private Thread downloadThread;
-        private int progress = 0;
-
-        private long _downloadedBytes = 0;
-        private long _totalBytes = 0;
         private DateTime _startTime;
         DateTime startTime = DateTime.Now;
         long totalBytesRead = 0;
@@ -47,40 +39,40 @@ namespace Awake
         {
             InitializeComponent();
             _uuid = uuid;
-            _Hash = GenerateHash(Initialize.工作路径);
+            _Hash = GenerateHash(initialize.工作路径);
             if (_modelType == "Checkpoint")
             {
-                模型保存路径 = Initialize.工作路径 + "\\models\\Stable-diffusion";
+                模型保存路径 = initialize.工作路径 + "\\models\\Stable-diffusion";
                 模型保存名称 = _模型名 + _modelname + ".safetensors";
             }
             if (_modelType == "LORA")
             {
-                模型保存路径 = Initialize.工作路径 + "\\models\\Lora";
+                模型保存路径 = initialize.工作路径 + "\\models\\Lora";
                 模型保存名称 = _模型名 + _modelname + ".safetensors";
 
             }
 
             if (_modelType == "Textual Inversion")
             {
-                模型保存路径 = Initialize.工作路径 + "\\embeddings";
+                模型保存路径 = initialize.工作路径 + "\\embeddings";
                 模型保存名称 = _模型名 + _modelname + ".pt";
 
             }
             if (_modelType == "LyCORIS")
             {
-                模型保存路径 = Initialize.工作路径 + "\\models\\LyCORIS";
+                模型保存路径 = initialize.工作路径 + "\\models\\LyCORIS";
                 模型保存名称 = _模型名 + _modelname + ".safetensors";
 
             }
             if (_modelType == "Controlnet")
             {
-                模型保存路径 = Initialize.工作路径 + "\\models\\ControlNet";
+                模型保存路径 = initialize.工作路径 + "\\models\\ControlNet";
                 模型保存名称 = _模型名 + _modelname + ".safetensors";
 
             }
             if (_modelType == "Hypernetwork")
             {
-                模型保存路径 = Initialize.工作路径 + "\\models\\ControlNet";
+                模型保存路径 = initialize.工作路径 + "\\models\\ControlNet";
                 模型保存名称 = _模型名 + _modelname + ".safetensors";
 
             }
@@ -97,7 +89,30 @@ namespace Awake
             模型下载源.Text = "模型下载地址：" + _modelSource;
             模型大小.Text = "模型文件大小：" + _modelSourceSize;
             模型hash.Text = "模型文件Hash：" + _modelSourceHash;
-
+            if (模型名称.Text == "")
+            {
+                模型名称.Text = "未知";
+            }
+            if (模型版本ID.Text == "模型版本ID：")
+            {
+                模型版本ID.Text = "模型版本ID：" + "未知";
+            }
+            if (模型文件名称.Text == "模型文件名称：")
+            {
+                模型文件名称.Text = "模型文件名称：" + "未知";
+            }
+            if (模型下载源.Text == "模型下载地址：")
+            {
+                模型下载源.Text = "模型下载地址：" + "未知";
+            }
+            if (模型大小.Text == "模型文件大小：")
+            {
+                模型大小.Text = "模型文件大小：" + "未知";
+            }
+            if (模型hash.Text == "模型文件Hash：")
+            {
+                模型hash.Text = "模型文件Hash：" + "未知\n\n\n";
+            }
             downloadUrl = _modelSource;
             modelNme = _modelname + _modelSourceName;
         }
@@ -293,9 +308,9 @@ namespace Awake
             }
         }
 
+        private void progressBar_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
 
-
-
-
+        }
     }
 }

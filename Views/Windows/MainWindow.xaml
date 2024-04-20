@@ -56,7 +56,7 @@
                 <StackPanel Grid.Row="0" Margin="0,12" Orientation="Horizontal">
                     <ui:SymbolIcon Symbol="Group20" FontSize="50"/>
                     <StackPanel VerticalAlignment="Center">
-                        <TextBlock Text="盒子在手 AI我有" FontSize="15" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,4"/>
+                        <TextBlock Text="盒子在手 AI我有 &#x0a; Release Version" FontSize="15" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,4"/>
                         <TextBlock Text="" FontSize="14" HorizontalAlignment="Left" VerticalAlignment="Center"/>
 
 
@@ -91,15 +91,15 @@
                 </ui:Flyout>
                 <ui:Flyout x:Name="主题设置区" Grid.Row="2" VerticalAlignment="Bottom" Width="180" >
                     <StackPanel>
-                        <TextBlock VerticalAlignment="Center" Margin="0,0,0,2">WinUI主题效果(限Win11)</TextBlock>
+                        <TextBlock VerticalAlignment="Center" Margin="0,0,0,2">主题效果(win11)</TextBlock>
 
                         <ui:Card>
                             <StackPanel>
-                                <RadioButton x:Name="Mica" IsChecked="True"  Content="Mica云母" Click="Mica_Click"  />
-                                <RadioButton x:Name="Acrylic" IsChecked="True"  Content="Acrylic磨砂玻璃" Click="Acrylic_Click"  />
-                                <RadioButton x:Name="Tabbed" IsChecked="True"  Content="Tabbed云母玻璃" Click="Tabbed_Click"  />
-                                <RadioButton x:Name="Auto" IsChecked="True"  Content="自动" Click="Auto_Click"  />
-                                <RadioButton x:Name="None" IsChecked="True"  Content="禁用" Click="None_Click" Visibility="Visible"  />
+                                <RadioButton x:Name="Mica" IsChecked="True"  Content="云母玻璃(win11)" Click="Mica_Click"  />
+                                <RadioButton x:Name="Acrylic" IsChecked="True"  Content="磨砂玻璃(win11)" Click="Acrylic_Click"  />
+                                <RadioButton x:Name="Tabbed" IsChecked="True"  Content="云母玻璃(win11)" Click="Tabbed_Click"  />
+                                <RadioButton x:Name="Auto" IsChecked="True"  Content="自动(win11)" Click="Auto_Click"  />
+                                <RadioButton x:Name="None" IsChecked="True"  Content="禁用(win10)" Click="None_Click" Visibility="Visible"  />
 
                             </StackPanel>
                         </ui:Card>
@@ -205,7 +205,7 @@
                     TooltipText="光源绘梦Release Version">
                     <ui:NotifyIcon.Menu>
                         <ContextMenu>
-                            <MenuItem  Header="盒子在手 AI我有" Tag="盒子在手 AI我有" />
+                            <MenuItem  Header="盒子在手 AI我有" Tag="盒子在手 AI我有"/>
 
                         </ContextMenu>
                     </ui:NotifyIcon.Menu>
@@ -213,17 +213,21 @@
             </ui:TitleBar.Tray>
         </ui:TitleBar>
         <Grid x:Name="开屏画面"  Grid.Row="1" Grid.RowSpan="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="17*"/>
+                <ColumnDefinition Width="63*"/>
+            </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition ></RowDefinition>
                 <RowDefinition Height="100">
 
                 </RowDefinition>
             </Grid.RowDefinitions>
-            <StackPanel Grid.Row="1" >
+            <StackPanel Grid.ColumnSpan="2" Margin="0,552,0,0" Grid.RowSpan="2" >
                 <TextBlock x:Name="盒子C1" Text="光源绘梦启动器Release Version (Open-SD-WebUI-Launcher) for Windows10 and later" HorizontalAlignment="Center" FontSize="16" Margin="0,15,0,0"/>
                 <TextBlock x:Name="盒子C2" Text="copy right ©2022-2024 Ray_Source光源 All right reserved" HorizontalAlignment="Center"/>
             </StackPanel>
-            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Orientation="Horizontal">
+            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Left" Orientation="Horizontal" Grid.ColumnSpan="2" Margin="186,0,0,0">
                 <ui:SymbolIcon Symbol="Group20" FontSize="180" HorizontalAlignment="Left" VerticalAlignment="Top" Opacity="0.99"/>
                 <StackPanel>
                     <TextBlock FontSize="60" HorizontalAlignment="Center"   FontFamily="Microsoft YaHei"   VerticalAlignment="Center" Margin="0,30,0,0">盒子在手，AI我有!</TextBlock>
@@ -234,7 +238,7 @@
 
 
 
-            <StackPanel>
+            <StackPanel Grid.ColumnSpan="2">
 
 
             </StackPanel>

@@ -37,84 +37,90 @@ namespace Awake.Views.Windows
         public Model_content(string uuid, string nickname, string avatar, string modelType, string imageURL)
         {
             InitializeComponent();
-            if (Initialize.背景颜色 == "Mica")
+            if (initialize.背景颜色 == "Mica")
             {
                 try
                 {
-                    modelwindow.WindowBackdropType = BackgroundType.Mica;
-                    主题背景图.Opacity = 0;
-
-                }
-                catch
-                {
-
-                }
-
-
-            }
-            if (Initialize.背景颜色 == "Acrylic")
-            {
-                try
-                {
-                    modelwindow.WindowBackdropType = BackgroundType.Acrylic;
-                    主题背景图.Opacity = 0;
-
-                }
-                catch
-                {
-
-                }
-
-            }
-            if (Initialize.背景颜色 == "Tabbed")
-            {
-                try
-                {
-                    modelwindow.WindowBackdropType = BackgroundType.Tabbed;
-                    主题背景图.Opacity = 0;
-
-                }
-                catch
-                {
-
-                }
-
-            }
-            if (Initialize.背景颜色 == "Auto")
-            {
-                try
-                {
-                    modelwindow.WindowBackdropType = BackgroundType.Auto;
-                    主题背景图.Opacity = 0;
-
-                }
-                catch
-                {
-
-                }
-
-            }
-            if (Initialize.背景颜色 == "None")
-            {
-                try
-                {
-                    modelwindow.WindowBackdropType = BackgroundType.None;
-                    主题背景图.Opacity = 0;
-
-                }
-                catch
-                {
-
-                }
-
-            }
-            if (Initialize.背景颜色 == "Picture")
-            {
-                try
-                {
-                    图片亮度.Value = Initialize.背景亮度;
+                    string alphaStringent = File.ReadAllText(@".AI_launther_log\UIalpha.txt");
+                    图片亮度.Value = int.Parse(alphaStringent);
                     主题背景图.Opacity = 图片亮度.Value / 100;
-                    string imagepath = Initialize.背景图片; // 获取选择的文件路径+文件名  
+
+                }
+                catch
+                {
+
+                }
+
+
+            }
+            if (initialize.背景颜色 == "Acrylic")
+            {
+                try
+                {
+                    string alphaStringent = File.ReadAllText(@".AI_launther_log\UIalpha.txt");
+                    图片亮度.Value = int.Parse(alphaStringent);
+                    主题背景图.Opacity = 图片亮度.Value / 100;
+
+                }
+                catch
+                {
+
+                }
+
+            }
+            if (initialize.背景颜色 == "Tabbed")
+            {
+                try
+                {
+                    string alphaStringent = File.ReadAllText(@".AI_launther_log\UIalpha.txt");
+                    图片亮度.Value = int.Parse(alphaStringent);
+                    主题背景图.Opacity = 图片亮度.Value / 100;
+
+                }
+                catch
+                {
+
+                }
+
+            }
+            if (initialize.背景颜色 == "Auto")
+            {
+                try
+                {
+                    string alphaStringent = File.ReadAllText(@".AI_launther_log\UIalpha.txt");
+                    图片亮度.Value = int.Parse(alphaStringent);
+                    主题背景图.Opacity = 图片亮度.Value / 100;
+
+                }
+                catch
+                {
+
+                }
+
+            }
+            if (initialize.背景颜色 == "None")
+            {
+                try
+                {
+                    string alphaStringent = File.ReadAllText(@".AI_launther_log\UIalpha.txt");
+                    图片亮度.Value = int.Parse(alphaStringent);
+                    主题背景图.Opacity = 图片亮度.Value / 100;
+
+                }
+                catch
+                {
+
+                }
+
+            }
+            if (initialize.背景颜色 == "Picture")
+            {
+                try
+                {
+                    string alphaStringent = File.ReadAllText(@".AI_launther_log\UIalpha.txt");
+                    图片亮度.Value = int.Parse(alphaStringent);
+                    主题背景图.Opacity = 图片亮度.Value / 100;
+                    string imagepath = initialize.背景图片; // 获取选择的文件路径+文件名  
                     ImageSource imageSource = new BitmapImage(new Uri(imagepath)); // 设置Image的ImageSource为选择的图片  
                     主题背景图.ImageSource = imageSource; // 将选择的图片显示在Image控件中  
 
@@ -206,7 +212,13 @@ namespace Awake.Views.Windows
                 string 模型富文本简介内容 = JObjectlist["remark"].ToString();
                 if (模型富文本简介内容 == "")
                 {
-                    简介.Visibility = Visibility.Collapsed;
+                    简介.Visibility = Visibility.Visible;
+                    模型富文本简介内容 = "作者暂未介绍模型";
+                    string utf8text = "meta charset =\"UTF-8\"";//使用UTF8格式化富文本
+                    string htmlContent = "<" + utf8text + ">" + 模型富文本简介内容;
+                    富文本简介.Source = new Uri("data:text/html," + htmlContent);
+                    简介.Visibility = Visibility.Visible;
+
                 }
                 else
                 {
@@ -265,20 +277,12 @@ namespace Awake.Views.Windows
                         模型下载列表.Children.Add(model_Download_List);
                     }
                 }
-                catch (Exception ex)
+                catch
                 {
                     报错指示器.Visibility = Visibility.Visible;
 
 
                 }
-
-
-
-
-
-
-
-
 
             }
             catch (Exception ex)//捕获异常拿去调试或者控制404一类的UI动画逻辑

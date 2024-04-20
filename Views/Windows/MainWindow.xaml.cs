@@ -11,7 +11,7 @@ using System.Windows.Media.Imaging;
 using Wpf.Ui.Appearance;
 using Wpf.Ui.Controls.Interfaces;
 using Wpf.Ui.Mvvm.Contracts;
-using static Awake.Initialize;
+using static Awake.initialize;
 using Application = System.Windows.Application;
 
 namespace Awake.Views.Windows
@@ -56,15 +56,15 @@ namespace Awake.Views.Windows
                 async void GetSystemInfo()
                 {
 
-                    string gpuname = await Task.Run(() => Hardinfo.getGPUNamelist());//这个函数内部对GPU写入了List,仅return GPUname供展示
+                    string gpuname = await Task.Run(() => hardinfo.getGPUNamelist());//这个函数内部对GPU写入了List,仅return GPUname供展示
                     try
                     {
-                        _UseGPUindex = Initialize.显卡列表.Count - 1;//默认启动后选最后一张GPU，核显什么的排在前面
+                        _UseGPUindex = initialize.显卡列表.Count - 1;//默认启动后选最后一张GPU，核显什么的排在前面
                     }
                     catch (Exception ex) { }
 
 
-                    _GPUname = Initialize.显卡列表.Last();//开始对GPUname判断
+                    _GPUname = initialize.显卡列表.Last();//开始对GPUname判断
                     if (_GPUname.Contains("Radeon"))
                     {
                         _显卡类型 = "Radeon";
@@ -88,12 +88,12 @@ namespace Awake.Views.Windows
 
                 if (File.Exists(@".AI_launther_log\UI.txt"))
                 {
-                    // 如果文件存在，读取其中的内容到gitpath全局变量中
-                    背景颜色 = File.ReadAllText(@".AI_launther_log\UI.txt");
+                    // 如果文件存在，读取其中的内容到UI全局变量中
+                    initialize.背景颜色 = File.ReadAllText(@".AI_launther_log\UI.txt");
                     if (File.Exists(@".AI_launther_log\UIpicture.txt"))
                     {
-                        // 如果文件存在，读取其中的内容到gitpath全局变量中
-                        背景图片 = File.ReadAllText(@".AI_launther_log\UIpicture.txt");
+                        // 如果文件存在，读取其中的内容到UI全局变量中
+                        initialize.背景图片 = File.ReadAllText(@".AI_launther_log\UIpicture.txt");
                     }
 
 
@@ -374,7 +374,7 @@ namespace Awake.Views.Windows
                 主题背景图.ImageSource = imageSource; // 将选择的图片显示在Image控件中  
 
             }
-            catch (Exception ex)
+            catch
             {
                 System.Windows.MessageBox.Show("请选择一张图片");
 
@@ -448,7 +448,7 @@ namespace Awake.Views.Windows
                     主题背景图.ImageSource = imageSource; // 将选择的图片显示在Image控件中  
 
                 }
-                catch (Exception ex)
+                catch
                 {
                     System.Windows.MessageBox.Show("请先选择一张图片");
 

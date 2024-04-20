@@ -8,7 +8,7 @@ using System.Windows.Controls;
 using System.Windows.Media.Animation;
 using System.Windows.Threading;
 using Wpf.Ui.Controls;
-using static Awake.Initialize;//这里引入全局参数库
+using static Awake.initialize;//这里引入全局参数库
 namespace Awake.Views.Windows
 {
     public partial class shell : UiWindow
@@ -93,13 +93,13 @@ namespace Awake.Views.Windows
             }
             async Task GetSystemInfo()
             {
-                cpuname = await Task.Run(() => Hardinfo.GetCpuName());
-                Machinename = await Task.Run(() => Hardinfo.GetComputerName());
-                systemType = await Task.Run(() => Hardinfo.GetSystemType());
+                cpuname = await Task.Run(() => hardinfo.GetCpuName());
+                Machinename = await Task.Run(() => hardinfo.GetComputerName());
+                systemType = await Task.Run(() => hardinfo.GetSystemType());
 
-                memorysize = await Task.Run(() => Hardinfo.GetPhysicalMemory());
-                memorynum = await Task.Run(() => Hardinfo.MemoryNumberCount());
-                gpuname = await Task.Run(() => Hardinfo.GPUName());
+                memorysize = await Task.Run(() => hardinfo.GetPhysicalMemory());
+                memorynum = await Task.Run(() => hardinfo.MemoryNumberCount());
+                gpuname = await Task.Run(() => hardinfo.GPUName());
                 标准输出流.AppendText("StableDiffusionWebUI正在启动，请耐心等待" + Environment.NewLine);
                 标准输出流.AppendText("光源AI绘画启动核心版本：Release Version 2024/4/8" + Environment.NewLine);
                 标准输出流.AppendText("关注bilibili@Ray_Source光源 获取最新支持" + Environment.NewLine);
@@ -111,7 +111,7 @@ namespace Awake.Views.Windows
                 标准输出流.AppendText("显卡信息：" + gpuname + Environment.NewLine);
                 标准输出流.AppendText("当前使用的生成引擎：" + _GPUname + Environment.NewLine);
                 标准输出流.AppendText("正在运行，请耐心等待，运行速度由电脑性能决定\n");
-                标准输出流.AppendText(工作路径 + @"\launch.py" + 参数列表 + " --device-id " + (_UseGPUindex) + _WebUI显存压力优化设置 + _WebUI主题颜色 + "\n");
+  
             }
             //这里开始从initilize中被处理过的参数变量进行初始化
             if (浏览器启动 == true) { 参数列表 += " --autolaunch"; }
@@ -139,9 +139,13 @@ namespace Awake.Views.Windows
                 参数列表 = " --use-cpu all --precision full --no-half --skip-torch-cuda-test";
             }
             if (_分享WebUI到公网 == true) { 参数列表 += " --share"; }
+
             if (_关闭半精度计算 == true) { 参数列表 += "  --no-half "; }
+
             if (启动api == true) { 参数列表 += "  --api"; }
+
             if (快速启动 == true) { 参数列表 += " --ui-debug-mode --disable-safe-unpickle "; }
+
             try
             {
                 //这里开始创建启动进程
@@ -183,7 +187,7 @@ namespace Awake.Views.Windows
                     {
                         startinfo.FileName = (venvPath + @"\Scripts\python.exe");
                     }
-
+                    标准输出流.AppendText(工作路径 + @"\launch.py" + 参数列表 + " --device-id " + (_UseGPUindex) + _WebUI显存压力优化设置 + _WebUI主题颜色 + "\n");
                     startinfo.Arguments = 工作路径_start + @"\launch.py" + 参数列表 + " --device-id " + (_UseGPUindex) + _WebUI显存压力优化设置 + _WebUI主题颜色;
                     startinfo.WorkingDirectory = 工作路径;
 
@@ -212,7 +216,7 @@ namespace Awake.Views.Windows
 
                 else
                 {
-
+                    标准输出流.AppendText(工作路径 + @"\launch.py" + 参数列表 + " --device-id " + (_UseGPUindex) + _WebUI显存压力优化设置 + _WebUI主题颜色 + "\n");
                     startinfo.FileName = 工作路径_start + @"\Python3.10\python.exe";
                     startinfo.Arguments = 工作路径_start + @"\launch.py" + 参数列表 + " --device-id " + (_UseGPUindex) + _WebUI显存压力优化设置 + _WebUI主题颜色;
                     startinfo.WorkingDirectory = 工作路径;
