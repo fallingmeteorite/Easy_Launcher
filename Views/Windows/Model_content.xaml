@@ -27,7 +27,7 @@
 
 
         <ui:TitleBar
-            Title="光源绘梦3.0.10  |  模型详情页"
+            Title="光源绘梦Release Version  |  模型详情页"
             Grid.Row="0"
             
             UseSnapLayout="True" >
@@ -54,31 +54,32 @@
 
                 </StackPanel>
             </StackPanel>
-            <StackPanel Orientation="Horizontal" Margin="10,10,0,0">
+            <StackPanel Orientation="Horizontal" Margin="10,50,0,0" Height="438">
                 <StackPanel>
                     <TextBlock Text="模型封面" FontSize="20" FontWeight="Bold"></TextBlock>
-                    <Border  Width="300" Height="450" Margin="0,5,0,0">
+                    <Slider Maximum="100" x:Name="图片亮度" Visibility="Visible" Margin="0,0,0,0"/>
+                    <Border  Width="300" Height="395" Margin="0,2,0,0">
                         <Border.Background>
                             <ImageBrush x:Name="模型封面" Stretch="UniformToFill"/>
                         </Border.Background>
 
                     </Border>
                 </StackPanel>
-                <StackPanel x:Name="简介" Margin="10,0,0,0" Visibility="Collapsed">
-                    <TextBlock Text="模型简介" FontSize="20" FontWeight="Bold"></TextBlock>
-                    <Slider Maximum="100" x:Name="图片亮度" Visibility="Collapsed"></Slider>
+                <StackPanel x:Name="简介" Margin="10,0,0,0" Visibility="Visible">
+                    <TextBlock Text="模型介绍" FontSize="20" FontWeight="Bold"></TextBlock>
+
                     <Border x:Name="介绍" CornerRadius="15">
 
-                        <wv2:WebView2 Name="富文本简介"  Source=""    ScrollViewer.VerticalScrollBarVisibility="Hidden" Width="300" HorizontalAlignment="Left" Height="450" Margin="0,5,0,0"    />
+                        <wv2:WebView2 Name="富文本简介"  Source=""    ScrollViewer.VerticalScrollBarVisibility="Hidden" Width="300" HorizontalAlignment="Center" Height="420"    />
                     </Border>
                 </StackPanel>
-                <StackPanel Margin="5,0,5,0" Width="550">
-                    <TextBlock Text="模型版本 " FontSize="20" FontWeight="Bold"></TextBlock>
-                    <ScrollViewer Height="450">
+                <StackPanel Margin="5,0,5,0" Width="410">
+                    <TextBlock Text="模型版本 " FontSize="20" FontWeight="Bold" Width="461"></TextBlock>
+                    <ScrollViewer Height="420" Width="530">
                         <WrapPanel x:Name="模型下载列表" >
                             <StackPanel x:Name="报错指示器" Visibility="Collapsed">
-                                <TextBlock x:Name="报错指示文本" Text="该模型下载未开放"  VerticalAlignment="Center"  Margin="120,180,0,0" FontSize="36" HorizontalAlignment="Center"/>
-                                <ui:Hyperlink NavigateUri="https://liblib.ai" HorizontalAlignment="Center" FontSize="22" FontWeight="Bold" Margin="120,0,0,0">点击前往liblib.AI在线使用模型</ui:Hyperlink>
+                                <TextBlock x:Name="报错指示文本" Text="模型下载未开放"  VerticalAlignment="Center"  Margin="120,180,0,0" FontSize="36" HorizontalAlignment="Center"/>
+                                <ui:Hyperlink NavigateUri="https://liblib.ai" HorizontalAlignment="Center" FontSize="22" FontWeight="Bold" Margin="120,0,0,0">点击前往liblib.AI在线使用</ui:Hyperlink>
 
                             </StackPanel>
 
