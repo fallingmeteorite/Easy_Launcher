@@ -120,16 +120,7 @@ namespace Awake.Views.Windows
             if (启用替代布局 == true) { 参数列表 += " --opt-channelslast "; }
 
             if (缩放点积交叉 == true) { 参数列表 += " --opt-sdp-attention "; }
-
-
-            if (A卡模式 == true)
-            {
-                参数列表 += " --precision full --upcast-sampling --device-name directml --use-cpu interrogate --no-gradio-queue --opt-sub-quad-attention ";
-            }
-            if (N卡模式 == true)
-            {
-                参数列表 += " --no-gradio-queue";
-            }
+ 
             if (XF加速模式 == true)
             {
                 参数列表 += " --xformers --xformers-flash-attention";
@@ -145,7 +136,7 @@ namespace Awake.Views.Windows
             if (启动api == true) { 参数列表 += "  --api"; }
 
             if (快速启动 == true) { 参数列表 += " --ui-debug-mode --disable-safe-unpickle "; }
-
+            //--log - startup
             try
             {
                 //这里开始创建启动进程

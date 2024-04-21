@@ -41,14 +41,11 @@
                             </StackPanel>
                         </StackPanel>
 
-                        
-                        
-                        
                     </ui:CardExpander>
                     <ui:Card Width="910"  Height="100" Margin="0,10,0,2" Background="#0FFFFFFF" >
                         <StackPanel Height="100">
-                            <TextBlock Text="生成引擎设置说明" FontSize="20" HorizontalAlignment="Left" Margin="10,0,0,0"/>
-                            <TextBlock Text="WebUI常用参数" FontSize="14" HorizontalAlignment="Left" Margin="10,15,0,0"/>
+                            <TextBlock Text="生成引擎设置" FontSize="20" HorizontalAlignment="Left" Margin="10,0,0,0"/>
+                            <TextBlock Text="配置SD使用的显卡" FontSize="14" HorizontalAlignment="Left" Margin="10,15,0,0"/>
                         </StackPanel>
 
                     </ui:Card>
@@ -134,27 +131,24 @@
                             </ui:Card>
                             <ui:Flyout x:Name="性能优化器开关面版" HorizontalAlignment="Left">
                                 <StackPanel>
-                                    <TextBlock Text="预制优化方案" Margin="0,0,0,2"/>
+                                    <TextBlock Text="A卡|I卡优化方案" Margin="0,0,0,2"/>
 
                                     <ui:Card>
                                         <StackPanel Margin="0,0,0,5">
                                             <StackPanel Orientation="Horizontal" Margin="0,0,0,5">
                                                 <TextBlock Width="400">SDP无内存优化，可提高生成速度</TextBlock>
-                                                <ui:ToggleSwitch x:Name="N卡优化" VerticalAlignment="Center" Click="N卡优化_Click" />
+                                                <ui:ToggleSwitch x:Name="SDP优化" VerticalAlignment="Center" Click="SDP优化_Click" />
                                             </StackPanel>
-                                            <StackPanel Orientation="Horizontal">
-                                                <TextBlock Width="400">（AMD）--opt-sdp-no-mem-attention --upcast-sampling</TextBlock>
-                                                <ui:ToggleSwitch x:Name="A卡优化" VerticalAlignment="Center" Checked="A卡优化_Checked"  />
-                                            </StackPanel>
+
                                         </StackPanel>
 
                                     </ui:Card>
-                                    <TextBlock Text="可附加优化方案" Margin="0,5,0,2" Visibility="Collapsed"/>
-                                    <ui:Card Visibility="Collapsed">
+                                    <TextBlock Text="N卡优化方案" Margin="0,5,0,2" Visibility="Visible"/>
+                                    <ui:Card Visibility="Visible">
                                         <StackPanel>
                                             <StackPanel Orientation="Horizontal" Margin="0,0,0,5">
-                                                <TextBlock Width="400">--opt-split-attention-invokeai</TextBlock>
-                                                <ui:ToggleSwitch  VerticalAlignment="Center" />
+                                                <TextBlock Width="400">SDP无内存优化，可提高生成速s度</TextBlock>
+                                                <ui:ToggleSwitch x:Name="启用替代布局" VerticalAlignment="Center" Click="启用替代布局_Click" />
                                             </StackPanel>
                                             <StackPanel Orientation="Horizontal" Margin="0,0,0,5">
                                                 <TextBlock Width="400">--opt-split-attention-v1</TextBlock>
@@ -218,7 +212,7 @@
                         <ui:Card Width="910"  Height="100" Margin="0,10,0,2" Background="#0FFFFFFF" >
                             <StackPanel Height="100">
                                 <TextBlock Text="高级设置" FontSize="20" HorizontalAlignment="Left" Margin="10,0,0,0"/>
-                                <TextBlock Text="WebUI常用参数" FontSize="14" HorizontalAlignment="Left" Margin="10,15,0,0"/>
+                                <TextBlock Text="WebUI特殊参数" FontSize="14" HorizontalAlignment="Left" Margin="10,15,0,0"/>
                             </StackPanel>
 
                         </ui:Card>
@@ -276,17 +270,8 @@
                                 </StackPanel>
                                 <ui:ToggleSwitch x:Name="缩放点积交叉" IsChecked="False" Click="缩放点积交叉_Click" Background="#FFFF3D48" />
                             </StackPanel>
-                        </ui:Card>
-                        <ui:Card VerticalAlignment="Stretch" Width="910" Margin="0,0,0,2" Visibility="Visible">
-                            <StackPanel Orientation="Horizontal">
-                                <ui:SymbolIcon Symbol="BracesVariable24" Height="36" Width="36" FontSize="36"/>
-                                <StackPanel Margin="15,0,0,0" Width="780">
-                                    <TextBlock Text="启用替代布局" FontSize="16" Margin="0,0,0,5"/>
-                                    <TextBlock Text="仅在具有Tensor核心(GTX16xx及更高版本)的N卡上实现更快的推理." FontSize="12"/>
 
-                                </StackPanel>
-                                <ui:ToggleSwitch x:Name="启用替代布局" IsChecked="False" Click="启用替代布局_Click" Background="#FFFF3D48" />
-                            </StackPanel>
+
                         </ui:Card>
                         <ui:Card Width="910" Visibility="Visible">
                             <StackPanel Orientation="Horizontal">

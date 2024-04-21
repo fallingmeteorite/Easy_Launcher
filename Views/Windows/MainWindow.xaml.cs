@@ -57,24 +57,6 @@ namespace Awake.Views.Windows
                     }
                     catch (Exception ex) { }
 
-
-                    _GPUname = initialize.显卡列表.Last();//开始对GPUname判断
-                    if (_GPUname.Contains("Radeon"))
-                    {
-                        _显卡类型 = "Radeon";
-                        initialize.A卡模式 = true;
-                        initialize.XF加速模式 = false;
-
-                    }
-
-                    if (_GPUname.Contains("NVIDIA"))
-                    {
-                        _显卡类型 = "NVIDIA";
-                        initialize.N卡模式 = true;
-                        initialize.XF加速模式 = true;
-
-                    }
-
                     //计算机名称类型.Text = "系统名称：" + Machinename + "   系统类型：" + systemType;
                     //计算机内存信息.Text = "内存信息：" + memorynum + " 插槽" + "  共计" + memorysize + " GB";
                     //计算机显卡信息.Text = "显卡信息：" + gpuname;

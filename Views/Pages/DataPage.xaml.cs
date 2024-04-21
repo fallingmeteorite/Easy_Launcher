@@ -25,44 +25,10 @@ namespace Awake.Views.Pages
                 }
                 catch (Exception ex) { }
             }
-            更新控件状态();
             initialize._GPUname = 显卡选择器.SelectedItem.ToString();
             initialize._UseGPUindex = 显卡选择器.SelectedIndex;
-            if (_GPUname.Contains("Radeon"))
-            {
-                _显卡类型 = "Radeon";
-                A卡模式 = true;
-                XF加速模式 = false;
-            }
-
-            if (_GPUname.Contains("NVIDIA"))
-            {
-                _显卡类型 = "NVIDIA";
-                N卡模式 = true;
-                XF加速模式 = true;
-            }
         }
-        public async void 更新控件状态()
-        {
-            if (显卡选择器.SelectedItem.ToString().Contains("Radeon"))
-            {
-                _显卡类型 = "Radeon";
-                A卡模式 = true;
-                XF加速模式 = false;
-                A卡优化.IsChecked = true;
-                启用XF.IsEnabled = false;
-                N卡优化.IsEnabled = false;
-            }
 
-            if (显卡选择器.SelectedItem.ToString().Contains("NVIDIA"))
-            {
-                A卡模式 = false;
-                XF加速模式 = true;
-                N卡优化.IsChecked = true;
-                A卡优化.IsEnabled = false;
-                if (XF加速模式 == true) { 启用XF.IsChecked = true; }
-            }
-        }
         public async void GetSystemInfo()
         {
             string cpuname = await Task.Run(() => hardinfo.GetCpuName());
@@ -118,42 +84,31 @@ namespace Awake.Views.Pages
             }
         }
 
-        private void 启用替代布局_Click(object sender, System.Windows.RoutedEventArgs e)
-        {
-            if (启用替代布局.IsChecked == true)
-            {
-                initialize.启用替代布局 = true;
-            }
-            else
-            {
-                initialize.启用替代布局 = false;
-            }
-        }
-
         private void 性能优化器配置面板_Click(object sender, System.Windows.RoutedEventArgs e)
         {
             性能优化器开关面版.Show();
         }
 
-        private void N卡优化_Click(object sender, System.Windows.RoutedEventArgs e)
+        private void 缩放点积_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            if (N卡模式 == false)
-            {
-                N卡模式 = false;
-            }
+            if (缩放点积.IsChecked == false)
+            { initialize.缩放点积 = true; }
             else
-            {
-                N卡模式 = true;
-            }
+            { initialize.缩放点积 = false; }
         }
 
-        private void A卡优化_Checked(object sender, System.Windows.RoutedEventArgs e)
+        private void SDP优化_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            if (A卡模式 == false)
-            { A卡模式 = false; }
+            if (SDP优化.IsChecked == false)
+            { initialize.SDP优化 = false; }
             else
-            { A卡模式 = true; }
+            { initialize.SDP优化 = true; }
         }
+
+
+
+
+
         private void WebUI显存压力优化设置_DropDownClosed(object sender, EventArgs e)
         {
             if (WebUI显存压力优化设置.SelectedIndex == 0)
@@ -173,24 +128,6 @@ namespace Awake.Views.Pages
         {
             initialize._GPUname = 显卡选择器.SelectedItem.ToString();
             initialize._UseGPUindex = 显卡选择器.SelectedIndex;
-            if (_GPUname.Contains("Radeon"))
-            {
-                _显卡类型 = "Radeon";
-                A卡模式 = true;
-                XF加速模式 = false;
-            }
-            if (_GPUname.Contains("Intel"))
-            {
-                _显卡类型 = "Radeon";
-                A卡模式 = true;
-                XF加速模式 = false;
-            }
-            if (_GPUname.Contains("NVIDIA"))
-            {
-                _显卡类型 = "NVIDIA";
-                N卡模式 = true;
-                XF加速模式 = true;
-            }
         }
         private void 开启API_Click(object sender, System.Windows.RoutedEventArgs e)
         {
@@ -222,13 +159,6 @@ namespace Awake.Views.Pages
             { _关闭半精度计算 = false; }
         }
 
-        private void 缩放点积交叉_Click(object sender, System.Windows.RoutedEventArgs e)
-        {
-            if (initialize.缩放点积交叉 == false)
-            { initialize.缩放点积交叉 = true; }
-            else
-            { initialize.缩放点积交叉 = false; }
-        }
         private void 快速启动_Click(object sender, System.Windows.RoutedEventArgs e)
         {
             if (initialize.快速启动 == false)

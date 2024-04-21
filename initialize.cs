@@ -42,9 +42,9 @@ namespace Awake
         public static bool 关闭模型hash计算 = false;
         public static bool 无卡调试模式 = false;
         public static bool XF加速模式 = true;
-        public static bool 自动加速模式 = true;
-        public static bool A卡模式 = false;
-        public static bool N卡模式 = false;
+        public static bool SDP优化 = false;
+
+
         //下面是一些参数的字符串预设
         public static string _WebUI性能优化器 = "";
         public static string _显卡类型 = "";
