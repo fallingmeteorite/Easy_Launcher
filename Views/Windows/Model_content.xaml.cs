@@ -82,7 +82,9 @@ namespace Awake.Views.Windows
             }
             if (initialize.背景颜色 == "Picture")
             {
-                主题背景图.Opacity = initialize.图片亮度 / 100;
+                modelwindow.WindowBackdropType = BackgroundType.None;
+                图片亮度.Value = initialize.图片亮度;
+                主题背景图.Opacity = 图片亮度.Value / 100;
                 string imagepath = initialize.背景图片; // 获取选择的文件路径+文件名  
                 ImageSource imageSource = new BitmapImage(new Uri(imagepath)); // 设置Image的ImageSource为选择的图片  
                 主题背景图.ImageSource = imageSource; // 将选择的图片显示在Image控件中  
