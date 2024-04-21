@@ -25,7 +25,8 @@ namespace Awake
         public static List<string> 显卡列表 = new List<string>();
         public static string 背景颜色 = "";
         public static string 背景图片 = "";
-        public static int 背景亮度 = 0;
+        public static int 背景亮度 = 100;
+        public static int 图片亮度 = 100;
         public static bool _SD启动 = false;//SD,启动的白屏动画效果开关!
         //下面确定SD_WebUI是否已经安装
         public static bool 已下载WebUI = false;
@@ -63,7 +64,7 @@ namespace Awake
         public static string _cpuname = "";
         public static string _GPUname = "";
         public static int _UseGPUindex = 0;
-        public static string 相册图片数量;
+        public static string 相册图片数量 = "";
         public static string 参数列表 = "";//所有启动时传递的参数挂到这里，全局可编辑与访问
         public static bool 启用替代布局;
         public static bool 缩放点积交叉;

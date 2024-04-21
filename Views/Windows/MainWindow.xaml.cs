@@ -46,12 +46,6 @@ namespace Awake.Views.Windows
                 };
                 GetSystemInfo();
                 CheckStartPathFile();//从log读取工作路径
-                if (File.Exists(@".AI_launther_log\UIalpha.txt"))
-                {
-                    string alphaStringent = File.ReadAllText(@".AI_launther_log\UIalpha.txt");
-                    背景亮度 = int.Parse(alphaStringent);
-                    图片亮度.Value = int.Parse(alphaStringent);
-                }
 
                 async void GetSystemInfo()
                 {
@@ -68,16 +62,16 @@ namespace Awake.Views.Windows
                     if (_GPUname.Contains("Radeon"))
                     {
                         _显卡类型 = "Radeon";
-                        A卡模式 = true;
-                        XF加速模式 = false;
+                        initialize.A卡模式 = true;
+                        initialize.XF加速模式 = false;
 
                     }
 
                     if (_GPUname.Contains("NVIDIA"))
                     {
                         _显卡类型 = "NVIDIA";
-                        N卡模式 = true;
-                        XF加速模式 = true;
+                        initialize.N卡模式 = true;
+                        initialize.XF加速模式 = true;
 
                     }
 
@@ -86,70 +80,116 @@ namespace Awake.Views.Windows
                     //计算机显卡信息.Text = "显卡信息：" + gpuname;
                 }
 
-                if (File.Exists(@".AI_launther_log\UI.txt"))
+
+                if (File.Exists(@".AI_launther_log\UIpicture.txt"))
                 {
                     // 如果文件存在，读取其中的内容到UI全局变量中
                     initialize.背景颜色 = File.ReadAllText(@".AI_launther_log\UI.txt");
-                    if (File.Exists(@".AI_launther_log\UIpicture.txt"))
-                    {
-                        // 如果文件存在，读取其中的内容到UI全局变量中
-                        initialize.背景图片 = File.ReadAllText(@".AI_launther_log\UIpicture.txt");
-                    }
+                }
+                else
+                {
+                    initialize.背景颜色 = "";
+                }   
+                if (File.Exists(@".AI_launther_log\UIpicture.txt"))
+                {
+                    // 如果文件存在，读取其中的内容到UI全局变量中
+                    initialize.背景图片 = File.ReadAllText(@".AI_launther_log\UIpicture.txt");
+                }
+                else
+                {
+                    initialize.背景图片 = "";
+                }
+                if (File.Exists(@".AI_launther_log\UIalpha.txt"))
+                {
+                    string alphaStringent = File.ReadAllText(@".AI_launther_log\UIalpha.txt");
+                    initialize.背景亮度 = int.Parse(alphaStringent);
+                    图片亮度.Value = int.Parse(alphaStringent);
+                }
+                else
+                {
+                    string alphaStringent = "100";
+                    initialize.背景亮度 = int.Parse(alphaStringent);
+                    图片亮度.Value = int.Parse(alphaStringent);
+                }
+                主题背景图.Opacity = 图片亮度.Value / 100;
 
-
-
-                    if (背景颜色 == "Mica")
+                if (背景颜色 == "Mica")
+                {
+                    if (File.Exists(@".AI_launther_log\UIalpha.txt"))
                     {
                         basewindow.WindowBackdropType = BackgroundType.Mica;
-                        主题背景图.Opacity = 0;
+                        string alphaStringent = File.ReadAllText(@".AI_launther_log\UIalpha.txt");
+                        图片亮度.Value = int.Parse(alphaStringent);
+                        主题背景图.Opacity = 图片亮度.Value / 100;
                         Mica.IsChecked = true;
-
-                    }
-                    if (背景颜色 == "Acrylic")
+                    }    
+                }
+                else if (背景颜色 == "Acrylic")
+                {
+                    if (File.Exists(@".AI_launther_log\UIalpha.txt"))
                     {
                         basewindow.WindowBackdropType = BackgroundType.Acrylic;
-                        主题背景图.Opacity = 0;
+                        string alphaStringent = File.ReadAllText(@".AI_launther_log\UIalpha.txt");
+                        图片亮度.Value = int.Parse(alphaStringent);
+                        主题背景图.Opacity = 图片亮度.Value / 100;
                         Acrylic.IsChecked = true;
                     }
-                    if (背景颜色 == "Tabbed")
+                }
+                else if (背景颜色 == "Tabbed")
+                {
+                    if (File.Exists(@".AI_launther_log\UIalpha.txt"))
                     {
                         basewindow.WindowBackdropType = BackgroundType.Tabbed;
-                        主题背景图.Opacity = 0;
+                        string alphaStringent = File.ReadAllText(@".AI_launther_log\UIalpha.txt");
+                        图片亮度.Value = int.Parse(alphaStringent);
+                        主题背景图.Opacity = 图片亮度.Value / 100;
                         Tabbed.IsChecked = true;
-                    }
-                    if (背景颜色 == "Auto")
+                    }  
+                }
+                else if (背景颜色 == "Auto")
+                {
+                    if (File.Exists(@".AI_launther_log\UIalpha.txt"))
                     {
                         basewindow.WindowBackdropType = BackgroundType.Auto;
-                        主题背景图.Opacity = 0;
+                        string alphaStringent = File.ReadAllText(@".AI_launther_log\UIalpha.txt");
+                        图片亮度.Value = int.Parse(alphaStringent);
+                        主题背景图.Opacity = 图片亮度.Value / 100;
                         Auto.IsChecked = true;
-                    }
-                    if (背景颜色 == "None")
+                    }                 
+                }
+                else if (背景颜色 == "None")
+                {
+                    if (File.Exists(@".AI_launther_log\UIalpha.txt"))
                     {
                         basewindow.WindowBackdropType = BackgroundType.None;
-                        主题背景图.Opacity = 0;
+                        string alphaStringent = File.ReadAllText(@".AI_launther_log\UIalpha.txt");
+                        图片亮度.Value = int.Parse(alphaStringent);
+                        主题背景图.Opacity = 图片亮度.Value / 100;
                         None.IsChecked = true;
                     }
-                    if (背景颜色 == "Picture")
+                }
+                else if (背景颜色 == "Picture")
+                {
+                    if (File.Exists(@".AI_launther_log\UIalpha.txt"))
                     {
-                        try
-                        {
-                            if (File.Exists(@".AI_launther_log\UIalpha.txt"))
-                            {
-                                string alphaStringent = File.ReadAllText(@".AI_launther_log\UIalpha.txt");
-                                背景亮度 = int.Parse(alphaStringent);
-
-                                图片亮度.Value = int.Parse(alphaStringent);
-                                主题背景图.Opacity = 图片亮度.Value / 100; ;
-                                string imagepath = 背景图片; // 获取选择的文件路径+文件名  
-                                ImageSource imageSource = new BitmapImage(new Uri(imagepath)); // 设置Image的ImageSource为选择的图片  
-                                主题背景图.ImageSource = imageSource; // 将选择的图片显示在Image控件中  
-
-                            }
-                        }
-                        catch (Exception) { }
+                        basewindow.WindowBackdropType = BackgroundType.None;
+                        None.IsChecked = true;
+                        string alphaStringent = File.ReadAllText(@".AI_launther_log\UIalpha.txt");
+                        图片亮度.Value = int.Parse(alphaStringent);
+                        主题背景图.Opacity = 图片亮度.Value / 100;
+                        string imagepath = initialize.背景图片; // 获取选择的文件路径+文件名  
+                        ImageSource imageSource = new BitmapImage(new Uri(imagepath)); // 设置Image的ImageSource为选择的图片  
+                        主题背景图.ImageSource = imageSource; // 将选择的图片显示在Image控件中  
 
                     }
                 }
+                else
+                {
+                    basewindow.WindowBackdropType = BackgroundType.None;
+                    主题背景图.Opacity = 图片亮度.Value / 100;
+                    None.IsChecked = true;
+                }
+
 
                 SetPageService(pageService);
 
@@ -237,48 +277,30 @@ namespace Awake.Views.Windows
         #endregion INavigationWindow methods
         protected override void OnClosed(EventArgs e)
         {
-            try
-            {
-                base.OnClosed(e);
-                File.WriteAllText(@".AI_launther_log\UIalpha.txt", 图片亮度.Value.ToString());
-                File.WriteAllText(@".AI_launther_log\UI.txt", 背景颜色);
-                File.WriteAllText(@".AI_launther_log\UIpicture.txt", 背景图片);
-                Application.Current.Shutdown();
-            }
-            catch (Exception error)
-            {
-                string str1 = error.Message;
-                File.WriteAllText(@".\logs\error.txt", str1);
-                throw;
-            }
+            base.OnClosed(e);
+            File.WriteAllText(@".AI_launther_log\UIalpha.txt", 图片亮度.Value.ToString());
+            File.WriteAllText(@".AI_launther_log\UI.txt", 背景颜色);
+            File.WriteAllText(@".AI_launther_log\UIpicture.txt", 背景图片);
+            Application.Current.Shutdown();
         }
         private void 一键启动按钮_Click(object sender, RoutedEventArgs e)
         {
-            try
-            {
-                //检查WebUI安装状态
-                已下载WebUI = CheckWebUIdownloaded();
-                已安装WebUI = CheckWebUIinstelled();
-                已解压WebUI = CheckWebUIunzip();
+            //检查WebUI安装状态
+            已下载WebUI = CheckWebUIdownloaded();
+            已安装WebUI = CheckWebUIinstelled();
+            已解压WebUI = CheckWebUIunzip();
 
-                //通过对是否安装webUI已安装的判断做出提示安装或直接启动的操作
-                if (已安装WebUI == false)
-                {
-                    //探出flyout提示用户去安装
-                    安装提示.Show();
-                }
-                if (已安装WebUI == true)
-                {
-                    //AI,启动！
-                    shell Shell = new shell();//shell会自动读取initilize中的参数变量
-                    Shell.Show();
-                }
-            }
-            catch (Exception error)
+            //通过对是否安装webUI已安装的判断做出提示安装或直接启动的操作
+            if (已安装WebUI == false)
             {
-                string str1 = error.Message;
-                File.WriteAllText(@".\logs\error.txt", str1);
-                throw;
+                //探出flyout提示用户去安装
+                安装提示.Show();
+            }
+            if (已安装WebUI == true)
+            {
+                //AI,启动！
+                shell Shell = new shell();//shell会自动读取initilize中的参数变量
+                Shell.Show();
             }
         }
         private void 主题切换_Click(object sender, RoutedEventArgs e)
@@ -291,30 +313,21 @@ namespace Awake.Views.Windows
             try//Win10不怎么支持Win11的先进特效
             {
                 basewindow.WindowBackdropType = BackgroundType.Mica;
+                主题背景图.Opacity = 图片亮度.Value / 100;
                 背景颜色 = "Mica";
-                主题背景图.Opacity = 0;
             }
-            catch (Exception error)
-            {
-                string str1 = error.Message;
-                File.WriteAllText(@".\logs\error.txt", str1);
-                throw;
-            }
+            catch { }
         }
         private void Acrylic_Click(object sender, RoutedEventArgs e)
         {
             try
             {
                 basewindow.WindowBackdropType = BackgroundType.Acrylic;
+                主题背景图.Opacity = 图片亮度.Value / 100;
                 背景颜色 = "Acrylic";
-                主题背景图.Opacity = 0;
             }
-            catch (Exception error)
-            {
-                string str1 = error.Message;
-                File.WriteAllText(@".\logs\error.txt", str1);
-                throw;
-            }
+            catch { }
+
         }
 
         private void Tabbed_Click(object sender, RoutedEventArgs e)
@@ -322,9 +335,8 @@ namespace Awake.Views.Windows
             try
             {
                 basewindow.WindowBackdropType = BackgroundType.Tabbed;
+                主题背景图.Opacity = 图片亮度.Value / 100;
                 背景颜色 = "Tabbed";
-
-                主题背景图.Opacity = 0;
             }
             catch { }
 
@@ -334,16 +346,10 @@ namespace Awake.Views.Windows
             try
             {
                 basewindow.WindowBackdropType = BackgroundType.Auto;
+                主题背景图.Opacity = 图片亮度.Value / 100;
                 背景颜色 = "Auto";
-
-                主题背景图.Opacity = 0;
             }
-            catch (Exception error)
-            {
-                string str1 = error.Message;
-                File.WriteAllText(@".\logs\error.txt", str1);
-                throw;
-            }
+            catch { }
         }
 
         private void None_Click(object sender, RoutedEventArgs e)
@@ -351,20 +357,69 @@ namespace Awake.Views.Windows
             try
             {
                 basewindow.WindowBackdropType = BackgroundType.None;
+                主题背景图.Opacity = 图片亮度.Value / 100;
                 背景颜色 = "None";
+            }
+            catch { }
 
-                主题背景图.Opacity = 0;
-            }
-            catch (Exception error)
-            {
-                string str1 = error.Message;
-                File.WriteAllText(@".\logs\error.txt", str1);
-                throw;
-            }
         }
 
         private void Picture_Click(object sender, RoutedEventArgs e)
         {
+
+            try
+            {
+                basewindow.WindowBackdropType = BackgroundType.None;
+                主题背景图.Opacity = 图片亮度.Value / 100;
+                string imagepath = 背景图片; // 获取选择的文件路径+文件名  
+                ImageSource imageSource = new BitmapImage(new Uri(imagepath)); // 设置Image的ImageSource为选择的图片  
+                主题背景图.ImageSource = imageSource; // 将选择的图片显示在Image控件中
+                背景颜色 = "Picture";
+            }
+            catch
+            {
+
+                System.Windows.MessageBox.Show("请选择一张图片");
+
+            }
+        }
+
+        private void 图片亮度_MouseLeave(object sender, System.Windows.Input.MouseEventArgs e)
+        {
+            主题背景图.Opacity = 图片亮度.Value / 100;
+            initialize.图片亮度 = (int)图片亮度.Value;
+            背景亮度 = (int)图片亮度.Value;
+        }
+
+        private void 图片亮度_MouseMove(object sender, System.Windows.Input.MouseEventArgs e)
+        {
+            主题背景图.Opacity = 图片亮度.Value / 100;
+            initialize.图片亮度 = (int)图片亮度.Value;
+            背景亮度 = (int)图片亮度.Value;
+        }
+
+        private void 图片亮度_MouseEnter(object sender, System.Windows.Input.MouseEventArgs e)
+        {
+            主题背景图.Opacity = 图片亮度.Value / 100;
+            initialize.图片亮度 = (int)图片亮度.Value;
+            背景亮度 = (int)图片亮度.Value;
+        }
+
+        private void 选择背景图片_Click(object sender, RoutedEventArgs e)
+        {
+
+            initialize.图片亮度 = (int)图片亮度.Value;
+            Microsoft.Win32.OpenFileDialog ofd = new Microsoft.Win32.OpenFileDialog();
+            ofd.Filter = "Image Files(*.jpg; *.jpeg; *.gif; *.bmp; *.png)|*.jpg; *.jpeg; *.gif; *.bmp; *.png"; // 只允许选择图片文件  
+            if (ofd.ShowDialog() == true) // 用户选择了一个文件并点击了“确定”按钮  
+            {
+                背景图片 = ofd.FileName;
+                string imagepath2 = ofd.FileName; // 获取选择的文件路径+文件名  
+                ImageSource imageSource = new BitmapImage(new Uri(imagepath2)); // 设置Image的ImageSource为选择的图片  
+                主题背景图.ImageSource = imageSource; // 将选择的图片显示在Image控件中  
+            }
+            basewindow.WindowBackdropType = BackgroundType.None;
+            None.IsChecked = true;
             主题背景图.Opacity = 图片亮度.Value / 100;
             背景颜色 = "Picture";
             string imagepath = 背景图片; // 获取选择的文件路径+文件名  
@@ -376,89 +431,8 @@ namespace Awake.Views.Windows
             }
             catch
             {
-                System.Windows.MessageBox.Show("请选择一张图片");
+                System.Windows.MessageBox.Show("请先选择一张图片");
 
-            }
-        }
-
-        private void 图片亮度_MouseLeave(object sender, System.Windows.Input.MouseEventArgs e)
-        {
-            try
-            {
-                主题背景图.Opacity = 图片亮度.Value / 100;
-                背景亮度 = (int)图片亮度.Value;
-            }
-            catch (Exception error)
-            {
-                string str1 = error.Message;
-                File.WriteAllText(@".\logs\error.txt", str1);
-                throw;
-            }
-        }
-
-        private void 图片亮度_MouseMove(object sender, System.Windows.Input.MouseEventArgs e)
-        {
-            try
-            {
-                主题背景图.Opacity = 图片亮度.Value / 100;
-                背景亮度 = (int)图片亮度.Value;
-            }
-            catch (Exception error)
-            {
-                string str1 = error.Message;
-                File.WriteAllText(@".\logs\error.txt", str1);
-                throw;
-            }
-        }
-
-        private void 图片亮度_MouseEnter(object sender, System.Windows.Input.MouseEventArgs e)
-        {
-            try
-            {
-                主题背景图.Opacity = 图片亮度.Value / 100;
-                背景亮度 = (int)图片亮度.Value;
-            }
-            catch (Exception error)
-            {
-                string str1 = error.Message;
-                File.WriteAllText(@".\logs\error.txt", str1);
-                throw;
-            }
-        }
-
-        private void 选择背景图片_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                Microsoft.Win32.OpenFileDialog ofd = new Microsoft.Win32.OpenFileDialog();
-                ofd.Filter = "Image Files(*.jpg; *.jpeg; *.gif; *.bmp; *.png)|*.jpg; *.jpeg; *.gif; *.bmp; *.png"; // 只允许选择图片文件  
-                if (ofd.ShowDialog() == true) // 用户选择了一个文件并点击了“确定”按钮  
-                {
-                    背景图片 = ofd.FileName;
-                    string imagepath2 = ofd.FileName; // 获取选择的文件路径+文件名  
-                    ImageSource imageSource = new BitmapImage(new Uri(imagepath2)); // 设置Image的ImageSource为选择的图片  
-                    主题背景图.ImageSource = imageSource; // 将选择的图片显示在Image控件中  
-                }
-                主题背景图.Opacity = 图片亮度.Value / 100;
-                背景颜色 = "Picture";
-                string imagepath = 背景图片; // 获取选择的文件路径+文件名  
-                try
-                {
-                    ImageSource imageSource = new BitmapImage(new Uri(imagepath)); // 设置Image的ImageSource为选择的图片  
-                    主题背景图.ImageSource = imageSource; // 将选择的图片显示在Image控件中  
-
-                }
-                catch
-                {
-                    System.Windows.MessageBox.Show("请先选择一张图片");
-
-                }
-            }
-            catch (Exception error)
-            {
-                string str1 = error.Message;
-                File.WriteAllText(@".\logs\error.txt", str1);
-                throw;
             }
         }
 

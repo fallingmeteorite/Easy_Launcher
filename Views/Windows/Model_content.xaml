@@ -54,11 +54,10 @@
 
                 </StackPanel>
             </StackPanel>
-            <StackPanel Orientation="Horizontal" Margin="10,50,0,0" Height="438">
-                <StackPanel>
-                    <TextBlock Text="模型封面" FontSize="20" FontWeight="Bold"></TextBlock>
-                    <Slider Maximum="100" x:Name="图片亮度" Visibility="Visible" Margin="0,0,0,0"/>
-                    <Border  Width="300" Height="395" Margin="0,2,0,0">
+            <StackPanel Orientation="Horizontal" Margin="10,48,0,0" Height="449">
+                <StackPanel Height="448">
+                    <TextBlock Text="模型封面" FontSize="20" FontWeight="Bold" Height="26" Margin="0,-2,0,0"></TextBlock>
+                    <Border  Width="300" Height="422" Margin="0,2,0,0">
                         <Border.Background>
                             <ImageBrush x:Name="模型封面" Stretch="UniformToFill"/>
                         </Border.Background>
@@ -73,9 +72,9 @@
                         <wv2:WebView2 Name="富文本简介"  Source=""    ScrollViewer.VerticalScrollBarVisibility="Hidden" Width="300" HorizontalAlignment="Center" Height="420"    />
                     </Border>
                 </StackPanel>
-                <StackPanel Margin="5,0,5,0" Width="410">
-                    <TextBlock Text="模型版本 " FontSize="20" FontWeight="Bold" Width="461"></TextBlock>
-                    <ScrollViewer Height="420" Width="530">
+                <StackPanel Margin="5,0,5,0" Width="575">
+                    <TextBlock Text="模型版本 " FontSize="20" FontWeight="Bold" Width="570"></TextBlock>
+                    <ScrollViewer Height="420" Width="572">
                         <WrapPanel x:Name="模型下载列表" >
                             <StackPanel x:Name="报错指示器" Visibility="Collapsed">
                                 <TextBlock x:Name="报错指示文本" Text="模型下载未开放"  VerticalAlignment="Center"  Margin="120,180,0,0" FontSize="36" HorizontalAlignment="Center"/>
