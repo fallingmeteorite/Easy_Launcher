@@ -89,7 +89,7 @@ namespace Awake.Views.Windows
                 else
                 {
                     initialize.背景颜色 = "";
-                }   
+                }
                 if (File.Exists(@".AI_launther_log\UIpicture.txt"))
                 {
                     // 如果文件存在，读取其中的内容到UI全局变量中
@@ -103,15 +103,16 @@ namespace Awake.Views.Windows
                 {
                     string alphaStringent = File.ReadAllText(@".AI_launther_log\UIalpha.txt");
                     initialize.背景亮度 = int.Parse(alphaStringent);
+                    initialize.图片亮度 = int.Parse(alphaStringent);
                     图片亮度.Value = int.Parse(alphaStringent);
                 }
                 else
                 {
                     string alphaStringent = "100";
                     initialize.背景亮度 = int.Parse(alphaStringent);
+                    initialize.图片亮度 = int.Parse(alphaStringent);
                     图片亮度.Value = int.Parse(alphaStringent);
                 }
-                主题背景图.Opacity = 图片亮度.Value / 100;
 
                 if (背景颜色 == "Mica")
                 {
@@ -122,7 +123,7 @@ namespace Awake.Views.Windows
                         图片亮度.Value = int.Parse(alphaStringent);
                         主题背景图.Opacity = 图片亮度.Value / 100;
                         Mica.IsChecked = true;
-                    }    
+                    }
                 }
                 else if (背景颜色 == "Acrylic")
                 {
@@ -144,7 +145,7 @@ namespace Awake.Views.Windows
                         图片亮度.Value = int.Parse(alphaStringent);
                         主题背景图.Opacity = 图片亮度.Value / 100;
                         Tabbed.IsChecked = true;
-                    }  
+                    }
                 }
                 else if (背景颜色 == "Auto")
                 {
@@ -155,7 +156,7 @@ namespace Awake.Views.Windows
                         图片亮度.Value = int.Parse(alphaStringent);
                         主题背景图.Opacity = 图片亮度.Value / 100;
                         Auto.IsChecked = true;
-                    }                 
+                    }
                 }
                 else if (背景颜色 == "None")
                 {
