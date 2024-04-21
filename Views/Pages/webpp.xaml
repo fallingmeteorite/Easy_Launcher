@@ -33,7 +33,7 @@
                                 <TextBlock x:Name="磁盘剩余显示" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="20,0,0,0"/>
 
                             </StackPanel>
-                            <TextBlock Text="在这里管理StableDiffusionWebUI的版本与部署位置  第三方整合包需单独在下方配置环境" FontSize="14" HorizontalAlignment="Left" Margin="10,15,0,0"/>
+                            <TextBlock Text="在这里管理StableDiffusionWebUI的路径与位置|第三方整合包需单独在下方配置环境" FontSize="14" HorizontalAlignment="Left" Margin="10,15,0,0"/>
                         </StackPanel>
 
                     </ui:Card>
@@ -103,7 +103,7 @@
                                 </StackPanel>
                             </Expander.Header>
                             <StackPanel x:Name="模型下载卡片列表">
-                                <TextBlock x:Name="模型版本ID" FontSize="12">V2.0.9.7 全量StableDiffusion WebUI整合包大小：15.6 GB 运行所需空间：60 GB  支持NVIDIA / AMD /intel显卡运行</TextBlock>
+                                <TextBlock x:Name="模型版本ID" FontSize="12">V2.0.9.7 全量StableDiffusion WebUI整合包大小：15.6 GB 运行所需空间：60 GB  支持NVIDIA | AMD |intel显卡运行</TextBlock>
                                 <StackPanel Orientation="Horizontal">
                                     <ScrollViewer x:Name="命令行区域" Height="80" HorizontalAlignment="Center" Width="850">
                                         <TextBlock TextWrapping="Wrap"  x:Name="标准输出流" FontSize="12"><Run Text="下载过程中请勿离开本页面"/><Run Language="zh-cn" Text="，防止下载文件损坏"/></TextBlock>
@@ -177,7 +177,7 @@
 
                                     <TextBlock
 
-                                        Text="其他整合包需要在下面设置必要路径,以确保软件正常运行,你将不用进行上述操作" Margin="10,15,0,0" HorizontalAlignment="Left" FontSize="14"/>
+                                        Text="其他整合包需要在下面设置必要路径,以确保软件正常运行,你将不用进行上述操作(非本启动器整合包只支持N卡)" Margin="10,15,0,0" HorizontalAlignment="Left" FontSize="14"/>
 
                                 </StackPanel>
 
@@ -242,7 +242,7 @@
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock TextWrapping="Wrap" Text="&#xED25;" FontFamily="Segoe MDL2 Assets"   FontSize="36" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Width="40" Height="40"/>
                                 <StackPanel Margin="15,0,0,0" Width="350">
-                                    <TextBlock Text="选择StableDiffusion的部署位置"   FontSize="16" Margin="0,0,0,5"/>
+                                    <TextBlock Text="选择本地StableDiffusion的位置"   FontSize="16" Margin="0,0,0,5"/>
                                     <TextBlock Text="选择已经部署WebUI" FontSize="12"/>
 
                                 </StackPanel>

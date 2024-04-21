@@ -84,20 +84,20 @@ namespace Awake.Views.Pages
             if (initialize.浏览器启动 == true)
             {
                 initialize.浏览器启动 = true;
-                启动后自动打开浏览器开关.IsChecked = true;
+        
             }
             else
             {
                 initialize.浏览器启动 = false;
-                启动后自动打开浏览器开关.IsChecked = false;
+              
             }
         }
         private void 启用XF_Click(object sender, System.Windows.RoutedEventArgs e)
         {
             if (XF加速模式 == false)
-            { XF加速模式 = true; }
-            else
             { XF加速模式 = false; }
+            else
+            { XF加速模式 = true; }
         }
         private void 使用CPU进行推理_Click(object sender, System.Windows.RoutedEventArgs e)
         {
@@ -135,29 +135,24 @@ namespace Awake.Views.Pages
             性能优化器开关面版.Show();
         }
 
-        private void 自动优化_Click(object sender, System.Windows.RoutedEventArgs e)
-        {
-
-        }
-
         private void N卡优化_Click(object sender, System.Windows.RoutedEventArgs e)
         {
             if (N卡模式 == false)
             {
-                N卡模式 = true;
+                N卡模式 = false;
             }
             else
             {
-                N卡模式 = false;
+                N卡模式 = true;
             }
         }
 
         private void A卡优化_Checked(object sender, System.Windows.RoutedEventArgs e)
         {
             if (A卡模式 == false)
-            { A卡模式 = true; }
-            else
             { A卡模式 = false; }
+            else
+            { A卡模式 = true; }
         }
         private void WebUI显存压力优化设置_DropDownClosed(object sender, EventArgs e)
         {
@@ -241,5 +236,12 @@ namespace Awake.Views.Pages
             else
             { initialize.快速启动 = false; }
         }
+
+        private void ComboBox_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        {
+
+        }
+
+
     }
 }

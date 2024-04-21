@@ -26,7 +26,7 @@
                         <Expander.Header>
                             <StackPanel Orientation="Horizontal" Height="35"  >
                                 <ui:SymbolIcon Symbol="Info20" FontSize="24"/>
-                                <TextBlock Text="自动检测配置"   FontSize="14"  Margin="15,2,0,0" VerticalAlignment="Center"/>
+                                <TextBlock Text="自动配置检测"   FontSize="14"  Margin="15,2,0,0" VerticalAlignment="Center"/>
                             </StackPanel>
                         </Expander.Header>
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left" >
@@ -41,7 +41,17 @@
                             </StackPanel>
                         </StackPanel>
 
+                        
+                        
+                        
                     </ui:CardExpander>
+                    <ui:Card Width="910"  Height="100" Margin="0,10,0,2" Background="#0FFFFFFF" >
+                        <StackPanel Height="100">
+                            <TextBlock Text="生成引擎设置说明" FontSize="20" HorizontalAlignment="Left" Margin="10,0,0,0"/>
+                            <TextBlock Text="WebUI常用参数" FontSize="14" HorizontalAlignment="Left" Margin="10,15,0,0"/>
+                        </StackPanel>
+
+                    </ui:Card>
                     <ui:Card VerticalAlignment="Stretch" Width="910" Margin="0,10,0,0" Background="#0FFFFFFF">
                         <StackPanel Orientation="Horizontal">
                             <ui:SymbolIcon Symbol="Engine20" Width="36" Height="36" FontSize="36"/>
@@ -81,7 +91,7 @@
                                 <StackPanel Orientation="Horizontal">
                                     <ui:SymbolIcon Symbol="TopSpeed20" FontSize="36" Height="36" Width="36"/>
                                     <StackPanel Margin="15,0,0,0" Width="320">
-                                        <TextBlock Text="xformer加速 (N卡限定)" FontSize="16" Margin="0,0,0,5"/>
+                                        <TextBlock Text="xformer加速 (N卡)" FontSize="16" Margin="0,0,0,5"/>
                                         <TextBlock Text="提高生成速度,并降低显存占用 (推荐)" FontSize="12"/>
 
                                     </StackPanel>
@@ -128,10 +138,6 @@
 
                                     <ui:Card>
                                         <StackPanel Margin="0,0,0,5">
-                                            <StackPanel Orientation="Horizontal" Margin="0,0,0,5" Visibility="Collapsed">
-                                                <TextBlock Width="400">（自动） --opt-channelslast --opt-sdp-no-mem-attention</TextBlock>
-                                                <ui:ToggleSwitch x:Name="自动优化"  VerticalAlignment="Center" Click="自动优化_Click" />
-                                            </StackPanel>
                                             <StackPanel Orientation="Horizontal" Margin="0,0,0,5">
                                                 <TextBlock Width="400">SDP无内存优化，可提高生成速度</TextBlock>
                                                 <ui:ToggleSwitch x:Name="N卡优化" VerticalAlignment="Center" Click="N卡优化_Click" />
@@ -197,7 +203,7 @@
                                     <ui:SymbolIcon Symbol="DeveloperBoard20" Width="36" Height="36" FontSize="36"/>
                                     <StackPanel Margin="15,0,0,0" Width="320">
                                         <TextBlock Text="使用CPU进行推理" FontSize="16" Margin="0,0,0,5"/>
-                                        <TextBlock Text="没有合适显卡时启用 (不推荐)" FontSize="12"/>
+                                        <TextBlock Text="没有独立显卡时启用 (不推荐)" FontSize="12"/>
 
                                     </StackPanel>
                                     <ui:ToggleSwitch x:Name="使用CPU进行推理" IsChecked="False" Click="使用CPU进行推理_Click" />
@@ -234,34 +240,6 @@
                         </ui:Card>
                         <ui:Card VerticalAlignment="Stretch" Margin="0,0,0,2" Width="910" Background="#0FFFFFFF">
                             <StackPanel Orientation="Horizontal">
-                                <ui:SymbolIcon Symbol="Location20" Width="36" Height="36" FontSize="36"/>
-                                <StackPanel Margin="15,0,0,0" Width="490">
-                                    <TextBlock Text="WebUI启动地址设置" FontSize="16" Margin="0,0,0,5"/>
-                                    <TextBlock Text="本地locohost是默认" FontSize="12"/>
-
-                                </StackPanel>
-                                <ComboBox IsEnabled="True" x:Name="WebUI启动地址设置" SelectedIndex="0"  IsEditable="True" Width="330">
-                                    <ComboBoxItem Content="自动" />
-
-                                </ComboBox>
-                            </StackPanel>
-                        </ui:Card>
-                        <ui:Card VerticalAlignment="Stretch" Margin="0,0,0,2" Width="910" Background="#0FFFFFFF">
-                            <StackPanel Orientation="Horizontal">
-                                <ui:SymbolIcon Symbol="BroadActivityFeed20" Height="36" Width="36" FontSize="36"/>
-                                <StackPanel Margin="15,0,0,0" Width="490">
-                                    <TextBlock Text="WebUI启动端口设置" FontSize="16" Margin="0,0,0,5"/>
-                                    <TextBlock Text="注意port端口之间的冲突" FontSize="12"/>
-
-                                </StackPanel>
-                                <ComboBox  IsEnabled="True" SelectedIndex="0"  IsEditable="True" Width="330">
-                                    <ComboBoxItem Content="自动" />
-
-                                </ComboBox>
-                            </StackPanel>
-                        </ui:Card>
-                        <ui:Card VerticalAlignment="Stretch" Margin="0,0,0,2" Width="910" Background="#0FFFFFFF">
-                            <StackPanel Orientation="Horizontal">
                                 <ui:SymbolIcon Symbol="VirtualNetwork20" Height="36" Width="36" FontSize="36"/>
                                 <StackPanel Margin="15,0,0,0" Width="780">
                                     <TextBlock Text="API支持模式" FontSize="16" Margin="0,0,0,5"/>
@@ -284,8 +262,8 @@
                         </ui:Card>
                         <ui:Card VerticalAlignment="Stretch" Width="910" Margin="0,0,0,2" Background="#0FFFFFFF">
                             <StackPanel Height="100">
-                                <TextBlock Text="高级设置" FontSize="20" HorizontalAlignment="Left" Margin="10,0,0,0"/>
-                                <TextBlock Text="WebUI常用参数" FontSize="14" HorizontalAlignment="Left" Margin="10,15,0,0"/>
+                                <TextBlock Text="其他设置" FontSize="20" HorizontalAlignment="Left" Margin="10,0,0,0"/>
+                                <TextBlock Text="如果你不明白下列参数是否生效,请勿随意修改" FontSize="14" HorizontalAlignment="Left" Margin="10,15,0,0"/>
                             </StackPanel>
                         </ui:Card>
                         <ui:Card VerticalAlignment="Stretch" Width="910" Margin="0,0,0,2" Visibility="Visible">
@@ -319,6 +297,50 @@
 
                                 </StackPanel>
                                 <ui:ToggleSwitch x:Name="快速启动" IsChecked="False" Click="快速启动_Click" Background="#FFFF3D48" />
+                            </StackPanel>
+                        </ui:Card>
+                        <ui:Card Width="910" Visibility="Visible">
+                            <StackPanel Orientation="Horizontal">
+                                <ui:SymbolIcon Symbol="BracesVariable24" Height="36" Width="36" FontSize="36"/>
+                                <StackPanel Margin="15,0,0,0" Width="780">
+                                    <TextBlock Text="快速启动" FontSize="16" Margin="0,0,0,5"/>
+                                    <TextBlock Text="不要加载模型以快速启动 UI." FontSize="12"/>
+
+                                </StackPanel>
+                                <ui:ToggleSwitch x:Name="快速启动1" IsChecked="False" Click="快速启动_Click" Background="#FFFF3D48" />
+                            </StackPanel>
+                        </ui:Card>
+                        <ui:Card Width="910" Visibility="Visible">
+                            <StackPanel Orientation="Horizontal">
+                                <ui:SymbolIcon Symbol="BracesVariable24" Height="36" Width="36" FontSize="36"/>
+                                <StackPanel Margin="15,0,0,0" Width="780">
+                                    <TextBlock Text="快速启动" FontSize="16" Margin="0,0,0,5"/>
+                                    <TextBlock Text="不要加载模型以快速启动 UI." FontSize="12"/>
+
+                                </StackPanel>
+                                <ui:ToggleSwitch x:Name="快速启动2" IsChecked="False" Click="快速启动_Click" Background="#FFFF3D48" />
+                            </StackPanel>
+                        </ui:Card>
+                        <ui:Card Width="910" Visibility="Visible">
+                            <StackPanel Orientation="Horizontal">
+                                <ui:SymbolIcon Symbol="BracesVariable24" Height="36" Width="36" FontSize="36"/>
+                                <StackPanel Margin="15,0,0,0" Width="780">
+                                    <TextBlock Text="快速启动" FontSize="16" Margin="0,0,0,5"/>
+                                    <TextBlock Text="不要加载模型以快速启动 UI." FontSize="12"/>
+
+                                </StackPanel>
+                                <ui:ToggleSwitch x:Name="快速启动3" IsChecked="False" Click="快速启动_Click" Background="#FFFF3D48" />
+                            </StackPanel>
+                        </ui:Card>
+                        <ui:Card Width="910" Visibility="Visible">
+                            <StackPanel Orientation="Horizontal">
+                                <ui:SymbolIcon Symbol="BracesVariable24" Height="36" Width="36" FontSize="36"/>
+                                <StackPanel Margin="15,0,0,0" Width="780">
+                                    <TextBlock Text="快速启动" FontSize="16" Margin="0,0,0,5"/>
+                                    <TextBlock Text="不要加载模型以快速启动 UI." FontSize="12"/>
+
+                                </StackPanel>
+                                <ui:ToggleSwitch x:Name="快速启动4" IsChecked="False" Click="快速启动_Click" Background="#FFFF3D48" />
                             </StackPanel>
                         </ui:Card>
 

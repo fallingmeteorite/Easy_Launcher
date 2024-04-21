@@ -42,7 +42,7 @@ namespace Awake.Views.Pages
         }
         string downloadUrl = "https://liblibai-online.vibrou.com/web/SD_WebUI_Pack/2.0.9.7z";
         string Packname = "WebUIpackcatch.7z";//这里指定默认下载名称
-  
+
         DateTime startTime = DateTime.Now;
         long totalBytesRead = 0;
 
@@ -230,7 +230,7 @@ namespace Awake.Views.Pages
             else
             {
                 initialize.启用自定义路径 = false;
-            
+
             }
         }
 
@@ -520,7 +520,7 @@ namespace Awake.Views.Pages
                         Directory.CreateDirectory(destPath);
                     }
                     catch (Exception error)
-                    { 
+                    {
                         string str1 = error.Message;
                         File.WriteAllText(@".\logs\error.txt", str1);
                         throw;
