@@ -10,6 +10,7 @@ using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using Wpf.Ui.Appearance;
+using static Awake.initialize;
 
 namespace Awake.Views.Windows
 {
@@ -35,101 +36,56 @@ namespace Awake.Views.Windows
         string _modelSourceHash = "";
         string _versionDesc = "";
 
+
         public Model_content(string uuid, string nickname, string avatar, string modelType, string imageURL)
         {
+
 
             InitializeComponent();
             if (initialize.背景颜色 == "Mica")
             {
-                try
-                {
-                    modelwindow.WindowBackdropType = BackgroundType.Mica;
-                    主题背景图.Opacity = 0;
-                    主题背景图.Opacity = initialize.背景亮度 / 100;
-                }
-                catch
-                {
-
-                }
+                modelwindow.WindowBackdropType = BackgroundType.Mica;
+                图片亮度.Value = initialize.图片亮度;
+                主题背景图.Opacity = 图片亮度.Value / 100;
 
 
             }
             if (initialize.背景颜色 == "Acrylic")
             {
-                try
-                {
-                    modelwindow.WindowBackdropType = BackgroundType.Acrylic;
-                    主题背景图.Opacity = 0;
-                    主题背景图.Opacity = initialize.背景亮度 / 100;
+                modelwindow.WindowBackdropType = BackgroundType.Acrylic;
+                图片亮度.Value = initialize.图片亮度;
+                主题背景图.Opacity = 图片亮度.Value / 100;
 
-                }
-                catch
-                {
-
-                }
 
             }
             if (initialize.背景颜色 == "Tabbed")
             {
-                try
-                {
-                    modelwindow.WindowBackdropType = BackgroundType.Tabbed;
-                    主题背景图.Opacity = 0;
-                    主题背景图.Opacity = initialize.背景亮度 / 100;
-
-                }
-                catch
-                {
-
-                }
-
+                modelwindow.WindowBackdropType = BackgroundType.Tabbed;
+                图片亮度.Value = initialize.图片亮度;
+                主题背景图.Opacity = 图片亮度.Value / 100;
             }
+
+
             if (initialize.背景颜色 == "Auto")
             {
-                try
-                {
-                    modelwindow.WindowBackdropType = BackgroundType.Auto;
-                    主题背景图.Opacity = 0;
-                    主题背景图.Opacity = initialize.背景亮度 / 100;
-
-                }
-                catch
-                {
-
-                }
+                modelwindow.WindowBackdropType = BackgroundType.Auto;
+                图片亮度.Value = initialize.图片亮度;
+                主题背景图.Opacity = 图片亮度.Value / 100;
 
             }
             if (initialize.背景颜色 == "None")
             {
-                try
-                {
-                    modelwindow.WindowBackdropType = BackgroundType.None;
-                    主题背景图.Opacity = 0;
-                    主题背景图.Opacity = initialize.背景亮度 / 100;
-
-                }
-                catch
-                {
-
-                }
+                modelwindow.WindowBackdropType = BackgroundType.None;
+                图片亮度.Value = initialize.图片亮度;
+                主题背景图.Opacity = 图片亮度.Value / 100;
 
             }
             if (initialize.背景颜色 == "Picture")
             {
-                try
-                {
-       
-                   
-                    主题背景图.Opacity = initialize.图片亮度 / 100;
-                    string imagepath = initialize.背景图片; // 获取选择的文件路径+文件名  
-                    ImageSource imageSource = new BitmapImage(new Uri(imagepath)); // 设置Image的ImageSource为选择的图片  
-                    主题背景图.ImageSource = imageSource; // 将选择的图片显示在Image控件中  
-
-                }
-                catch
-                {
-
-                }
+                主题背景图.Opacity = initialize.图片亮度 / 100;
+                string imagepath = initialize.背景图片; // 获取选择的文件路径+文件名  
+                ImageSource imageSource = new BitmapImage(new Uri(imagepath)); // 设置Image的ImageSource为选择的图片  
+                主题背景图.ImageSource = imageSource; // 将选择的图片显示在Image控件中  
 
 
             }
@@ -227,10 +183,6 @@ namespace Awake.Views.Windows
                     富文本简介.Source = new Uri("data:text/html," + htmlContent);
                     简介.Visibility = Visibility.Visible;
                 }
-
-
-
-
 
 
                 //开始解析模型的版本有多少个，并分别展示
