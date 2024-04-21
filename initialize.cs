@@ -36,13 +36,27 @@ namespace Awake
         public static bool 浏览器启动 = true;
         public static bool 启动api = false;
         public static bool 使用快速启动 = false;
-        public static bool _分享WebUI到公网 = false;
-        public static bool _关闭半精度计算 = false;
+        public static bool 分享WebUI到公网 = false;
         public static bool 使用CPU进行推理 = false;
         public static bool 关闭模型hash计算 = false;
-        public static bool 无卡调试模式 = false;
-        public static bool XF加速模式 = true;
+        public static bool 快速启动;
+        internal static bool 启用自定义路径;
+        public static string 显卡类型名 = "";
+
+
+        //优化
+        public static bool 上投采样 = false;
+        public static bool 关闭半精度计算 = false;
+
+
+        public static bool 启用InvokeAI = false;
+
+
         public static bool SDP优化 = false;
+        public static bool 缩放点积 = false;
+        public static bool 启用xformers = false;
+        public static bool 启用替代布局 = false;
+
 
 
         //下面是一些参数的字符串预设
@@ -66,10 +80,7 @@ namespace Awake
         public static int _UseGPUindex = 0;
         public static string 相册图片数量 = "";
         public static string 参数列表 = "";//所有启动时传递的参数挂到这里，全局可编辑与访问
-        public static bool 启用替代布局;
-        public static bool 缩放点积交叉;
-        public static bool 快速启动;
-        internal static bool 启用自定义路径;
+
 
         public static void 选择工作路径()
         {

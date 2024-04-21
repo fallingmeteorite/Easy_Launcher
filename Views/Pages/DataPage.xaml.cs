@@ -84,7 +84,6 @@ namespace Awake.Views.Pages
         }
 
 
-
         private void 性能优化器配置面板_Click(object sender, System.Windows.RoutedEventArgs e)
         {
             性能优化器开关面版.Show();
@@ -94,21 +93,32 @@ namespace Awake.Views.Pages
         {
             if (上投采样.IsChecked == false)
             {
-                initialize.上投采样 = true;
+                initialize.上投采样 = false;
             }
             else
             {
-                initialize.上投采样 = false;
+                initialize.上投采样 = true;
             }
         }
 
         private void 关闭半精度计算_Click(object sender, System.Windows.RoutedEventArgs e)
         {
             if (关闭半精度计算.IsChecked == false)
-            { initialize.关闭半精度计算 = true; }
-            else
             { initialize.关闭半精度计算 = false; }
+            else
+            { initialize.关闭半精度计算 = true; }
         }
+
+
+        //A卡|I卡
+        private void 启用InvokeAI_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            if (启用InvokeAI.IsChecked == false)
+            { initialize.启用InvokeAI = false; }
+            else
+            { initialize.启用InvokeAI = true; }
+        }
+
 
 
 
@@ -117,11 +127,11 @@ namespace Awake.Views.Pages
         {
             if (缩放点积.IsChecked == false)
             { 
-                initialize.缩放点积 = true;
+                initialize.缩放点积 = false;
             }
             else
             {
-                initialize.缩放点积 = false; 
+                initialize.缩放点积 = true; 
             }
         }
 
@@ -149,6 +159,17 @@ namespace Awake.Views.Pages
             }
         }
 
+        private void 启用替代布局_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            if (启用替代布局.IsChecked == false)
+            {
+                initialize.启用替代布局 = false;
+            }
+            else
+            {
+                initialize.启用替代布局 = true;
+            }
+        }
 
 
 
@@ -165,14 +186,51 @@ namespace Awake.Views.Pages
             }
             if (WebUI显存压力优化设置.SelectedIndex == 2)
             {
-                _WebUI显存压力优化设置 = " ";
+                _WebUI显存压力优化设置 = "";
             }
         }
+
+        private void 显卡类型_DropDownClosed(object sender, EventArgs e)
+        {
+            if (显卡类型.SelectedIndex == 0)
+            {
+                initialize.显卡类型名 = "Intel";
+            }
+            if (显卡类型.SelectedIndex == 1)
+            {
+                initialize.显卡类型名 = "NVIDIA";
+            }
+            if (显卡类型.SelectedIndex == 2)
+            {
+                initialize.显卡类型名 = "Radeon";
+            }
+            显卡选择器.Items.Clear();
+            foreach (string 显卡名 in initialize.显卡列表)
+            {
+                try
+                {
+                    if (显卡名.Contains(initialize.显卡类型名))
+                    {
+                        显卡选择器.Items.Add(显卡名);
+                        显卡选择器.SelectedIndex = initialize.显卡列表.Count - 1;
+                    }
+                    
+                }
+                catch (Exception ex) { }
+            }
+            if (显卡选择器.Items.Count == 0)
+            {
+                显卡选择器.Items.Add("无可用显卡");
+            }
+        }
+
+
         private void 显卡选择器_DropDownClosed(object sender, EventArgs e)
         {
             initialize._GPUname = 显卡选择器.SelectedItem.ToString();
             initialize._UseGPUindex = 显卡选择器.SelectedIndex;
         }
+
         private void 开启API_Click(object sender, System.Windows.RoutedEventArgs e)
         {
             if (启动api == false)
@@ -180,6 +238,7 @@ namespace Awake.Views.Pages
             else
             { 启动api = false; }
         }
+
         private void WebUI主题颜色设置_DropDownClosed(object sender, EventArgs e)
         {
             if (WebUI主题颜色设置.SelectedIndex == 0) { }
@@ -188,6 +247,7 @@ namespace Awake.Views.Pages
             if (WebUI主题颜色设置.SelectedIndex == 2)
             { initialize._WebUI主题颜色 = " --theme dark"; }
         }
+
         private void 分享WebUI到公网_Click(object sender, System.Windows.RoutedEventArgs e)
         {
             if (分享WebUI到公网.IsChecked == false)
@@ -200,15 +260,16 @@ namespace Awake.Views.Pages
         private void 快速启动_Click(object sender, System.Windows.RoutedEventArgs e)
         {
             if (initialize.快速启动 == false)
-            { initialize.快速启动 = true; }
+            { 
+                initialize.快速启动 = true; 
+            }
             else
-            { initialize.快速启动 = false; }
+            { 
+                initialize.快速启动 = false; 
+            }
         }
 
-        private void ComboBox_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
-        {
 
-        }
 
 
     }

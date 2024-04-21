@@ -114,29 +114,33 @@ namespace Awake.Views.Windows
   
             }
             //这里开始从initilize中被处理过的参数变量进行初始化
+            参数列表 += " --log-startup";
+
             if (浏览器启动 == true) { 参数列表 += " --autolaunch"; }
+
             if (关闭模型hash计算 == true) { 参数列表 += " --no-hashing "; }
-
-            if (启用替代布局 == true) { 参数列表 += " --opt-channelslast "; }
-
-            if (缩放点积交叉 == true) { 参数列表 += " --opt-sdp-attention "; }
- 
-            if (XF加速模式 == true)
-            {
-                参数列表 += " --xformers --xformers-flash-attention";
-            }
-            if (使用CPU进行推理 == true)
-            {
-                参数列表 = " --use-cpu all --precision full --no-half --skip-torch-cuda-test";
-            }
-            if (_分享WebUI到公网 == true) { 参数列表 += " --share"; }
-
-            if (_关闭半精度计算 == true) { 参数列表 += "  --no-half "; }
 
             if (启动api == true) { 参数列表 += "  --api"; }
 
             if (快速启动 == true) { 参数列表 += " --ui-debug-mode --disable-safe-unpickle "; }
-            //--log - startup
+
+            if (分享WebUI到公网 == true) { 参数列表 += " --share"; }
+
+            if (使用CPU进行推理 == true) { 参数列表 = " --use-cpu all --precision full --no-half --skip-torch-cuda-test"; }
+
+            if (启用InvokeAI == true) { 参数列表 = " --opt-split-attention-invokeai"; }
+
+            if (上投采样 == true) { 参数列表 = " --upcast-sampling"; }
+
+            if (启用替代布局 == true) { 参数列表 += " --opt-channelslast "; }
+
+            if (缩放点积 == true) { 参数列表 += " --opt-sdp-attention "; }
+ 
+            if (启用xformers == true){参数列表 += " --xformers --xformers-flash-attention";}  
+
+            if (关闭半精度计算 == true) { 参数列表 += " --no-half "; }
+
+
             try
             {
                 //这里开始创建启动进程
@@ -156,7 +160,6 @@ namespace Awake.Views.Windows
                     工作路径_start = 工作路径;
                 }
 
-
                 try
                 {
                     venvPath = File.ReadAllText(@".AI_launther_log\venvpath.txt");
@@ -167,6 +170,7 @@ namespace Awake.Views.Windows
                     venvPath = null;
                     gitPath = null;
                 }
+
                 if (启用自定义路径 == true)
                 {
 
@@ -178,8 +182,8 @@ namespace Awake.Views.Windows
                     {
                         startinfo.FileName = (venvPath + @"\Scripts\python.exe");
                     }
-                    标准输出流.AppendText(工作路径 + @"\launch.py" + 参数列表 + " --device-id " + (_UseGPUindex) + _WebUI显存压力优化设置 + _WebUI主题颜色 + "\n");
-                    startinfo.Arguments = 工作路径_start + @"\launch.py" + 参数列表 + " --device-id " + (_UseGPUindex) + _WebUI显存压力优化设置 + _WebUI主题颜色;
+                    标准输出流.AppendText(工作路径 + @"\launch.py" + 启动参数 +  _WebUI显存压力优化设置 + _WebUI主题颜色 + "\n");
+                    startinfo.Arguments = 工作路径_start + @"\launch.py" + 参数列表 + _WebUI显存压力优化设置 + _WebUI主题颜色;
                     startinfo.WorkingDirectory = 工作路径;
 
                     // 设置临时环境变量  
@@ -188,6 +192,20 @@ namespace Awake.Views.Windows
                     startinfo.EnvironmentVariables["GIT"] = gitPath + @"\mingw64\libexec\git-core\git.exe";//保证WenUI可以使用到git
                     startinfo.EnvironmentVariables["GIT_PYTHON_REFRESH"] = "quiet";
                     startinfo.EnvironmentVariables["GIT_SSL_NO_VERIFY"] = "true";
+
+                    if (显卡类型名 == "NVIDIA")
+                    {
+
+                        startinfo.EnvironmentVariables["CUDA_VISIBLE_DEVICES"] = _UseGPUindex.ToString();
+   
+                    }
+                    else
+                    {
+
+                        参数列表 += " --precision full --skip-torch-cuda-test";
+
+                    }
+
                     startinfo.RedirectStandardOutput = true;
                     startinfo.RedirectStandardError = true;
                     startinfo.CreateNoWindow = true;
@@ -207,9 +225,9 @@ namespace Awake.Views.Windows
 
                 else
                 {
-                    标准输出流.AppendText(工作路径 + @"\launch.py" + 参数列表 + " --device-id " + (_UseGPUindex) + _WebUI显存压力优化设置 + _WebUI主题颜色 + "\n");
+                    标准输出流.AppendText(工作路径 + @"\launch.py" + 参数列表  + _WebUI显存压力优化设置 + _WebUI主题颜色 + "\n");
                     startinfo.FileName = 工作路径_start + @"\Python3.10\python.exe";
-                    startinfo.Arguments = 工作路径_start + @"\launch.py" + 参数列表 + " --device-id " + (_UseGPUindex) + _WebUI显存压力优化设置 + _WebUI主题颜色;
+                    startinfo.Arguments = 工作路径_start + @"\launch.py" + 参数列表 +  _WebUI显存压力优化设置 + _WebUI主题颜色;
                     startinfo.WorkingDirectory = 工作路径;
 
                     // 设置临时环境变量  
@@ -220,6 +238,20 @@ namespace Awake.Views.Windows
                     startinfo.EnvironmentVariables["GIT_PYTHON_REFRESH"] = "quiet";
                     startinfo.EnvironmentVariables["HUGGINGFACE_HUB_CACHE"] = 工作路径_start + @"\deploy\.cache\huggingface\hub";
                     startinfo.EnvironmentVariables["GIT_SSL_NO_VERIFY"] = "true";
+
+                    if (显卡类型名 == "NVIDIA")
+                    {
+
+                        startinfo.EnvironmentVariables["CUDA_VISIBLE_DEVICES"] = _UseGPUindex.ToString();
+
+                    }
+                    else
+                    {
+
+                        参数列表 += " --precision full --skip-torch-cuda-test";
+
+                    }
+
                     startinfo.RedirectStandardOutput = true;
                     startinfo.RedirectStandardError = true;
                     startinfo.CreateNoWindow = true;
