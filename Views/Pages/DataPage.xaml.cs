@@ -47,7 +47,7 @@ namespace Awake.Views.Pages
         private void 启动后自动打开浏览器开关_Click(object sender, System.Windows.RoutedEventArgs e)
         {
 
-            if (initialize.浏览器启动 == true)
+            if (启动后自动打开浏览器开关.IsChecked == true)
             {
                 initialize.浏览器启动 = true;
         
@@ -58,18 +58,17 @@ namespace Awake.Views.Pages
               
             }
         }
-        private void 启用XF_Click(object sender, System.Windows.RoutedEventArgs e)
-        {
-            if (XF加速模式 == false)
-            { XF加速模式 = false; }
-            else
-            { XF加速模式 = true; }
-        }
+ 
         private void 使用CPU进行推理_Click(object sender, System.Windows.RoutedEventArgs e)
         {
             if (使用CPU进行推理.IsChecked == true)
-            { initialize.使用CPU进行推理 = true; }
-            else { initialize.使用CPU进行推理 = false; }
+            { 
+                initialize.使用CPU进行推理 = true; 
+            }
+            else 
+            { 
+                initialize.使用CPU进行推理 = false;
+            }
         }
 
         private void 关闭模型hash计算_Click(object sender, System.Windows.RoutedEventArgs e)
@@ -84,25 +83,70 @@ namespace Awake.Views.Pages
             }
         }
 
+
+
         private void 性能优化器配置面板_Click(object sender, System.Windows.RoutedEventArgs e)
         {
             性能优化器开关面版.Show();
         }
+        //通用
+        private void 上投采样_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            if (上投采样.IsChecked == false)
+            {
+                initialize.上投采样 = true;
+            }
+            else
+            {
+                initialize.上投采样 = false;
+            }
+        }
 
+        private void 关闭半精度计算_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            if (关闭半精度计算.IsChecked == false)
+            { initialize.关闭半精度计算 = true; }
+            else
+            { initialize.关闭半精度计算 = false; }
+        }
+
+
+
+        //N卡
         private void 缩放点积_Click(object sender, System.Windows.RoutedEventArgs e)
         {
             if (缩放点积.IsChecked == false)
-            { initialize.缩放点积 = true; }
+            { 
+                initialize.缩放点积 = true;
+            }
             else
-            { initialize.缩放点积 = false; }
+            {
+                initialize.缩放点积 = false; 
+            }
         }
 
         private void SDP优化_Click(object sender, System.Windows.RoutedEventArgs e)
         {
             if (SDP优化.IsChecked == false)
-            { initialize.SDP优化 = false; }
+            { 
+                initialize.SDP优化 = false; 
+            }
             else
-            { initialize.SDP优化 = true; }
+            {
+                initialize.SDP优化 = true;
+            }
+        }
+
+        private void 启用xformers_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            if (启用xformers.IsChecked == false)
+            {
+                initialize.启用xformers = false;
+            }
+            else
+            {
+                initialize.启用xformers = true;
+            }
         }
 
 
@@ -146,18 +190,12 @@ namespace Awake.Views.Pages
         }
         private void 分享WebUI到公网_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            if (_分享WebUI到公网 == false)
-            { _分享WebUI到公网 = true; }
+            if (分享WebUI到公网.IsChecked == false)
+            { initialize.分享WebUI到公网 = true; }
             else
-            { _分享WebUI到公网 = false; }
+            { initialize.分享WebUI到公网 = false; }
         }
-        private void 关闭半精度计算_Click(object sender, System.Windows.RoutedEventArgs e)
-        {
-            if (_关闭半精度计算 == false)
-            { _关闭半精度计算 = true; }
-            else
-            { _关闭半精度计算 = false; }
-        }
+
 
         private void 快速启动_Click(object sender, System.Windows.RoutedEventArgs e)
         {

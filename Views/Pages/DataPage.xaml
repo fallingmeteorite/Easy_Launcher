@@ -68,8 +68,8 @@
                         <StackPanel Width="450" HorizontalAlignment="Left">
                             <ui:Card Width="450"  Height="100" Margin="0,0,0,2" Background="#0FFFFFFF" >
                                 <StackPanel Height="100">
-                                    <TextBlock Text="推荐设置" FontSize="20" HorizontalAlignment="Left" Margin="10,0,0,0"/>
-                                    <TextBlock Text="WebUI常用设置" FontSize="14" HorizontalAlignment="Left" Margin="10,15,0,0"/>
+                                    <TextBlock Text="常用设置" FontSize="20" HorizontalAlignment="Left" Margin="10,0,0,0"/>
+                                    <TextBlock Text="WebUI通用设置" FontSize="14" HorizontalAlignment="Left" Margin="10,15,0,0"/>
                                 </StackPanel>
 
                             </ui:Card>
@@ -84,26 +84,26 @@
                                     <ui:ToggleSwitch x:Name="启动后自动打开浏览器开关" IsChecked="True" IsEnabled="True" Click="启动后自动打开浏览器开关_Click" />
                                 </StackPanel>
                             </ui:Card>
-                            <ui:Card VerticalAlignment="Stretch" Margin="0,0,0,2" Height="75" Background="#0FFFFFFF">
+                            <ui:Card Height="75" Background="#0FFFFFFF">
                                 <StackPanel Orientation="Horizontal">
-                                    <ui:SymbolIcon Symbol="TopSpeed20" FontSize="36" Height="36" Width="36"/>
+                                    <ui:SymbolIcon Symbol="Color20" Width="36" Height="36" FontSize="36"/>
                                     <StackPanel Margin="15,0,0,0" Width="320">
-                                        <TextBlock Text="xformer加速 (N卡)" FontSize="16" Margin="0,0,0,5"/>
-                                        <TextBlock Text="提高生成速度,并降低显存占用 (推荐)" FontSize="12"/>
+                                        <TextBlock Text="关闭模型hash值计算"   FontSize="16" Margin="0,0,0,5"/>
+                                        <TextBlock Text="可以优化WebUI启动速度" FontSize="12"/>
 
                                     </StackPanel>
-                                    <ui:ToggleSwitch x:Name="启用XF" IsChecked="False"  Click="启用XF_Click" />
+                                    <ui:ToggleSwitch x:Name="关闭模型hash计算" IsChecked="False" IsEnabled="True" Click="关闭模型hash计算_Click" />
                                 </StackPanel>
                             </ui:Card>
-                            <ui:Card VerticalAlignment="Stretch" Height="75" Background="#0FFFFFFF">
+                            <ui:Card Height="75" Background="#0FFFFFFF">
                                 <StackPanel Orientation="Horizontal">
-                                    <ui:SymbolIcon Symbol="BranchCompare20" Width="36" Height="36" FontSize="36"/>
+                                    <ui:SymbolIcon Symbol="Color20" Width="36" Height="36" FontSize="36"/>
                                     <StackPanel Margin="15,0,0,0" Width="320">
-                                        <TextBlock Text="关闭半精度计算" FontSize="16" Margin="0,0,0,5"/>
-                                        <TextBlock Text="解决部分GTX16xx显卡黑图的问题,显存占用上升" FontSize="12"/>
+                                        <TextBlock Text="快速启动"   FontSize="16" Margin="0,0,0,5"/>
+                                        <TextBlock Text="不要加载模型以快速启动UI" FontSize="12"/>
 
                                     </StackPanel>
-                                    <ui:ToggleSwitch x:Name="关闭半精度计算" IsChecked="False" Click="关闭半精度计算_Click"   />
+                                    <ui:ToggleSwitch x:Name="快速启动" IsChecked="True" IsEnabled="True" Click="快速启动_Click" />
                                 </StackPanel>
                             </ui:Card>
 
@@ -131,13 +131,17 @@
                             </ui:Card>
                             <ui:Flyout x:Name="性能优化器开关面版" HorizontalAlignment="Left">
                                 <StackPanel>
-                                    <TextBlock Text="A卡|I卡优化方案" Margin="0,0,0,2"/>
+                                    <TextBlock Text="通用优化方案" Margin="0,0,0,2"/>
 
                                     <ui:Card>
                                         <StackPanel Margin="0,0,0,5">
                                             <StackPanel Orientation="Horizontal" Margin="0,0,0,5">
-                                                <TextBlock Width="400">SDP无内存优化，可提高生成速度</TextBlock>
-                                                <ui:ToggleSwitch x:Name="SDP优化" VerticalAlignment="Center" Click="SDP优化_Click" />
+                                                <TextBlock Width="400">(通常产生与--no-half类似的结果,具有更好的性能,同时使用更少的内存)</TextBlock>
+                                                <ui:ToggleSwitch x:Name="上投采样" VerticalAlignment="Center" Click="上投采样_Click" />
+                                            </StackPanel>
+                                            <StackPanel Orientation="Horizontal" Margin="0,0,0,5">
+                                                <TextBlock Width="400">(为交叉注意力图层启用 xformers)</TextBlock>
+                                                <ui:ToggleSwitch x:Name="关闭半精度计算" VerticalAlignment="Center" Click="关闭半精度计算_Click" />
                                             </StackPanel>
 
                                         </StackPanel>
@@ -147,21 +151,16 @@
                                     <ui:Card Visibility="Visible">
                                         <StackPanel>
                                             <StackPanel Orientation="Horizontal" Margin="0,0,0,5">
-                                                <TextBlock Width="400">SDP无内存优化，可提高生成速s度</TextBlock>
-                                                <ui:ToggleSwitch x:Name="启用替代布局" VerticalAlignment="Center" Click="启用替代布局_Click" />
+                                                <TextBlock Width="400">(实现缩放点积交叉注意力层优化,使图像生成具有确定性,需要PyTorch2.X)</TextBlock>
+                                                <ui:ToggleSwitch x:Name="缩放点积" VerticalAlignment="Center" Click="缩放点积_Click" />
                                             </StackPanel>
                                             <StackPanel Orientation="Horizontal" Margin="0,0,0,5">
-                                                <TextBlock Width="400">--opt-split-attention-v1</TextBlock>
-                                                <ui:ToggleSwitch  VerticalAlignment="Center" />
+                                                <TextBlock Width="400">(SDP无内存优化，可提高生成速度)</TextBlock>
+                                                <ui:ToggleSwitch x:Name="SDP优化" VerticalAlignment="Center" Click="SDP优化_Click" />
                                             </StackPanel>
                                             <StackPanel Orientation="Horizontal" Margin="0,0,0,5">
-                                                <TextBlock Width="400">--opt-sdp-no-mem-attention</TextBlock>
-                                                <ui:ToggleSwitch  VerticalAlignment="Center" />
-                                            </StackPanel>
-
-                                            <StackPanel Orientation="Horizontal" Margin="0,0,0,5">
-                                                <TextBlock Width="400">--opt-sdp-attention</TextBlock>
-                                                <ui:ToggleSwitch  VerticalAlignment="Center" />
+                                                <TextBlock Width="400">(为交叉注意力图层启用 xformers)</TextBlock>
+                                                <ui:ToggleSwitch x:Name="启用xformers" VerticalAlignment="Center" Click="启用xformers_Click" />
                                             </StackPanel>
                                             <StackPanel Orientation="Horizontal" Margin="0,0,0,5">
                                                 <TextBlock Width="400">--disable-opt-split-attention</TextBlock>
@@ -243,89 +242,15 @@
                                 <ui:ToggleSwitch x:Name="开启API" IsChecked="False" Click="开启API_Click" Background="#FFFF3D48" />
                             </StackPanel>
                         </ui:Card>
-                        <ui:Card VerticalAlignment="Stretch" Margin="0,0,0,2" Width="910" Background="#0FFFFFFF">
+                        <ui:Card Width="910" Background="#0FFFFFFF">
                             <StackPanel Orientation="Horizontal">
-                                <ui:SymbolIcon Symbol="BookmarkSearch20" Width="36" Height="36" FontSize="36"/>
+                                <ui:SymbolIcon Symbol="" Height="36" Width="36" FontSize="36"/>
                                 <StackPanel Margin="15,0,0,0" Width="780">
-                                    <TextBlock Text="关闭模型hash值计算" FontSize="16" Margin="0,0,0,5"/>
-                                    <TextBlock Text="可以优化WebUI启动速度" FontSize="12"/>
+                                    <TextBlock Text="分享WebUI到公网" FontSize="16" Margin="0,0,0,5"/>
+                                    <TextBlock Text="不推荐,这将会导致你的数据危险" FontSize="12"/>
 
                                 </StackPanel>
-                                <ui:ToggleSwitch x:Name="关闭模型hash计算" IsChecked="False" Click="关闭模型hash计算_Click" Background="#FFFF3D48" />
-                            </StackPanel>
-                        </ui:Card>
-                        <ui:Card VerticalAlignment="Stretch" Width="910" Margin="0,0,0,2" Background="#0FFFFFFF">
-                            <StackPanel Height="100">
-                                <TextBlock Text="其他设置" FontSize="20" HorizontalAlignment="Left" Margin="10,0,0,0"/>
-                                <TextBlock Text="如果你不明白下列参数是否生效,请勿随意修改" FontSize="14" HorizontalAlignment="Left" Margin="10,15,0,0"/>
-                            </StackPanel>
-                        </ui:Card>
-                        <ui:Card VerticalAlignment="Stretch" Width="910" Margin="0,0,0,2" Visibility="Visible">
-                            <StackPanel Orientation="Horizontal">
-                                <ui:SymbolIcon Symbol="BracesVariable24" Height="36" Width="36" FontSize="36"/>
-                                <StackPanel Margin="15,0,0,0" Width="780">
-                                    <TextBlock Text="缩放点积交叉" FontSize="16" Margin="0,0,0,5"/>
-                                    <TextBlock Text="实现缩放点积交叉注意力层优化;需要 PyTorch 2.X." FontSize="12"/>
-
-                                </StackPanel>
-                                <ui:ToggleSwitch x:Name="缩放点积交叉" IsChecked="False" Click="缩放点积交叉_Click" Background="#FFFF3D48" />
-                            </StackPanel>
-
-
-                        </ui:Card>
-                        <ui:Card Width="910" Visibility="Visible">
-                            <StackPanel Orientation="Horizontal">
-                                <ui:SymbolIcon Symbol="BracesVariable24" Height="36" Width="36" FontSize="36"/>
-                                <StackPanel Margin="15,0,0,0" Width="780">
-                                    <TextBlock Text="快速启动" FontSize="16" Margin="0,0,0,5"/>
-                                    <TextBlock Text="不要加载模型以快速启动 UI." FontSize="12"/>
-
-                                </StackPanel>
-                                <ui:ToggleSwitch x:Name="快速启动" IsChecked="False" Click="快速启动_Click" Background="#FFFF3D48" />
-                            </StackPanel>
-                        </ui:Card>
-                        <ui:Card Width="910" Visibility="Visible">
-                            <StackPanel Orientation="Horizontal">
-                                <ui:SymbolIcon Symbol="BracesVariable24" Height="36" Width="36" FontSize="36"/>
-                                <StackPanel Margin="15,0,0,0" Width="780">
-                                    <TextBlock Text="快速启动" FontSize="16" Margin="0,0,0,5"/>
-                                    <TextBlock Text="不要加载模型以快速启动 UI." FontSize="12"/>
-
-                                </StackPanel>
-                                <ui:ToggleSwitch x:Name="快速启动1" IsChecked="False" Click="快速启动_Click" Background="#FFFF3D48" />
-                            </StackPanel>
-                        </ui:Card>
-                        <ui:Card Width="910" Visibility="Visible">
-                            <StackPanel Orientation="Horizontal">
-                                <ui:SymbolIcon Symbol="BracesVariable24" Height="36" Width="36" FontSize="36"/>
-                                <StackPanel Margin="15,0,0,0" Width="780">
-                                    <TextBlock Text="快速启动" FontSize="16" Margin="0,0,0,5"/>
-                                    <TextBlock Text="不要加载模型以快速启动 UI." FontSize="12"/>
-
-                                </StackPanel>
-                                <ui:ToggleSwitch x:Name="快速启动2" IsChecked="False" Click="快速启动_Click" Background="#FFFF3D48" />
-                            </StackPanel>
-                        </ui:Card>
-                        <ui:Card Width="910" Visibility="Visible">
-                            <StackPanel Orientation="Horizontal">
-                                <ui:SymbolIcon Symbol="BracesVariable24" Height="36" Width="36" FontSize="36"/>
-                                <StackPanel Margin="15,0,0,0" Width="780">
-                                    <TextBlock Text="快速启动" FontSize="16" Margin="0,0,0,5"/>
-                                    <TextBlock Text="不要加载模型以快速启动 UI." FontSize="12"/>
-
-                                </StackPanel>
-                                <ui:ToggleSwitch x:Name="快速启动3" IsChecked="False" Click="快速启动_Click" Background="#FFFF3D48" />
-                            </StackPanel>
-                        </ui:Card>
-                        <ui:Card Width="910" Visibility="Visible">
-                            <StackPanel Orientation="Horizontal">
-                                <ui:SymbolIcon Symbol="BracesVariable24" Height="36" Width="36" FontSize="36"/>
-                                <StackPanel Margin="15,0,0,0" Width="780">
-                                    <TextBlock Text="快速启动" FontSize="16" Margin="0,0,0,5"/>
-                                    <TextBlock Text="不要加载模型以快速启动 UI." FontSize="12"/>
-
-                                </StackPanel>
-                                <ui:ToggleSwitch x:Name="快速启动4" IsChecked="False" Click="快速启动_Click" Background="#FFFF3D48" />
+                                <ui:ToggleSwitch x:Name="分享WebUI到公网" IsChecked="False" Click="分享WebUI到公网_Click" Background="#FFFF3D48" />
                             </StackPanel>
                         </ui:Card>
 
