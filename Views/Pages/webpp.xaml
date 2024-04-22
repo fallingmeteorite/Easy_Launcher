@@ -82,12 +82,6 @@
                                 </StackPanel>
 
                             </ui:CardAction>
-                            <Button HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Height="75" Width="70" Visibility="Collapsed">
-                                <StackPanel>
-                                    <ui:SymbolIcon Symbol="ArrowReset32" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="40"/>
-                                    <TextBlock Text="恢复默认" FontSize="11"/>
-                                </StackPanel>
-                            </Button>
                         </StackPanel>
                         <Expander x:Name="模型版本展示" IsExpanded="True" Background="#0FFFFFFF">
                             <Expander.BorderBrush>
@@ -238,7 +232,7 @@
                             </ui:CardAction>
 
                         </StackPanel>
-                        <ui:CardAction x:Name="运行路径选择_Copy" Click="运行路径选择_Click" Width="930" Height="75" Background="#0FFFFFFF"  Margin="0,-8,0,0" >
+                        <ui:CardAction x:Name="本地运行路径" Click="本地运行路径_Click" Width="930" Height="75" Background="#0FFFFFFF"  Margin="0,-8,0,0" >
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock TextWrapping="Wrap" Text="&#xED25;" FontFamily="Segoe MDL2 Assets"   FontSize="36" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Width="40" Height="40"/>
                                 <StackPanel Margin="15,0,0,0" Width="350">
@@ -246,7 +240,7 @@
                                     <TextBlock Text="选择已经部署WebUI" FontSize="12"/>
 
                                 </StackPanel>
-                                <TextBlock x:Name="工作路径展示1" Text="暂未设置部署路径"   FontSize="16" VerticalAlignment="Center"/>
+                                <TextBlock x:Name="本地工作路径展示" Text="暂未设置部署路径"   FontSize="16" VerticalAlignment="Center"/>
                                 <StackPanel Orientation="Vertical"/>
 
 

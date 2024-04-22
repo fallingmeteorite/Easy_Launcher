@@ -264,6 +264,32 @@ namespace Awake.Views.Windows
             File.WriteAllText(@".AI_launther_log\UIalpha.txt", 图片亮度.Value.ToString());
             File.WriteAllText(@".AI_launther_log\UI.txt", 背景颜色);
             File.WriteAllText(@".AI_launther_log\UIpicture.txt", 背景图片);
+            string 参数设置 = (
+                initialize.浏览器启动 + "\n" +
+                initialize.启动api + "\n" +
+                initialize.分享WebUI到公网 + "\n" +
+                initialize.使用CPU进行推理 + "\n" +
+                initialize.关闭模型hash计算 + "\n" +
+                initialize.冻结设置 + "\n"+
+                initialize.快速启动 + "\n"+
+                initialize.启用自定义路径 + "\n" +
+
+                initialize.上投采样 + "\n" +
+                initialize.关闭半精度计算 + "\n" +
+
+                initialize.启用InvokeAI + "\n" +
+                initialize.内存优化 + "\n" +
+
+                initialize.SDP优化 + "\n" +
+                initialize.缩放点积 + "\n" +
+                initialize.启用xformers + "\n" +
+                initialize.启用替代布局 + "\n" +
+
+                initialize.显卡类型名 + "\n" +
+                initialize._显卡类型 + "\n" +
+                initialize._WebUI显存压力优化设置 + "\n" +
+                initialize._WebUI主题颜色 + "\n");
+        File.WriteAllText(@".AI_launther_log\setting.txt", 参数设置);
             Application.Current.Shutdown();
         }
         private void 一键启动按钮_Click(object sender, RoutedEventArgs e)

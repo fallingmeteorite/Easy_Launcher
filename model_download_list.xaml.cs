@@ -28,7 +28,6 @@ namespace Awake
 
         string downloadUrl = string.Empty;
         string modelNme = string.Empty;
-        private DateTime _startTime;
         DateTime startTime = DateTime.Now;
         long totalBytesRead = 0;
         string 模型保存路径 = string.Empty;

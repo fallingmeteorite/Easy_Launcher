@@ -25,8 +25,32 @@ namespace Awake.Views.Pages
 
         }
         public string speedInfo = "";
+
+        private void Read_setting()
+        {
+            string filePath = @".AI_launther_log\setting.txt"; // 文本文件路径
+
+            try
+            {
+                List<string> lines_setting = new List<string>();
+
+                // 使用 File.ReadAllLines 方法读取文本文件的所有行
+                lines_setting.AddRange(File.ReadAllLines(filePath));
+
+                // 在这里使用列表
+                if (lines_setting[7] == "True")
+                {
+                    启用自定义路径.IsChecked = true;
+                }
+            }
+            catch { }
+
+        }
+
         public async void GetSystemInfo()
         {
+            Read_setting();    //读取配置
+
             string cpuname = await Task.Run(() => hardinfo.GetCpuName());
             string Machinename = await Task.Run(() => hardinfo.GetComputerName());
             string systemType = await Task.Run(() => hardinfo.GetSystemType());
@@ -46,6 +70,7 @@ namespace Awake.Views.Pages
         DateTime startTime = DateTime.Now;
         long totalBytesRead = 0;
 
+ 
 
         public webpp()
         {
@@ -64,6 +89,7 @@ namespace Awake.Views.Pages
             CheckStartPathFile();
             CheckgitPathFile();
             CheckVENVPathFile();
+            Checkstartpath_local();
 
 
             //检查WebUI安装状态
@@ -137,6 +163,7 @@ namespace Awake.Views.Pages
             工作路径展示.Text = 工作路径;
             Git路径展示.Text = gitPath;
             VENV路径展示.Text = venvPath;
+            本地工作路径展示.Text = 本地路径;
 
         }
         private void 运行路径选择_Click(object sender, RoutedEventArgs e)
@@ -244,6 +271,12 @@ namespace Awake.Views.Pages
         {
             initialize.选择VENV路径();
             VENV路径展示.Text = venvPath;
+        }
+
+        private void 本地运行路径_Click(object sender, RoutedEventArgs e)
+        {
+            initialize.本地运行路径();
+            本地工作路径展示.Text = 本地路径;
         }
 
 

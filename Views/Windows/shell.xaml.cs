@@ -7,6 +7,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Animation;
 using System.Windows.Threading;
+using System.Xml.Linq;
 using Wpf.Ui.Controls;
 using static Awake.initialize;//这里引入全局参数库
 namespace Awake.Views.Windows
@@ -41,7 +42,6 @@ namespace Awake.Views.Windows
             }
             GetSystemInfo();
             参数列表 = "";
-            string 设备支持列表 = "";
             async Task _loadpage()
             {
                 // 加载页的背景图计时器
@@ -138,7 +138,12 @@ namespace Awake.Views.Windows
  
             if (启用xformers == true){参数列表 += " --xformers --xformers-flash-attention";}  
 
-            if (关闭半精度计算 == true) { 参数列表 += " --no-half "; }
+            if (关闭半精度计算 == true) { 参数列表 += " --no-half"; }
+
+            if (内存优化 == true) { 参数列表 += " --opt-sub-quad-attention"; }
+            
+            if (冻结设置 == true) { 参数列表 += " --freeze - settings"; }
+
 
 
             try
@@ -149,16 +154,7 @@ namespace Awake.Views.Windows
                 //下面开始施法！！！！
                 启动魔法 = new Process();
                 ProcessStartInfo startinfo = new ProcessStartInfo();
-                string 启动参数 = 参数列表;
-
-                if (工作路径.Length == 3)
-                {
-                    工作路径_start = 工作路径.Substring(0, 工作路径.Length - 1);
-                }
-                else
-                {
-                    工作路径_start = 工作路径;
-                }
+                string 启动参数 = 参数列表;  
 
                 try
                 {
@@ -167,12 +163,21 @@ namespace Awake.Views.Windows
                 }
                 catch
                 {
-                    venvPath = null;
-                    gitPath = null;
+                    venvPath = "";
+                    gitPath = "";
                 }
 
                 if (启用自定义路径 == true)
                 {
+
+                    if (本地路径.Length == 3)
+                    {
+                        工作路径_start = 本地路径.Substring(0, 本地路径.Length - 1);
+                    }
+                    else
+                    {
+                        工作路径_start = 本地路径;
+                    }
 
                     if (File.Exists(venvPath + @"\python.exe"))
                     {
@@ -182,6 +187,21 @@ namespace Awake.Views.Windows
                     {
                         startinfo.FileName = (venvPath + @"\Scripts\python.exe");
                     }
+
+                    if (显卡类型名 == "NVIDIA")
+                    {
+
+                        启动参数 += " --device - id " + _UseGPUindex;
+
+                    }
+                    else
+                    {
+
+                        System.Windows.MessageBox.Show("非本整合包的SD无法支持除N卡以外显卡");
+
+                    }
+
+
                     标准输出流.AppendText(工作路径 + @"\launch.py" + 启动参数 +  _WebUI显存压力优化设置 + _WebUI主题颜色 + "\n");
                     startinfo.Arguments = 工作路径_start + @"\launch.py" + 参数列表 + _WebUI显存压力优化设置 + _WebUI主题颜色;
                     startinfo.WorkingDirectory = 工作路径;
@@ -192,19 +212,6 @@ namespace Awake.Views.Windows
                     startinfo.EnvironmentVariables["GIT"] = gitPath + @"\mingw64\libexec\git-core\git.exe";//保证WenUI可以使用到git
                     startinfo.EnvironmentVariables["GIT_PYTHON_REFRESH"] = "quiet";
                     startinfo.EnvironmentVariables["GIT_SSL_NO_VERIFY"] = "true";
-
-                    if (显卡类型名 == "NVIDIA")
-                    {
-
-                        startinfo.EnvironmentVariables["CUDA_VISIBLE_DEVICES"] = _UseGPUindex.ToString();
-   
-                    }
-                    else
-                    {
-
-                        参数列表 += " --precision full --skip-torch-cuda-test";
-
-                    }
 
                     startinfo.RedirectStandardOutput = true;
                     startinfo.RedirectStandardError = true;
@@ -225,10 +232,33 @@ namespace Awake.Views.Windows
 
                 else
                 {
+
+                    if (工作路径.Length == 3)
+                    {
+                        工作路径_start = 工作路径.Substring(0, 工作路径.Length - 1);
+                    }
+                    else
+                    {
+                        工作路径_start = 工作路径;
+                    }
+
                     标准输出流.AppendText(工作路径 + @"\launch.py" + 参数列表  + _WebUI显存压力优化设置 + _WebUI主题颜色 + "\n");
                     startinfo.FileName = 工作路径_start + @"\Python3.10\python.exe";
                     startinfo.Arguments = 工作路径_start + @"\launch.py" + 参数列表 +  _WebUI显存压力优化设置 + _WebUI主题颜色;
                     startinfo.WorkingDirectory = 工作路径;
+
+                    if (显卡类型名 == "NVIDIA")
+                    {
+
+                        启动参数 += " --device - id " + _UseGPUindex;
+
+                    }
+                    else
+                    {
+
+                        启动参数 += " --device-name directml --skip-torch-cuda-test";
+
+                    }
 
                     // 设置临时环境变量  
                     Environment.SetEnvironmentVariable("Path", Environment.GetEnvironmentVariable("Path") + ";" + 工作路径_start + "\\Git\\bin", EnvironmentVariableTarget.Process);//确保整个系统可以使用到Git
@@ -238,19 +268,6 @@ namespace Awake.Views.Windows
                     startinfo.EnvironmentVariables["GIT_PYTHON_REFRESH"] = "quiet";
                     startinfo.EnvironmentVariables["HUGGINGFACE_HUB_CACHE"] = 工作路径_start + @"\deploy\.cache\huggingface\hub";
                     startinfo.EnvironmentVariables["GIT_SSL_NO_VERIFY"] = "true";
-
-                    if (显卡类型名 == "NVIDIA")
-                    {
-
-                        startinfo.EnvironmentVariables["CUDA_VISIBLE_DEVICES"] = _UseGPUindex.ToString();
-
-                    }
-                    else
-                    {
-
-                        参数列表 += " --precision full --skip-torch-cuda-test";
-
-                    }
 
                     startinfo.RedirectStandardOutput = true;
                     startinfo.RedirectStandardError = true;

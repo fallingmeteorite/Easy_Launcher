@@ -65,7 +65,7 @@
                     </ui:Card>
                     <ui:Card VerticalAlignment="Stretch" Width="910" Margin="0,10,0,0" Background="#0FFFFFFF">
                         <StackPanel Orientation="Horizontal">
-                            <ui:SymbolIcon Symbol="Engine20" Width="36" Height="36" FontSize="36"/>
+                            <ui:SymbolIcon Symbol="PhoneDesktop16" Width="36" Height="36" FontSize="36"/>
                             <StackPanel Margin="15,0,0,0" Width="490">
                                 <TextBlock Text="选择显卡类型" FontSize="16" Margin="0,0,0,5"/>
                                 <TextBlock Text="用于启动器设置相关选项" FontSize="12"/>
@@ -91,7 +91,7 @@
                             </ui:Card>
                             <ui:Card VerticalAlignment="Stretch" Margin="0,0,0,2" Height="75" Background="#0FFFFFFF">
                                 <StackPanel Orientation="Horizontal">
-                                    <ui:SymbolIcon Symbol="Color20" Width="36" Height="36" FontSize="36"/>
+                                    <ui:SymbolIcon Symbol="SlideArrowRight20" Width="36" Height="36" FontSize="36"/>
                                     <StackPanel Margin="15,0,0,0" Width="320">
                                         <TextBlock Text="启动完成自动打开浏览器"   FontSize="16" Margin="0,0,0,5"/>
                                         <TextBlock Text="在WebUI启动完成后自动打开界面" FontSize="12"/>
@@ -102,7 +102,7 @@
                             </ui:Card>
                             <ui:Card Height="75" Background="#0FFFFFFF">
                                 <StackPanel Orientation="Horizontal">
-                                    <ui:SymbolIcon Symbol="Color20" Width="36" Height="36" FontSize="36"/>
+                                    <ui:SymbolIcon Symbol="TextBulletListSquare20" Width="36" Height="36" FontSize="36"/>
                                     <StackPanel Margin="15,0,0,0" Width="320">
                                         <TextBlock Text="关闭模型hash值计算"   FontSize="16" Margin="0,0,0,5"/>
                                         <TextBlock Text="可以优化WebUI启动速度" FontSize="12"/>
@@ -113,7 +113,7 @@
                             </ui:Card>
                             <ui:Card Height="75" Background="#0FFFFFFF">
                                 <StackPanel Orientation="Horizontal">
-                                    <ui:SymbolIcon Symbol="Color20" Width="36" Height="36" FontSize="36"/>
+                                    <ui:SymbolIcon Symbol="TriangleRight20" Width="36" Height="36" FontSize="36"/>
                                     <StackPanel Margin="15,0,0,0" Width="320">
                                         <TextBlock Text="快速启动"   FontSize="16" Margin="0,0,0,5"/>
                                         <TextBlock Text="不要加载模型以快速启动UI" FontSize="12"/>
@@ -169,7 +169,11 @@
                                         <StackPanel>
                                             <StackPanel Orientation="Horizontal" Margin="0,0,0,5">
                                                 <TextBlock Width="400">(默认情况下,当CUDA不可用时,它处于打开状态)</TextBlock>
-                                                <ui:ToggleSwitch x:Name="启用InvokeAI" VerticalAlignment="Center" Click="关闭半精度计算_Click" />
+                                                <ui:ToggleSwitch x:Name="启用InvokeAI" VerticalAlignment="Center" Click="启用InvokeAI_Click" />
+                                            </StackPanel>
+                                            <StackPanel Orientation="Horizontal" Margin="0,0,0,5">
+                                                <TextBlock Width="400">(实现内存高效的次二次交叉注意力层优化)</TextBlock>
+                                                <ui:ToggleSwitch x:Name="内存优化" VerticalAlignment="Center" Click="内存优化_Click" />
                                             </StackPanel>
                                         </StackPanel>
                                         
@@ -275,13 +279,24 @@
                         </ui:Card>
                         <ui:Card Width="910" Background="#0FFFFFFF">
                             <StackPanel Orientation="Horizontal">
-                                <ui:SymbolIcon Symbol="BracesVariable24" Height="36" Width="36" FontSize="36"/>
+                                <ui:SymbolIcon Symbol="WifiLock20" Height="36" Width="36" FontSize="36"/>
                                 <StackPanel Margin="15,0,0,0" Width="780">
                                     <TextBlock Text="分享WebUI到公网" FontSize="16" Margin="0,0,0,5"/>
                                     <TextBlock Text="不推荐,这将会导致你的数据危险" FontSize="12"/>
 
                                 </StackPanel>
                                 <ui:ToggleSwitch x:Name="分享WebUI到公网" IsChecked="False" Click="分享WebUI到公网_Click" Background="#FFFF3D48" />
+                            </StackPanel>
+                        </ui:Card>
+                        <ui:Card Width="910" Background="#0FFFFFFF">
+                            <StackPanel Orientation="Horizontal">
+                                <ui:SymbolIcon Symbol="WeatherSnowflake20" Height="36" Width="36" FontSize="36"/>
+                                <StackPanel Margin="15,0,0,0" Width="780">
+                                    <TextBlock Text="冻结设置" FontSize="16" Margin="0,0,0,5"/>
+                                    <TextBlock Text="禁用编辑设置" FontSize="12"/>
+
+                                </StackPanel>
+                                <ui:ToggleSwitch x:Name="冻结设置" IsChecked="False" Click="冻结设置_Click" Background="#FFFF3D48" />
                             </StackPanel>
                         </ui:Card>
 

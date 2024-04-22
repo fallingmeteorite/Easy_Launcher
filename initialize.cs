@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Text;
 using System.Windows.Forms;
 namespace Awake
 {
@@ -33,45 +34,41 @@ namespace Awake
         public static bool 已解压WebUI = false;
         public static bool 已安装WebUI = false;
         //下面是一些启动选项的具体操作
-        public static bool 浏览器启动 = true;
+
+
+        public static bool 浏览器启动 = false;
         public static bool 启动api = false;
-        public static bool 使用快速启动 = false;
         public static bool 分享WebUI到公网 = false;
         public static bool 使用CPU进行推理 = false;
         public static bool 关闭模型hash计算 = false;
+        public static bool 冻结设置 = false;
         public static bool 快速启动;
         internal static bool 启用自定义路径;
-        public static string 显卡类型名 = "";
-
 
         //优化
         public static bool 上投采样 = false;
         public static bool 关闭半精度计算 = false;
 
-
         public static bool 启用InvokeAI = false;
-
+        public static bool 内存优化 = false;
 
         public static bool SDP优化 = false;
         public static bool 缩放点积 = false;
         public static bool 启用xformers = false;
         public static bool 启用替代布局 = false;
 
-
-
         //下面是一些参数的字符串预设
-        public static string _WebUI性能优化器 = "";
+        public static string 命令列表 = "";
+        public static string 显卡类型名 = "";
         public static string _显卡类型 = "";
         public static string _WebUI显存压力优化设置 = " ";
         public static string _WebUI主题颜色 = "";
-        public static string _WebUI启动地址 = "";
-        public static string _WebUI启动端口 = "";
         //下面是一些路径管理的具体实现
         public static string 工作路径 = "";
         public static string gitPath = "";
         public static string venvPath = "";
-        public static string 命令列表 = "";
         public static string 程序所在目录 = "";
+        public static string 本地路径 = "";
         public static string 路径状态 = "0";
         //下面是全局硬件判断
 
@@ -80,7 +77,6 @@ namespace Awake
         public static int _UseGPUindex = 0;
         public static string 相册图片数量 = "";
         public static string 参数列表 = "";//所有启动时传递的参数挂到这里，全局可编辑与访问
-
 
         public static void 选择工作路径()
         {
@@ -114,6 +110,19 @@ namespace Awake
 
             }
         }
+
+        public static void 本地运行路径()
+        {
+            FolderBrowserDialog folder = new FolderBrowserDialog();
+            folder.Description = "请选择本地SD所在目录";
+            if (folder.ShowDialog() == DialogResult.OK)
+            {
+                本地路径 = folder.SelectedPath;
+                File.WriteAllText(@".AI_launther_log\startpath_local.txt", 本地路径);
+
+            }
+        }
+
         public static void 获取程序同目录路径()
         {
             // 获取程序所在目录
@@ -202,6 +211,15 @@ namespace Awake
                 venvPath = File.ReadAllText(filePath);
             }
         }
+        public static void Checkstartpath_local()//这里在初始化后从log里读取VENV的路径
+        {
+            string filePath = @".AI_launther_log\startpath_local.txt";
+            if (File.Exists(filePath))
+            {
+                // 如果文件存在，读取其中的内容到venvpath全局变量中
+                本地路径 = File.ReadAllText(filePath);
+            }
+        }
         public static void 相册计数()
         {
             string 相册路径 = 工作路径 + "\\outputs";
@@ -235,6 +253,9 @@ namespace Awake
 
             }
         }
+
+
+
 
 
 
