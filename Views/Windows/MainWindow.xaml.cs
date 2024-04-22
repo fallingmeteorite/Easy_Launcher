@@ -60,6 +60,9 @@ namespace Awake.Views.Windows
                     //计算机名称类型.Text = "系统名称：" + Machinename + "   系统类型：" + systemType;
                     //计算机内存信息.Text = "内存信息：" + memorynum + " 插槽" + "  共计" + memorysize + " GB";
                     //计算机显卡信息.Text = "显卡信息：" + gpuname;
+
+                    Read_setting();    //读取配置
+
                 }
 
 
@@ -70,7 +73,8 @@ namespace Awake.Views.Windows
                 }
                 else
                 {
-                    initialize.背景颜色 = "";
+                    initialize.背景颜色 = "None";
+                    basewindow.WindowBackdropType = BackgroundType.None;
                 }
                 if (File.Exists(@".AI_launther_log\UIpicture.txt"))
                 {
@@ -166,12 +170,7 @@ namespace Awake.Views.Windows
 
                     }
                 }
-                else
-                {
-                    basewindow.WindowBackdropType = BackgroundType.None;
-                    主题背景图.Opacity = 图片亮度.Value / 100;
-                    None.IsChecked = true;
-                }
+             
 
 
                 SetPageService(pageService);

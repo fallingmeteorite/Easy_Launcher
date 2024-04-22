@@ -26,7 +26,7 @@ namespace Awake.Views.Pages
         }
         public string speedInfo = "";
 
-        private void Read_setting()
+        private void Read_setting_01()
         {
             string filePath = @".AI_launther_log\setting.txt"; // 文本文件路径
 
@@ -49,7 +49,7 @@ namespace Awake.Views.Pages
 
         public async void GetSystemInfo()
         {
-            Read_setting();    //读取配置
+            Read_setting_01();    //读取配置
 
             string cpuname = await Task.Run(() => hardinfo.GetCpuName());
             string Machinename = await Task.Run(() => hardinfo.GetComputerName());

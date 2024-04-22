@@ -17,7 +17,7 @@ namespace Awake.Views.Pages
 
 
 
-        private void Read_setting()
+        private void Read_setting_01()
         {
             string filePath = @".AI_launther_log\setting.txt"; // 文本文件路径
 
@@ -31,83 +31,82 @@ namespace Awake.Views.Pages
                 // 在这里使用列表
                 if (lines_setting[0] == "True")
                 {
-                    initialize.浏览器启动 = true;
+          
                     启动后自动打开浏览器开关.IsChecked = true;
 
                 }
                 if (lines_setting[1] == "True")
                 {
-                    initialize.启动api = true;
+
                     开启API.IsChecked = true;
                 }
                 if (lines_setting[2] == "True")
                 {
-                    initialize.分享WebUI到公网 = true;
+             
                     分享WebUI到公网.IsChecked = true;
                 }
                 if (lines_setting[3] == "True")
                 {
-                    initialize.使用CPU进行推理 = true;
+                 
                     使用CPU进行推理.IsChecked = true;
                 }
                 if (lines_setting[4] == "True")
                 {
-                    initialize.关闭模型hash计算 = true;
+                   
                     关闭模型hash计算.IsChecked = true;
                 }
                 if (lines_setting[5] == "True")
                 {
-                    initialize.冻结设置 = true;
+             
                     冻结设置.IsChecked = true;
                 }
                 if (lines_setting[6] == "True")
                 {
-                    initialize.快速启动 = true;
+                  
                     快速启动.IsChecked = true;
                 }
                 if (lines_setting[8] == "True")
                 {
-                    initialize.上投采样 = true;
+                 
                     上投采样.IsChecked = true;
 
                 }
                 if (lines_setting[9] == "True")
                 {
-                    initialize.关闭半精度计算 = true;
+                    
                     关闭半精度计算.IsChecked = true;
                 }
                 if (lines_setting[10] == "True")
                 {
-                    initialize.启用InvokeAI = true;
+        
                     启用InvokeAI.IsChecked = true;
                 }
                 if (lines_setting[11] == "True")
                 {
-                    initialize.内存优化 = true;
+                   
                     内存优化.IsChecked = true;
                 }
                 if (lines_setting[12] == "True")
                 {
-                    initialize.SDP优化 = true;
+          
                     SDP优化.IsChecked = true;
                 }
                 if (lines_setting[13] == "True")
                 {
-                    initialize.缩放点积 = true;
+                    
                     缩放点积.IsChecked = true;
                 }
                 if (lines_setting[14] == "True")
                 {
-                    initialize.启用xformers = true;
+          
                     启用xformers.IsChecked = true;
                 }
                 if (lines_setting[15] == "True")
                 {
-                    initialize.启用替代布局 = true;
+                   
                     启用替代布局.IsChecked = true;
                 }
 
-                initialize.显卡类型名 = lines_setting[16];
                 if (initialize.显卡类型名 == "Intel")
                 {
 
@@ -122,17 +121,14 @@ namespace Awake.Views.Pages
                 {
                     显卡类型.SelectedIndex = 2;
                 }
-
-                initialize._显卡类型 = lines_setting[17];
-                initialize._WebUI显存压力优化设置 = lines_setting[18];
+     
                 if (lines_setting[18] == " --lowvram")
                    { WebUI显存压力优化设置.SelectedIndex = 0; }
                 if (lines_setting[18] == " --medvram")
                    { WebUI显存压力优化设置.SelectedIndex = 1; }
                 if (lines_setting[18] == "")
                    { WebUI显存压力优化设置.SelectedIndex = 2; }
-
-                initialize._WebUI主题颜色 = lines_setting[19];
+ 
                 if (initialize._WebUI主题颜色 == "")
                 {
                     WebUI主题颜色设置.SelectedIndex = 0;
@@ -171,7 +167,7 @@ namespace Awake.Views.Pages
             initialize._GPUname = 显卡选择器.SelectedItem.ToString();
             initialize._UseGPUindex = 显卡选择器.SelectedIndex;
 
-            Read_setting();    //读取配置
+            Read_setting_01();    //读取配置
         }
 
         public async void GetSystemInfo()

@@ -78,6 +78,113 @@ namespace Awake
         public static string 相册图片数量 = "";
         public static string 参数列表 = "";//所有启动时传递的参数挂到这里，全局可编辑与访问
 
+        public static void Read_setting()
+        {
+            string filePath = @".AI_launther_log\setting.txt"; // 文本文件路径
+
+            try
+            {
+                List<string> lines_setting = new List<string>();
+
+                // 使用 File.ReadAllLines 方法读取文本文件的所有行
+                lines_setting.AddRange(File.ReadAllLines(filePath));
+
+                // 在这里使用列表
+                if (lines_setting[0] == "True")
+                {
+                    initialize.浏览器启动 = true;
+
+
+                }
+                if (lines_setting[1] == "True")
+                {
+                    initialize.启动api = true;
+
+                }
+                if (lines_setting[2] == "True")
+                {
+                    initialize.分享WebUI到公网 = true;
+
+                }
+                if (lines_setting[3] == "True")
+                {
+                    initialize.使用CPU进行推理 = true;
+
+                }
+                if (lines_setting[4] == "True")
+                {
+                    initialize.关闭模型hash计算 = true;
+
+                }
+                if (lines_setting[5] == "True")
+                {
+                    initialize.冻结设置 = true;
+
+                }
+                if (lines_setting[6] == "True")
+                {
+                    initialize.快速启动 = true;
+
+                }
+
+                if (lines_setting[7] == "True")
+                {
+                    initialize.启用自定义路径 = true;
+                }
+
+                if (lines_setting[8] == "True")
+                {
+                    initialize.上投采样 = true;
+
+
+                }
+                if (lines_setting[9] == "True")
+                {
+                    initialize.关闭半精度计算 = true;
+
+                }
+                if (lines_setting[10] == "True")
+                {
+                    initialize.启用InvokeAI = true;
+
+                }
+                if (lines_setting[11] == "True")
+                {
+                    initialize.内存优化 = true;
+
+                }
+                if (lines_setting[12] == "True")
+                {
+                    initialize.SDP优化 = true;
+
+                }
+                if (lines_setting[13] == "True")
+                {
+                    initialize.缩放点积 = true;
+
+                }
+                if (lines_setting[14] == "True")
+                {
+                    initialize.启用xformers = true;
+
+                }
+                if (lines_setting[15] == "True")
+                {
+                    initialize.启用替代布局 = true;
+                }
+                initialize.显卡类型名 = lines_setting[16];
+                initialize._显卡类型 = lines_setting[17];
+                initialize._WebUI显存压力优化设置 = lines_setting[18];
+                initialize._WebUI主题颜色 = lines_setting[19];
+            }
+            catch
+            {
+
+            }
+        }
+
+
+
         public static void 选择工作路径()
         {
             FolderBrowserDialog folder = new FolderBrowserDialog();
