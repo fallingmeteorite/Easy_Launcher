@@ -114,13 +114,12 @@ namespace Awake.Views.Windows
   
             }
             //这里开始从initilize中被处理过的参数变量进行初始化
-            参数列表 += " --log-startup";
 
             if (浏览器启动 == true) { 参数列表 += " --autolaunch"; }
 
             if (关闭模型hash计算 == true) { 参数列表 += " --no-hashing "; }
 
-            if (启动api == true) { 参数列表 += "  --api"; }
+            if (启动api == true) { 参数列表 += " --api"; }
 
             if (快速启动 == true) { 参数列表 += " --ui-debug-mode --disable-safe-unpickle "; }
 
@@ -191,20 +190,21 @@ namespace Awake.Views.Windows
                     if (显卡类型名 == "NVIDIA")
                     {
 
-                        启动参数 += " --device - id " + _UseGPUindex;
+                        启动参数 += " --device - id " + (_UseGPUindex - 1);
 
                     }
                     else
                     {
 
-                        System.Windows.MessageBox.Show("非本整合包的SD无法支持除N卡以外显卡");
+                        System.Windows.MessageBox.Show("非本启动器的SD整合包只支持N卡,程序退出!");
+                        Environment.Exit(0);
 
                     }
 
 
-                    标准输出流.AppendText(工作路径 + @"\launch.py" + 启动参数 +  _WebUI显存压力优化设置 + _WebUI主题颜色 + "\n");
+                    标准输出流.AppendText(工作路径_start + @"\launch.py" + 启动参数 +  _WebUI显存压力优化设置 + _WebUI主题颜色 + "\n");
                     startinfo.Arguments = 工作路径_start + @"\launch.py" + 参数列表 + _WebUI显存压力优化设置 + _WebUI主题颜色;
-                    startinfo.WorkingDirectory = 工作路径;
+                    startinfo.WorkingDirectory = 工作路径_start;
 
                     // 设置临时环境变量  
                     Environment.SetEnvironmentVariable("Path", Environment.GetEnvironmentVariable("Path") + ";" + gitPath + @"\bin", EnvironmentVariableTarget.Process);//确保整个系统可以使用到Git
@@ -242,15 +242,15 @@ namespace Awake.Views.Windows
                         工作路径_start = 工作路径;
                     }
 
-                    标准输出流.AppendText(工作路径 + @"\launch.py" + 参数列表  + _WebUI显存压力优化设置 + _WebUI主题颜色 + "\n");
+                    标准输出流.AppendText(工作路径_start + @"\launch.py" + 参数列表  + _WebUI显存压力优化设置 + _WebUI主题颜色 + "\n");
                     startinfo.FileName = 工作路径_start + @"\Python3.10\python.exe";
                     startinfo.Arguments = 工作路径_start + @"\launch.py" + 参数列表 +  _WebUI显存压力优化设置 + _WebUI主题颜色;
-                    startinfo.WorkingDirectory = 工作路径;
+                    startinfo.WorkingDirectory = 工作路径_start;
 
                     if (显卡类型名 == "NVIDIA")
                     {
 
-                        启动参数 += " --device - id " + _UseGPUindex;
+                        启动参数 += " --device - id " + (_UseGPUindex - 1);
 
                     }
                     else

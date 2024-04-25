@@ -42,6 +42,7 @@ namespace Awake.Views.Pages
                 {
                     启用自定义路径.IsChecked = true;
                 }
+
             }
             catch { }
 
@@ -70,100 +71,166 @@ namespace Awake.Views.Pages
         DateTime startTime = DateTime.Now;
         long totalBytesRead = 0;
 
- 
-
         public webpp()
         {
-            InitializeComponent();
-            GetSystemInfo();
-            double freeSpaceGB = GetFreeSpaceGB(initialize.工作路径);
-            磁盘剩余显示.Text = $"磁盘剩余空间：{freeSpaceGB:0.00} GB";
-            if (freeSpaceGB == 0)
+
+            if (File.Exists(@".AI_launther_log\startpath.txt") == false)
             {
-                磁盘剩余显示.Text = $"";
 
-                磁盘剩余显示.Text += "";
-                return;
+                InitializeComponent();
+                GetSystemInfo();
+                File.WriteAllText(@".AI_launther_log\startpath.txt", "暂未设置部署路径");
+                磁盘剩余显示.Text = "磁盘剩余空间：未知";
+
+                工作路径展示.Text = initialize.工作路径;
+
+                if (initialize.gitPath != "")
+                {
+                    Git路径展示.Text = initialize.gitPath;
+                }
+                else
+                {
+                    Git路径展示.Text = "暂未设置部署路径";
+                }
+
+                if (initialize.venvPath != "")
+                {
+                    VENV路径展示.Text = initialize.venvPath;
+
+                }
+                else
+                {
+                    VENV路径展示.Text = "暂未设置部署路径";
+                }
+
+                if (initialize.本地路径 != "")
+                {
+                    本地工作路径展示.Text = initialize.本地路径;
+
+                }
+                else
+                {
+                    本地工作路径展示.Text = "暂未设置部署路径";
+                }
+
+
             }
-            // 读取工作路径然后展示
-            CheckStartPathFile();
-            CheckgitPathFile();
-            CheckVENVPathFile();
-            Checkstartpath_local();
 
+            try
+            {
+                InitializeComponent();
+                GetSystemInfo();
+                double freeSpaceGB = GetFreeSpaceGB(initialize.工作路径);
+                磁盘剩余显示.Text = $"磁盘剩余空间：{freeSpaceGB:0.00} GB";
+                if (freeSpaceGB == 0)
+                {
+                    磁盘剩余显示.Text = $"";
+
+                    磁盘剩余显示.Text += "";
+                    return;
+                }
+            }
+            catch
+            {
+                磁盘剩余显示.Text = "磁盘剩余空间：未知";
+            }
+
+
+            工作路径展示.Text = initialize.工作路径;
+            if (initialize.gitPath != "")
+            {
+                Git路径展示.Text = initialize.gitPath;
+            }
+            else
+            {
+                Git路径展示.Text = "暂未设置部署路径";
+            }
+
+            if (initialize.venvPath != "")
+            {
+                VENV路径展示.Text = initialize.venvPath;
+
+            }
+            else
+            {
+                VENV路径展示.Text = "暂未设置部署路径";
+            }
+
+            if (initialize.本地路径 != "")
+            {
+                本地工作路径展示.Text = initialize.本地路径;
+
+            }
+            else
+            {
+                本地工作路径展示.Text = "暂未设置部署路径";
+            }
 
             //检查WebUI安装状态
             initialize.已下载WebUI = initialize.CheckWebUIdownloaded();
             initialize.已安装WebUI = initialize.CheckWebUIinstelled();
             initialize.已解压WebUI = initialize.CheckWebUIunzip();
-            if (已下载WebUI == true)
+            if (initialize.已下载WebUI == true)
             {
-                if (已解压WebUI == false)//未解压：解压安装组控件
+                if (initialize.已解压WebUI == false)//未解压：解压安装组控件
                 {
-                    if (已安装WebUI == false)
+                    if (initialize.已安装WebUI == false)
                     {
                         下载组.Visibility = Visibility.Collapsed;//隐藏下载组控件
                         解压组.Visibility = Visibility.Visible;//显示解压组控件
                     }
-                    if (已安装WebUI == true)
+                    if (initialize.已安装WebUI == true)
                     {
                         WebUI下载按钮.Content = "一键启动";
                     }
                 }
-                if (已解压WebUI == true)
+                if (initialize.已解压WebUI == true)
                 {
-                    if (已安装WebUI == false)
+                    if (initialize.已安装WebUI == false)
                     {
                         下载组.Visibility = Visibility.Collapsed;//隐藏下载组控件
                         安装组.Visibility = Visibility.Visible;//显示解压组控件
                     }
-                    if (已安装WebUI == true)
+                    if (initialize.已安装WebUI == true)
                     {
                         WebUI下载按钮.Content = "一键启动";
                     }
                 }
 
             }
-            if (已下载WebUI == false)
+            if (initialize.已下载WebUI == false)
             {
 
-                if (已解压WebUI == false)//未解压：解压安装组控件
+                if (initialize.已解压WebUI == false)//未解压：解压安装组控件
                 {
 
-                    if (已安装WebUI == false)
+                    if (initialize.已安装WebUI == false)
                     {
                         WebUI下载按钮.Content = "一键下载";
 
                     }
-                    if (已安装WebUI == true)
+                    if (initialize.已安装WebUI == true)
                     {
                         WebUI下载按钮.Content = "一键启动";
                     }
                 }
-                if (已解压WebUI == true)
+                if (initialize.已解压WebUI == true)
                 {
 
-                    if (已安装WebUI == false)
+                    if (initialize.已安装WebUI == false)
                     {
                         磁盘剩余显示.Text += "未安装WebUI ";
 
                         下载组.Visibility = Visibility.Collapsed;//隐藏下载组控件
                         安装组.Visibility = Visibility.Visible;//显示解压组控件
                     }
-                    if (已安装WebUI == true)
+                    if (initialize.已安装WebUI == true)
                     {
                         WebUI下载按钮.Content = "一键启动";
                     }
                 }
 
             }
-
-
-
-            工作路径展示.Text = 工作路径;
-            Git路径展示.Text = gitPath;
-            VENV路径展示.Text = venvPath;
-            本地工作路径展示.Text = 本地路径;
 
         }
         private void 运行路径选择_Click(object sender, RoutedEventArgs e)
@@ -173,61 +240,61 @@ namespace Awake.Views.Pages
             initialize.已下载WebUI = initialize.CheckWebUIdownloaded();
             initialize.已安装WebUI = initialize.CheckWebUIinstelled();
             initialize.已解压WebUI = initialize.CheckWebUIunzip();
-            if (已下载WebUI == true)
+            if (initialize.已下载WebUI == true)
             {
-                if (已解压WebUI == false)//未解压：解压安装组控件
+                if (initialize.已解压WebUI == false)//未解压：解压安装组控件
                 {
-                    if (已安装WebUI == false)
+                    if (initialize.已安装WebUI == false)
                     {
                         下载组.Visibility = Visibility.Collapsed;//隐藏下载组控件
                         解压组.Visibility = Visibility.Visible;//显示解压组控件
                     }
-                    if (已安装WebUI == true)
+                    if (initialize.已安装WebUI == true)
                     {
                         WebUI下载按钮.Content = "一键启动";
                     }
                 }
-                if (已解压WebUI == true)
+                if (initialize.已解压WebUI == true)
                 {
-                    if (已安装WebUI == false)
+                    if (initialize.已安装WebUI == false)
                     {
                         下载组.Visibility = Visibility.Collapsed;//隐藏下载组控件
                         安装组.Visibility = Visibility.Visible;//显示解压组控件
                     }
-                    if (已安装WebUI == true)
+                    if (initialize.已安装WebUI == true)
                     {
                         WebUI下载按钮.Content = "一键启动";
                     }
                 }
 
             }
-            if (已下载WebUI == false)
+            if (initialize.已下载WebUI == false)
             {
 
-                if (已解压WebUI == false)//未解压：解压安装组控件
+                if (initialize.已解压WebUI == false)//未解压：解压安装组控件
                 {
 
-                    if (已安装WebUI == false)
+                    if (initialize.已安装WebUI == false)
                     {
                         WebUI下载按钮.Content = "一键下载";
 
                     }
-                    if (已安装WebUI == true)
+                    if (initialize.已安装WebUI == true)
                     {
                         WebUI下载按钮.Content = "一键启动";
                     }
                 }
-                if (已解压WebUI == true)
+                if (initialize.已解压WebUI == true)
                 {
 
-                    if (已安装WebUI == false)
+                    if (initialize.已安装WebUI == false)
                     {
                         磁盘剩余显示.Text += "未安装WebUI ";
 
                         下载组.Visibility = Visibility.Collapsed;//隐藏下载组控件
                         安装组.Visibility = Visibility.Visible;//显示解压组控件
                     }
-                    if (已安装WebUI == true)
+                    if (initialize.已安装WebUI == true)
                     {
                         WebUI下载按钮.Content = "一键启动";
                     }
@@ -235,7 +302,7 @@ namespace Awake.Views.Pages
 
             }
 
-            工作路径展示.Text = 工作路径;
+            工作路径展示.Text = initialize.工作路径;
             double freeSpaceGB = GetFreeSpaceGB(initialize.工作路径);
             磁盘剩余显示.Text = $"磁盘剩余空间：{freeSpaceGB:0.00} GB";
             if (freeSpaceGB < 5)
@@ -396,7 +463,7 @@ namespace Awake.Views.Pages
 
 
             }
-            if (已安装WebUI == true)
+            if (initialize.已安装WebUI == true)
             {
                 WebUI下载按钮.Content = "一键启动";
                 //AI,启动！
@@ -518,6 +585,31 @@ namespace Awake.Views.Pages
             下载组.Visibility = Visibility.Visible;
             WebUI下载按钮.Content = "安装完毕，点击一键启动";
             initialize.已安装WebUI = true;
+
+            if (File.Exists(initialize.工作路径 + @"\WebUIpackcatch.7z"))
+            {
+
+                File.Delete(initialize.工作路径 + @"\WebUIpackcatch.7z");
+
+            }
+            if (File.Exists(initialize.工作路径 + @"WebUIpackcatch.7z"))
+            {
+
+                File.Delete(initialize.工作路径 + @"WebUIpackcatch.7z");
+
+            }
+
+            if (Directory.Exists(initialize.工作路径 + @"\2.0.9"))
+            {
+                // 3.1、删除文件夹
+                Directory.Delete((initialize.工作路径 + @"\2.0.9"), true);
+            }
+            if (Directory.Exists(initialize.工作路径 + @"2.0.9"))
+            {
+                // 3.1、删除文件夹
+                Directory.Delete((initialize.工作路径 + @"2.0.9"), true);
+            }
+
 
         }
 

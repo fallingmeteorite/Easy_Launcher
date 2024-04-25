@@ -29,13 +29,13 @@ namespace Awake
         public static int 背景亮度 = 100;
         public static int 图片亮度 = 100;
         public static bool _SD启动 = false;//SD,启动的白屏动画效果开关!
+
         //下面确定SD_WebUI是否已经安装
         public static bool 已下载WebUI = false;
         public static bool 已解压WebUI = false;
         public static bool 已安装WebUI = false;
+
         //下面是一些启动选项的具体操作
-
-
         public static bool 浏览器启动 = false;
         public static bool 启动api = false;
         public static bool 分享WebUI到公网 = false;
@@ -63,15 +63,15 @@ namespace Awake
         public static string _显卡类型 = "";
         public static string _WebUI显存压力优化设置 = " ";
         public static string _WebUI主题颜色 = "";
+
         //下面是一些路径管理的具体实现
         public static string 工作路径 = "";
         public static string gitPath = "";
         public static string venvPath = "";
         public static string 程序所在目录 = "";
         public static string 本地路径 = "";
-        public static string 路径状态 = "0";
-        //下面是全局硬件判断
 
+        //下面是全局硬件判断
         public static string _cpuname = "";
         public static string _GPUname = "";
         public static int _UseGPUindex = 0;
@@ -175,7 +175,8 @@ namespace Awake
                 initialize.显卡类型名 = lines_setting[16];
                 initialize._显卡类型 = lines_setting[17];
                 initialize._WebUI显存压力优化设置 = lines_setting[18];
-                initialize._WebUI主题颜色 = lines_setting[19];
+                initialize._WebUI主题颜色 = lines_setting[19]; 
+
             }
             catch
             {
@@ -191,8 +192,8 @@ namespace Awake
             folder.Description = "请选择WebUI工作目录，至少保留25GB硬盘空间";
             if (folder.ShowDialog() == DialogResult.OK)
             {
-                工作路径 = folder.SelectedPath;
-                File.WriteAllText(@".AI_launther_log\startpath.txt", 工作路径);
+                initialize.工作路径 = folder.SelectedPath;
+                File.WriteAllText(@".AI_launther_log\startpath.txt", initialize.工作路径);
             }
         }
         public static void 选择Git路径()
@@ -201,8 +202,8 @@ namespace Awake
             folder.Description = "请选择Git.exe所在目录";
             if (folder.ShowDialog() == DialogResult.OK)
             {
-                gitPath = folder.SelectedPath;
-                File.WriteAllText(@".AI_launther_log\gitpath.txt", gitPath);
+                initialize.gitPath = folder.SelectedPath;
+                File.WriteAllText(@".AI_launther_log\gitpath.txt", initialize.gitPath);
 
             }
         }
@@ -212,8 +213,8 @@ namespace Awake
             folder.Description = "请选择虚拟环境所在目录";
             if (folder.ShowDialog() == DialogResult.OK)
             {
-                venvPath = folder.SelectedPath;
-                File.WriteAllText(@".AI_launther_log\venvpath.txt", venvPath);
+                initialize.venvPath = folder.SelectedPath;
+                File.WriteAllText(@".AI_launther_log\venvpath.txt", initialize.venvPath);
 
             }
         }
@@ -224,8 +225,8 @@ namespace Awake
             folder.Description = "请选择本地SD所在目录";
             if (folder.ShowDialog() == DialogResult.OK)
             {
-                本地路径 = folder.SelectedPath;
-                File.WriteAllText(@".AI_launther_log\startpath_local.txt", 本地路径);
+                initialize.本地路径 = folder.SelectedPath;
+                File.WriteAllText(@".AI_launther_log\startpath_local.txt", initialize.本地路径);
 
             }
         }
@@ -238,7 +239,7 @@ namespace Awake
         }
         public static bool CheckWebUIdownloaded() //检查WebUI是否下载
         {
-            string instellPath = 工作路径 + @"\WebUIpack.7z";
+            string instellPath = initialize.工作路径 + @"\WebUIpack.7z";
             if (File.Exists(instellPath))
             {
                 return true;
@@ -250,7 +251,7 @@ namespace Awake
         }
         public static bool CheckWebUIunzip() //检查WebUI是否解压
         {
-            string instellPath = 工作路径 + @"\2.0.9\stable-diffusion-webui\webui-user.bat";
+            string instellPath = initialize.工作路径 + @"\2.0.9\stable-diffusion-webui\webui-user.bat";
             if (File.Exists(instellPath))
             {
                 return true;
@@ -263,50 +264,51 @@ namespace Awake
         }
         public static bool CheckWebUIinstelled() //检查WebUI是否安装
         {
-            string instellPath = 工作路径 + @"\webui-user.bat";
-            if (File.Exists(instellPath))
+
+            if (File.Exists(initialize.工作路径 + @"\webui-user.bat"))
             {
                 return true;
             }
             else
             {
-                return false;
+                if (File.Exists(initialize.本地路径 + @"\webui-user.bat"))
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
 
         }
         public static void CheckCommandline()//这里在初始化后从log里读取保存的args
         {
-            string filePath = @".AI_launther_log\argspath.txt";
-            if (File.Exists(filePath))
+            if (File.Exists(@".AI_launther_log\argspath.txt"))
             {
                 // 如果文件存在，读取其中的内容到startpath全局变量中
-                命令列表 = File.ReadAllText(filePath);
+                initialize.命令列表 = File.ReadAllText(@".AI_launther_log\argspath.txt");
 
             }
+
         }
         public static void CheckStartPathFile()//这里在初始化后从log里读取工作路径
         {
-            string filePath = @".AI_launther_log\startpath.txt";
-            if (File.Exists(filePath))
+            if (File.Exists(@".AI_launther_log\startpath.txt"))
             {
                 // 如果文件存在，读取其中的内容到startpath全局变量中
-                工作路径 = File.ReadAllText(filePath);
+                initialize.工作路径 = File.ReadAllText(@".AI_launther_log\startpath.txt");
 
             }
-            else
-            {
-                // 如果文件不存在，创建文件并将默认值写入
-                路径状态 = "1";
-            }
+
 
         }
         public static void CheckgitPathFile()//这里在初始化后从log里读取git路径
         {
-            string filePath = @".AI_launther_log\gitpath.txt";
-            if (File.Exists(filePath))
+            if (File.Exists(@".AI_launther_log\gitpath.txt"))
             {
                 // 如果文件存在，读取其中的内容到gitpath全局变量中
-                gitPath = File.ReadAllText(filePath);
+                initialize.gitPath = File.ReadAllText(@".AI_launther_log\gitpath.txt");
             }
         }
         public static void CheckVENVPathFile()//这里在初始化后从log里读取VENV的路径
@@ -315,16 +317,15 @@ namespace Awake
             if (File.Exists(filePath))
             {
                 // 如果文件存在，读取其中的内容到venvpath全局变量中
-                venvPath = File.ReadAllText(filePath);
+                initialize.venvPath = File.ReadAllText(filePath);
             }
         }
         public static void Checkstartpath_local()//这里在初始化后从log里读取VENV的路径
         {
-            string filePath = @".AI_launther_log\startpath_local.txt";
-            if (File.Exists(filePath))
+            if (File.Exists(@".AI_launther_log\startpath_local.txt"))
             {
                 // 如果文件存在，读取其中的内容到venvpath全局变量中
-                本地路径 = File.ReadAllText(filePath);
+                initialize.本地路径 = File.ReadAllText(@".AI_launther_log\startpath_local.txt");
             }
         }
         public static void 相册计数()
@@ -333,7 +334,7 @@ namespace Awake
             if (!Directory.Exists(相册路径))
             {
                 // 如果不存在，将"未找到相册"赋值给A1
-                相册图片数量 = "未找到相册";
+                initialize.相册图片数量 = "未找到相册";
             }
             else//相册计数功能
             {
@@ -356,7 +357,7 @@ namespace Awake
                 }
                 // 将图片文件数量写入变量AI
                 int AI = imageFileCount;
-                相册图片数量 = AI.ToString();
+                initialize.相册图片数量 = AI.ToString();
 
             }
         }

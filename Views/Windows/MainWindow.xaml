@@ -225,7 +225,7 @@
             </Grid.RowDefinitions>
             <StackPanel Grid.ColumnSpan="2" Margin="0,552,0,0" Grid.RowSpan="2" >
                 <TextBlock x:Name="盒子C1" Text="光源绘梦启动器Release Version (Open-SD-WebUI-Launcher) for Windows10 and later" HorizontalAlignment="Center" FontSize="16" Margin="0,15,0,0"/>
-                <TextBlock x:Name="盒子C2" Text="copy right ©2022-2024 Ray_Source光源 All right reserved" HorizontalAlignment="Center"/>
+                <TextBlock x:Name="盒子C2" Text="copy right ©2022-2024 Astro-Artistry-Dev-Team All right reserved" HorizontalAlignment="Center"/>
             </StackPanel>
             <StackPanel VerticalAlignment="Center" HorizontalAlignment="Left" Orientation="Horizontal" Grid.ColumnSpan="2" Margin="186,0,0,0">
                 <ui:SymbolIcon Symbol="Group20" FontSize="180" HorizontalAlignment="Left" VerticalAlignment="Top" Opacity="0.99"/>

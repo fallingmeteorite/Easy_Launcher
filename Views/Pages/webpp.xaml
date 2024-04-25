@@ -71,7 +71,7 @@
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock TextWrapping="Wrap" Text="&#xED25;" FontFamily="Segoe MDL2 Assets"   FontSize="36" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Width="40" Height="40"/>
                                     <StackPanel Margin="15,0,0,0" Width="350">
-                                        <TextBlock Text="选择StableDiffusion的部署位置"   FontSize="16" Margin="0,0,0,5"/>
+                                        <TextBlock Text="选择SD的部署位置"   FontSize="16" Margin="0,0,0,5"/>
                                         <TextBlock Text="全新安装WebUI路径" FontSize="12"/>
 
                                     </StackPanel>
@@ -236,7 +236,7 @@
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock TextWrapping="Wrap" Text="&#xED25;" FontFamily="Segoe MDL2 Assets"   FontSize="36" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Width="40" Height="40"/>
                                 <StackPanel Margin="15,0,0,0" Width="350">
-                                    <TextBlock Text="选择本地StableDiffusion的位置"   FontSize="16" Margin="0,0,0,5"/>
+                                    <TextBlock Text="选择本地SD的位置"   FontSize="16" Margin="0,0,0,5"/>
                                     <TextBlock Text="选择已经部署WebUI" FontSize="12"/>
 
                                 </StackPanel>

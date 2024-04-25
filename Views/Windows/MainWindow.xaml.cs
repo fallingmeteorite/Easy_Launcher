@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Awake.Views.Pages;
+using System;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -63,6 +64,12 @@ namespace Awake.Views.Windows
 
                     Read_setting();    //读取配置
 
+                    // 读取工作路径然后展示
+                    initialize.CheckStartPathFile();
+                    initialize.CheckgitPathFile();
+                    initialize.CheckVENVPathFile();
+                    initialize.Checkstartpath_local();
+
                 }
 
 
@@ -75,6 +82,7 @@ namespace Awake.Views.Windows
                 {
                     initialize.背景颜色 = "None";
                     basewindow.WindowBackdropType = BackgroundType.None;
+                    Theme.Apply(ThemeType.Dark);
                 }
                 if (File.Exists(@".AI_launther_log\UIpicture.txt"))
                 {
@@ -179,9 +187,9 @@ namespace Awake.Views.Windows
 
                 _loadpage();
                 //在启动的时候判断是否下载与安装SDwebUI
-                已下载WebUI = CheckWebUIdownloaded();
-                已安装WebUI = CheckWebUIinstelled();
-                已解压WebUI = CheckWebUIunzip();
+                initialize.已下载WebUI = initialize.CheckWebUIdownloaded();
+                initialize.已安装WebUI = initialize.CheckWebUIinstelled();
+                initialize.已解压WebUI = initialize.CheckWebUIunzip();
             }
             catch (Exception error)
             {
@@ -260,9 +268,9 @@ namespace Awake.Views.Windows
         protected override void OnClosed(EventArgs e)
         {
             base.OnClosed(e);
-            File.WriteAllText(@".AI_launther_log\UIalpha.txt", 图片亮度.Value.ToString());
-            File.WriteAllText(@".AI_launther_log\UI.txt", 背景颜色);
-            File.WriteAllText(@".AI_launther_log\UIpicture.txt", 背景图片);
+            File.WriteAllText(@".AI_launther_log\UIalpha.txt", initialize.图片亮度.ToString());
+            File.WriteAllText(@".AI_launther_log\UI.txt", initialize.背景颜色);
+            File.WriteAllText(@".AI_launther_log\UIpicture.txt", initialize.背景图片);
             string 参数设置 = (
                 initialize.浏览器启动 + "\n" +
                 initialize.启动api + "\n" +
@@ -288,23 +296,26 @@ namespace Awake.Views.Windows
                 initialize._显卡类型 + "\n" +
                 initialize._WebUI显存压力优化设置 + "\n" +
                 initialize._WebUI主题颜色 + "\n");
+
+
         File.WriteAllText(@".AI_launther_log\setting.txt", 参数设置);
             Application.Current.Shutdown();
         }
+
         private void 一键启动按钮_Click(object sender, RoutedEventArgs e)
         {
             //检查WebUI安装状态
-            已下载WebUI = CheckWebUIdownloaded();
-            已安装WebUI = CheckWebUIinstelled();
-            已解压WebUI = CheckWebUIunzip();
+            initialize.已下载WebUI = initialize.CheckWebUIdownloaded();
+            initialize.已安装WebUI = initialize.CheckWebUIinstelled();
+            initialize.已解压WebUI = initialize.CheckWebUIunzip();
 
             //通过对是否安装webUI已安装的判断做出提示安装或直接启动的操作
-            if (已安装WebUI == false)
+            if (initialize.已安装WebUI == false)
             {
                 //探出flyout提示用户去安装
                 安装提示.Show();
             }
-            if (已安装WebUI == true)
+            if (initialize.已安装WebUI == true)
             {
                 //AI,启动！
                 shell Shell = new shell();//shell会自动读取initilize中的参数变量
@@ -446,75 +457,39 @@ namespace Awake.Views.Windows
 
         private void Dark_Click(object sender, RoutedEventArgs e)
         {
-            try
-            {
-                Theme.Apply(ThemeType.Dark);
-            }
-            catch (Exception error)
-            {
-                string str1 = error.Message;
-                File.WriteAllText(@".\logs\error.txt", str1);
-                throw;
-            }
+            Theme.Apply(ThemeType.Dark);
         }
 
         private void Light_Click(object sender, RoutedEventArgs e)
         {
-            try
-            {
-                Theme.Apply(ThemeType.Light);
-            }
-            catch (Exception error)
-            {
-                string str1 = error.Message;
-                File.WriteAllText(@".\logs\error.txt", str1);
-                throw;
-            }
+            Theme.Apply(ThemeType.Light);
         }
 
         private void 明暗切换_Click(object sender, RoutedEventArgs e)
         {
-            try
+            if (Theme.GetAppTheme() == ThemeType.Dark)
             {
-                if (Theme.GetAppTheme() == ThemeType.Dark)
-                {
-                    Theme.Apply(ThemeType.Light);
-                }
-
-                else
-                {
-                    Theme.Apply(ThemeType.Dark);
-                }
+                Theme.Apply(ThemeType.Light);
             }
-            catch (Exception error)
+
+            else
             {
-                string str1 = error.Message;
-                File.WriteAllText(@".\logs\error.txt", str1);
-                throw;
+                Theme.Apply(ThemeType.Dark);
             }
 
         }
 
         private void SD启动_Click(object sender, RoutedEventArgs e)
         {
-            try
+            if (_SD启动 == false)
             {
-                if (_SD启动 == false)
-                {
-                    _SD启动 = true;
-                    SD启动.IsChecked = true;
-                }
-                else
-                {
-                    _SD启动 = false;
-                    SD启动.IsChecked = false;
-                }
+                _SD启动 = true;
+                SD启动.IsChecked = true;
             }
-            catch (Exception error)
+            else
             {
-                string str1 = error.Message;
-                File.WriteAllText(@".\logs\error.txt", str1);
-                throw;
+                _SD启动 = false;
+                SD启动.IsChecked = false;
             }
 
         }
