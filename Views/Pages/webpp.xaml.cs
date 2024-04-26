@@ -586,16 +586,16 @@ namespace Awake.Views.Pages
             WebUI下载按钮.Content = "安装完毕，点击一键启动";
             initialize.已安装WebUI = true;
 
-            if (File.Exists(initialize.工作路径 + @"\WebUIpackcatch.7z"))
+            if (File.Exists(initialize.工作路径 + @"\WebUIpack.7z"))
             {
 
-                File.Delete(initialize.工作路径 + @"\WebUIpackcatch.7z");
+                File.Delete(initialize.工作路径 + @"\WebUIpack.7z");
 
             }
-            if (File.Exists(initialize.工作路径 + @"WebUIpackcatch.7z"))
+            if (File.Exists(initialize.工作路径 + @"WebUIpack.7z"))
             {
 
-                File.Delete(initialize.工作路径 + @"WebUIpackcatch.7z");
+                File.Delete(initialize.工作路径 + @"WebUIpack.7z");
 
             }
 
