@@ -160,6 +160,10 @@
                                                 <TextBlock Width="400">(解决部分gtx16xx显卡黑图的问题,显存占用上升)</TextBlock>
                                                 <ui:ToggleSwitch x:Name="关闭半精度计算" VerticalAlignment="Center" Click="关闭半精度计算_Click" />
                                             </StackPanel>
+                                            <StackPanel Orientation="Horizontal" Margin="0,0,0,5">
+                                                <TextBlock Width="400">(实现内存高效的次二次交叉注意力层优化)</TextBlock>
+                                                <ui:ToggleSwitch x:Name="内存优化" VerticalAlignment="Center" Click="内存优化_Click" />
+                                            </StackPanel>
                                         </StackPanel>
 
                                         
@@ -170,10 +174,6 @@
                                             <StackPanel Orientation="Horizontal" Margin="0,0,0,5">
                                                 <TextBlock Width="400">(默认情况下,当CUDA不可用时,它处于打开状态)</TextBlock>
                                                 <ui:ToggleSwitch x:Name="启用InvokeAI" VerticalAlignment="Center" Click="启用InvokeAI_Click" />
-                                            </StackPanel>
-                                            <StackPanel Orientation="Horizontal" Margin="0,0,0,5">
-                                                <TextBlock Width="400">(实现内存高效的次二次交叉注意力层优化)</TextBlock>
-                                                <ui:ToggleSwitch x:Name="内存优化" VerticalAlignment="Center" Click="内存优化_Click" />
                                             </StackPanel>
                                         </StackPanel>
                                         
@@ -198,8 +198,11 @@
                                                 <TextBlock Width="400">(在具有Tensor核心16xx及更高版本N卡上实现更快推理)</TextBlock>
                                                 <ui:ToggleSwitch x:Name="启用替代布局" VerticalAlignment="Center" Click="启用替代布局_Click" />
                                             </StackPanel>
-                                            
-                                           
+                                            <StackPanel Orientation="Horizontal" Margin="0,0,0,5">
+                                                <TextBlock Width="400">(Doggettx的交叉注意力层优化)</TextBlock>
+                                                <ui:ToggleSwitch x:Name="Doggettx启用" VerticalAlignment="Center" Click="Doggettx启用_Click" />
+                                            </StackPanel>
+
 
                                         </StackPanel>
                                     </ui:Card>
