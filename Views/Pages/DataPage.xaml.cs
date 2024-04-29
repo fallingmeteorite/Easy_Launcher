@@ -141,6 +141,11 @@ namespace Awake.Views.Pages
                 {
                     WebUI主题颜色设置.SelectedIndex = 2;
                 }
+                if (lines_setting[20] == "True")
+                {
+
+                    Doggettx启用.IsChecked = true;
+                }
 
             }
             catch
@@ -249,6 +254,13 @@ namespace Awake.Views.Pages
             { initialize.关闭半精度计算 = true; }
         }
 
+        private void 内存优化_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            if (内存优化.IsChecked == false)
+            { initialize.内存优化 = false; }
+            else
+            { initialize.内存优化 = true; }
+        }
 
         //A卡|I卡
         private void 启用InvokeAI_Click(object sender, System.Windows.RoutedEventArgs e)
@@ -258,15 +270,6 @@ namespace Awake.Views.Pages
             else
             { initialize.启用InvokeAI = true; }
         }
-
-        private void 内存优化_Click(object sender, System.Windows.RoutedEventArgs e)
-        {
-            if (内存优化.IsChecked == false)
-            { initialize.内存优化 = false; }
-            else
-            { initialize.内存优化 = true; }
-        }
-
 
 
 
@@ -316,6 +319,18 @@ namespace Awake.Views.Pages
             else
             {
                 initialize.启用替代布局 = true;
+            }
+        }
+     
+        private void Doggettx启用_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            if (Doggettx启用.IsChecked == false)
+            {
+                initialize.Doggettx优化 = false;
+            }
+            else
+            {
+                initialize.Doggettx优化 = true;
             }
         }
 
