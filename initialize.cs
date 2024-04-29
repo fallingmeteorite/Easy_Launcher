@@ -48,14 +48,15 @@ namespace Awake
         //优化
         public static bool 上投采样 = false;
         public static bool 关闭半精度计算 = false;
+        public static bool 内存优化 = false;
 
         public static bool 启用InvokeAI = false;
-        public static bool 内存优化 = false;
 
         public static bool SDP优化 = false;
         public static bool 缩放点积 = false;
         public static bool 启用xformers = false;
         public static bool 启用替代布局 = false;
+        public static bool Doggettx优化 = false;
 
         //下面是一些参数的字符串预设
         public static string 命令列表 = "";
@@ -175,7 +176,11 @@ namespace Awake
                 initialize.显卡类型名 = lines_setting[16];
                 initialize._显卡类型 = lines_setting[17];
                 initialize._WebUI显存压力优化设置 = lines_setting[18];
-                initialize._WebUI主题颜色 = lines_setting[19]; 
+                initialize._WebUI主题颜色 = lines_setting[19];
+                if (lines_setting[20] == "True")
+                {
+                    initialize.Doggettx优化 = true;
+                }
 
             }
             catch
