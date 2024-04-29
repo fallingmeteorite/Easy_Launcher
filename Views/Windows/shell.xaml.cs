@@ -111,7 +111,7 @@ namespace Awake.Views.Windows
                 标准输出流.AppendText("显卡信息：" + gpuname + Environment.NewLine);
                 标准输出流.AppendText("当前使用的生成引擎：" + _GPUname + Environment.NewLine);
                 标准输出流.AppendText("正在运行，请耐心等待，运行速度由电脑性能决定\n");
-  
+
             }
             //这里开始从initilize中被处理过的参数变量进行初始化
 
@@ -133,15 +133,17 @@ namespace Awake.Views.Windows
 
             if (启用替代布局 == true) { 参数列表 += " --opt-channelslast "; }
 
-            if (缩放点积 == true) { 参数列表 += " --opt-sdp-attention "; }
- 
-            if (启用xformers == true){参数列表 += " --xformers --xformers-flash-attention";}  
+            if (缩放点积 == true) { 参数列表 += " --opt-sdp-attention --opt-sdp-no-mem-attention"; }
+
+            if (启用xformers == true) { 参数列表 += " --xformers --xformers-flash-attention --force-enable-xformers"; }
 
             if (关闭半精度计算 == true) { 参数列表 += " --no-half"; }
 
             if (内存优化 == true) { 参数列表 += " --opt-sub-quad-attention"; }
-            
-            if (冻结设置 == true) { 参数列表 += " --freeze - settings"; }
+
+            if (冻结设置 == true) { 参数列表 += " --freeze-settings"; }
+
+            if (Doggettx优化 == true) { 参数列表 += " --opt-split-attention"; }
 
 
 
@@ -153,7 +155,7 @@ namespace Awake.Views.Windows
                 //下面开始施法！！！！
                 启动魔法 = new Process();
                 ProcessStartInfo startinfo = new ProcessStartInfo();
-                string 启动参数 = 参数列表;  
+                string 启动参数 = 参数列表;
 
                 try
                 {
@@ -202,7 +204,7 @@ namespace Awake.Views.Windows
                     }
 
 
-                    标准输出流.AppendText(工作路径_start + @"\launch.py" + 启动参数 +  _WebUI显存压力优化设置 + _WebUI主题颜色 + "\n");
+                    标准输出流.AppendText(工作路径_start + @"\launch.py" + 启动参数 + _WebUI显存压力优化设置 + _WebUI主题颜色 + "\n");
                     startinfo.Arguments = 工作路径_start + @"\launch.py" + 参数列表 + _WebUI显存压力优化设置 + _WebUI主题颜色;
                     startinfo.WorkingDirectory = 工作路径_start;
 
@@ -242,9 +244,9 @@ namespace Awake.Views.Windows
                         工作路径_start = 工作路径;
                     }
 
-                    标准输出流.AppendText(工作路径_start + @"\launch.py" + 参数列表  + _WebUI显存压力优化设置 + _WebUI主题颜色 + "\n");
+                    标准输出流.AppendText(工作路径_start + @"\launch.py" + 参数列表 + _WebUI显存压力优化设置 + _WebUI主题颜色 + "\n");
                     startinfo.FileName = 工作路径_start + @"\Python3.10\python.exe";
-                    startinfo.Arguments = 工作路径_start + @"\launch.py" + 参数列表 +  _WebUI显存压力优化设置 + _WebUI主题颜色;
+                    startinfo.Arguments = 工作路径_start + @"\launch.py" + 参数列表 + _WebUI显存压力优化设置 + _WebUI主题颜色;
                     startinfo.WorkingDirectory = 工作路径_start;
 
                     if (显卡类型名 == "NVIDIA")
