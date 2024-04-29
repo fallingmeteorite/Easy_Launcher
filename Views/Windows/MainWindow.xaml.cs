@@ -295,7 +295,13 @@ namespace Awake.Views.Windows
                 initialize.显卡类型名 + "\n" +
                 initialize._显卡类型 + "\n" +
                 initialize._WebUI显存压力优化设置 + "\n" +
-                initialize._WebUI主题颜色 + "\n");
+                initialize._WebUI主题颜色 + "\n" +
+
+                initialize.Doggettx优化 + "\n"
+                
+                
+                
+                );
 
 
         File.WriteAllText(@".AI_launther_log\setting.txt", 参数设置);
