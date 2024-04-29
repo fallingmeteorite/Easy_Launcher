@@ -512,9 +512,6 @@ namespace Awake.Views.Pages
             解压魔法.BeginOutputReadLine();//开始读取输出流
             解压魔法.BeginErrorReadLine();//开始读取错误流
 
-
-
-
         }
 
         private void OutputHandler(object sender, DataReceivedEventArgs e)
