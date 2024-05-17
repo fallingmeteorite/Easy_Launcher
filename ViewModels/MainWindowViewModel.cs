@@ -74,6 +74,15 @@ namespace Awake.ViewModels
                 {
                     Width = 140,
                     HorizontalAlignment = System.Windows.HorizontalAlignment.Left,
+                    Content = "版本修改",
+                    PageTag = "Code",
+                    Icon = SymbolRegular.ArrowSyncCheckmark20,
+                    PageType = typeof(Views.Pages.Code)
+                },
+                new NavigationItem()
+                {
+                    Width = 140,
+                    HorizontalAlignment = System.Windows.HorizontalAlignment.Left,
                     Content = "安装中心",
                     PageTag = "web",
                     Icon = SymbolRegular.WrenchScrewdriver24,
@@ -81,16 +90,6 @@ namespace Awake.ViewModels
 
                 }
             };
-            //NavigationItem _change_ui_color = new NavigationItem()
-            //{
-            //    Width = 140,
-            //    HorizontalAlignment = System.Windows.HorizontalAlignment.Left,
-            //    Content = "主题切换",
-            //    PageTag = "Toggle theme",
-            //    Icon = SymbolRegular.WeatherSunny16,
-
-            //};
-
 
             NavigationFooter = new ObservableCollection<INavigationControl>
             {

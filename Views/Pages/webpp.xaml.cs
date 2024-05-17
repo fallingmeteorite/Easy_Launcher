@@ -582,7 +582,7 @@ namespace Awake.Views.Pages
             下载组.Visibility = Visibility.Visible;
             WebUI下载按钮.Content = "安装完毕，点击一键启动";
             initialize.已安装WebUI = true;
-
+            //删除文件
             if (File.Exists(initialize.工作路径 + @"\WebUIpack.7z"))
             {
 
@@ -595,15 +595,14 @@ namespace Awake.Views.Pages
                 File.Delete(initialize.工作路径 + @"WebUIpack.7z");
 
             }
-
+            //删除文件夹
             if (Directory.Exists(initialize.工作路径 + @"\2.0.9"))
             {
-                // 3.1、删除文件夹
                 Directory.Delete((initialize.工作路径 + @"\2.0.9"), true);
             }
             if (Directory.Exists(initialize.工作路径 + @"2.0.9"))
             {
-                // 3.1、删除文件夹
+  
                 Directory.Delete((initialize.工作路径 + @"2.0.9"), true);
             }
 
