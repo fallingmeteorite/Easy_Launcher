@@ -27,7 +27,7 @@ namespace Awake.Views.Pages
         public List<CommitItem> commits;
         public ObservableCollection<CommitItem> CommiteCollection = new();
         public ObservableCollection<CommitItem> CommiteTagCollection = new();
-        public string git工作路径;
+        private string git工作路径;
 
         public Code()
         {
@@ -108,17 +108,6 @@ namespace Awake.Views.Pages
 
             msg = process.StandardOutput.ReadToEnd();
             currHash = msg.Split("^^")[0];
-
- //           for (int j = 0; j< Store.extRemote.Count; j++)
- //           {
- //               if (Store.extRemote[j].name == "stable-diffusion-webui")
- //               {
- //                   if (currHash == Store.extRemote[j].hash)
- //                  {
- //                       btnUpdateCode.IsEnabled = false;
-  //                  }
- //              }
-  //          }
 
             commit.ItemsSource  = CommiteCollection;
             commit2.ItemsSource = tags;
