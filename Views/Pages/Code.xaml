@@ -28,13 +28,13 @@
                     <ui:SymbolIcon Symbol="CloudArchive20" Width="40" />
                     <Label FontSize="16" >拉取仓库地址 :</Label>
                     <Label x:Name="lblCurrGit"></Label>
-                    
+
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
                     <ui:SymbolIcon Symbol="Info20" Width="40" />
-                    <Label FontSize="16">更新提交信息 : </Label>
+                    <Label FontSize="16">更新提交信息 :</Label>
                     <Label x:Name="lblCurrMessage"></Label>
-                    
+
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
                     <ui:SymbolIcon Symbol="ZoomIn20" Width="40" />
@@ -44,10 +44,10 @@
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
                     <Label FontSize="16">云端提交日期 :</Label>
                     <Label x:Name="lblCurrDate"></Label>
-                    
+
                 </StackPanel>
 
-                
+
             </StackPanel>
 
         </ui:Card>
