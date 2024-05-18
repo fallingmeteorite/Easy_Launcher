@@ -16,30 +16,40 @@
     mc:Ignorable="d">
     <StackPanel>
         <StackPanel Margin="5" Orientation="Horizontal">
-            <Button Margin="5" Content="打开.git上层目录" Click="Button_Click" FontSize="16"></Button>
-            <Button x:Name="btnUpdateCode" Margin="5" Content="更新到最新版本" Click="UpdateCode_Click" FontSize="16"></Button>
+            <ui:SymbolIcon Symbol="ArrowRepeatAll20" Width="20" />
+            <Button Margin="5" Content="重新读取分支信息" Click="Button_Click" FontSize="16"/>
+            <ui:SymbolIcon Symbol="ArrowCircleUp24" Width="20" />
+            <Button x:Name="btnUpdateCode" Margin="5" Content="更新到最新版本" Click="UpdateCode_Click" FontSize="16"/>
         </StackPanel>
-        <ui:Card Margin="5" Height="130">
-            <StackPanel Height="100">
+        <ui:Card Margin="5" Height="152">
+            <StackPanel Height="110">
+
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" >
-                    <Label FontSize="16" >拉取仓库地址:</Label>
+                    <ui:SymbolIcon Symbol="CloudArchive20" Width="40" />
+                    <Label FontSize="16" >拉取仓库地址 :</Label>
                     <Label x:Name="lblCurrGit"></Label>
+                    
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-                    <Label FontSize="16">本地代码版本: </Label>
+                    <ui:SymbolIcon Symbol="Info20" Width="40" />
+                    <Label FontSize="16">更新提交信息 : </Label>
+                    <Label x:Name="lblCurrMessage"></Label>
+                    
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                    <ui:SymbolIcon Symbol="ZoomIn20" Width="40" />
+                    <Label FontSize="16">本地代码版本 :</Label>
                     <Label x:Name="lblCurrHash"></Label>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-                    <Label FontSize="16">更新提交信息: </Label>
-                    <Label x:Name="lblCurrMessage"></Label>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-                    <Label FontSize="16">云端提交日期: </Label>
+                    <Label FontSize="16">云端提交日期 :</Label>
                     <Label x:Name="lblCurrDate"></Label>
+                    
                 </StackPanel>
 
+                
             </StackPanel>
-        
+
         </ui:Card>
         <TabControl>
             <TabItem>
@@ -49,13 +59,13 @@
                         <TextBlock Text="稳定版" FontSize="16"/>
                     </StackPanel>
                 </TabItem.Header>
-                <DataGrid x:Name="commit2" ScrollViewer.VerticalScrollBarVisibility="Visible"  MaxHeight="700"
+                <ui:DataGrid x:Name="commit2" ScrollViewer.VerticalScrollBarVisibility="Visible"  MaxHeight="700"
                     AutoGenerateColumns="False">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="短hash" Binding="{Binding Hash}" Width="80" />
-                        <DataGridTextColumn Header="提交信息" Binding="{Binding Message}" Width="580" />
-                        <DataGridTextColumn Header="提交日期" Binding="{Binding Date}" Width="140" />
-                        <DataGridCheckBoxColumn Header="当前版本" Binding="{Binding Checked}"  Width="80"/>
+                        <DataGridTextColumn Header="短hash" Binding="{Binding Hash}" CanUserResize="False" IsReadOnly="True" Width="80" />
+                        <DataGridTextColumn Header="提交信息" Binding="{Binding Message}" CanUserResize="False" IsReadOnly="True" Width="625" />
+                        <DataGridTextColumn Header="提交日期" Binding="{Binding Date}" CanUserResize="False" IsReadOnly="True" Width="140" />
+                        <DataGridCheckBoxColumn Header="当前" Binding="{Binding Checked}"  CanUserResize="False" IsReadOnly="True" Width="35"/>
                         <DataGridTemplateColumn Header="版本操作" Width="100">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
@@ -66,7 +76,7 @@
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
                     </DataGrid.Columns>
-                </DataGrid>
+                </ui:DataGrid>
             </TabItem>
             <TabItem>
                 <TabItem.Header>
@@ -75,13 +85,13 @@
                         <TextBlock Text="开发版" FontSize="16"/>
                     </StackPanel>
                 </TabItem.Header>
-                <DataGrid x:Name="commit" ScrollViewer.VerticalScrollBarVisibility="Visible"  MaxHeight="700"
+                <ui:DataGrid x:Name="commit" ScrollViewer.VerticalScrollBarVisibility="Visible"  MaxHeight="700"
                         AutoGenerateColumns="False">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="短Hash" Binding="{Binding Hash}" Width="80"/>
-                        <DataGridTextColumn Header="提交信息" Binding="{Binding Message}" Width="580"/>
-                        <DataGridTextColumn Header="提交日期" Binding="{Binding Date}" Width="140"/>
-                        <DataGridCheckBoxColumn Header="当前版本" Binding="{Binding Checked}"  Width="80"/>
+                        <DataGridTextColumn Header="短hash" Binding="{Binding Hash}" CanUserResize="False" IsReadOnly="True" Width="80"/>
+                        <DataGridTextColumn Header="提交信息" Binding="{Binding Message}" CanUserResize="False" IsReadOnly="True" Width="625"/>
+                        <DataGridTextColumn Header="提交日期" Binding="{Binding Date}" CanUserResize="False" IsReadOnly="True"  Width="140"/>
+                        <DataGridCheckBoxColumn Header="当前" Binding="{Binding Checked}"  CanUserResize="False" IsReadOnly="True"  Width="35" />
                         <DataGridTemplateColumn Header="版本操作" Width="100">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
@@ -92,7 +102,7 @@
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
                     </DataGrid.Columns>
-                </DataGrid>
+                </ui:DataGrid>
             </TabItem>
         </TabControl>
     </StackPanel>
