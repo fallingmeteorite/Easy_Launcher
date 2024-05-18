@@ -602,7 +602,7 @@ namespace Awake.Views.Pages
             }
             if (Directory.Exists(initialize.工作路径 + @"2.0.9"))
             {
-  
+
                 Directory.Delete((initialize.工作路径 + @"2.0.9"), true);
             }
 
