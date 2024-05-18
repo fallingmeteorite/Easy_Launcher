@@ -38,7 +38,7 @@ namespace Awake.Views.Pages
                     Process.GetCurrentProcess().Kill();
                 }
 
-            } 
+            }
 
             if (initialize.启用自定义路径 == true)
             {
@@ -180,7 +180,7 @@ namespace Awake.Views.Pages
             msg = process.StandardOutput.ReadToEnd();
             currHash = msg.Split("^^")[0];
 
-            commit.ItemsSource  = CommiteCollection;
+            commit.ItemsSource = CommiteCollection;
         }
         private void InitializeData()
         {
@@ -219,7 +219,7 @@ namespace Awake.Views.Pages
             commits = new List<CommitItem>();
             process.ErrorDataReceived += new DataReceivedEventHandler(delegate (object sender, DataReceivedEventArgs e)
             {
-                                
+
             });
             process.OutputDataReceived += new DataReceivedEventHandler(delegate (object sender, DataReceivedEventArgs e)
             {
@@ -228,7 +228,7 @@ namespace Awake.Views.Pages
                 string[] itemarr = e.Data.Split("^^");
                 if (itemarr.Length < 3)
                 {
-                    return ;
+                    return;
                 }
                 item1.Hash = itemarr[0];
                 item1.Message = itemarr[1];
@@ -251,7 +251,7 @@ namespace Awake.Views.Pages
             process.BeginOutputReadLine();
             process.WaitForExit();
 
-            for (int i=0; i < commits.Count();  i++)
+            for (int i = 0; i < commits.Count(); i++)
             {
                 CommiteCollection.Add(commits[i]);
             }
@@ -333,7 +333,7 @@ namespace Awake.Views.Pages
             lblCurrMessage.Content = msg.Split("^^")[1];
             lblCurrGit.Content = msg2.Split("\\n")[0].Split(" ")[0];
 
-            commit.ItemsSource  = CommiteCollection;
+            commit.ItemsSource = CommiteCollection;
         }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -417,7 +417,7 @@ namespace Awake.Views.Pages
             msg = process.StandardOutput.ReadToEnd();
             currHash = msg.Split("^^")[0];
 
-            commit.ItemsSource = CommiteCollection;   
+            commit.ItemsSource = CommiteCollection;
         }
         private void UpdateCode_Click(object sender, RoutedEventArgs e)
         {
@@ -440,7 +440,7 @@ namespace Awake.Views.Pages
 
             InitializeData();
 
-            commit.ItemsSource  = CommiteCollection;
+            commit.ItemsSource = CommiteCollection;
         }
 
     }
