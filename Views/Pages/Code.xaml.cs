@@ -146,7 +146,7 @@ namespace Awake.Views.Pages
             Process process = new Process();
             ProcessStartInfo startInfo = new ProcessStartInfo();
             startInfo.FileName = @"git.exe";
-            startInfo.Arguments = " --no-pager log origin/master --pretty=\"%h^^%s^^%cd\" --date=\"short\" -n 1000";
+            startInfo.Arguments = " --no-pager log origin/master --pretty=\"%h^^%s^^%cd\" --date=format:\"%Y-%m-%d %H:%M:%S\" -n 1000";
             startInfo.UseShellExecute = false;
             startInfo.RedirectStandardOutput = true;
             startInfo.RedirectStandardError = true;
