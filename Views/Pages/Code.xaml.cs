@@ -9,7 +9,6 @@ using System.Windows;
 using System.Windows.Media;
 using Awake.Models;
 using Wpf.Ui.Common.Interfaces;
-
 using Awake.Views.Windows;
 using System.Windows.Controls;
 using Awake.Services;
@@ -23,10 +22,10 @@ namespace Awake.Views.Pages
     public partial class Code
     {
         public string currHash;
-        public List<TagItem> tags;
         public List<CommitItem> commits;
+        public List<CommitItem> commits2;
         public ObservableCollection<CommitItem> CommiteCollection = new();
-        public ObservableCollection<CommitItem> CommiteTagCollection = new();
+        public ObservableCollection<CommitItem> CommiteCollection2 = new();
         private string git工作路径;
 
         public Code()
@@ -39,7 +38,7 @@ namespace Awake.Views.Pages
                     Process.GetCurrentProcess().Kill();
                 }
 
-            }
+            } 
 
             if (initialize.启用自定义路径 == true)
             {
@@ -49,6 +48,78 @@ namespace Awake.Views.Pages
             {
                 git工作路径 = initialize.工作路径;
             }
+
+            Process process3 = new Process();
+            ProcessStartInfo startInfo3 = new ProcessStartInfo();
+            startInfo3.FileName = @"git.exe";
+            startInfo3.Arguments = " fetch  --all"; //同步云端更新日志到本地
+            startInfo3.UseShellExecute = false;
+            startInfo3.RedirectStandardOutput = true;
+            startInfo3.RedirectStandardError = false;
+            startInfo3.CreateNoWindow = true;
+            startInfo3.WorkingDirectory = git工作路径;
+
+            Process process1 = new Process();
+            ProcessStartInfo startInfo1 = new ProcessStartInfo();
+            startInfo1.FileName = @"git.exe";
+            startInfo1.Arguments = " log --oneline --pretty=\"%h^^%s^^%cd\" --date=\"short\" -n 1";
+            startInfo1.UseShellExecute = false;
+            startInfo1.RedirectStandardOutput = true;
+            startInfo1.RedirectStandardError = false;
+            startInfo1.CreateNoWindow = true;
+            startInfo1.WorkingDirectory = git工作路径;
+
+            process1.StartInfo = startInfo1;
+            process1.Start();
+            process1.WaitForExit();
+
+            string msg1 = process1.StandardOutput.ReadToEnd();
+            currHash = msg1.Split("^^")[0];
+            //Debug.WriteLine(msg);
+
+            process1 = new Process();
+            startInfo1 = new ProcessStartInfo();
+            startInfo1.FileName = @"git.exe";
+            startInfo1.Arguments = " remote -v";
+            startInfo1.UseShellExecute = false;
+            startInfo1.RedirectStandardOutput = true;
+            startInfo1.RedirectStandardError = false;
+            startInfo1.CreateNoWindow = true;
+            startInfo1.WorkingDirectory = git工作路径;
+
+            process1.StartInfo = startInfo1;
+            process1.Start();
+            process1.WaitForExit();
+
+            string msg12 = process1.StandardOutput.ReadToEnd();
+
+            InitializeData();
+            InitializeComponent();
+
+            lblCurrHash.Content = currHash;
+            lblCurrDate.Content = msg1.Split("^^")[2];
+            lblCurrMessage.Content = msg1.Split("^^")[1];
+            lblCurrGit.Content = msg12.Split("\\n")[0].Split(" ")[0];
+
+            process1 = new Process();
+            startInfo1 = new ProcessStartInfo();
+            startInfo1.FileName = @"git.exe";
+            startInfo1.Arguments = " log --oneline origin master --pretty=\"%h^^%s^^%cd\" --date=\"short\" -n 1";
+            startInfo1.UseShellExecute = false;
+            startInfo1.RedirectStandardOutput = true;
+            startInfo1.RedirectStandardError = false;
+            startInfo1.CreateNoWindow = true;
+            startInfo1.WorkingDirectory = git工作路径;
+
+            process1.StartInfo = startInfo1;
+            process1.Start();
+            process1.WaitForExit();
+
+            msg1 = process1.StandardOutput.ReadToEnd();
+            currHash = msg1.Split("^^")[0];
+
+            commit2.ItemsSource = CommiteCollection;
+
 
             Process process = new Process();
             ProcessStartInfo startInfo = new ProcessStartInfo();
@@ -95,7 +166,7 @@ namespace Awake.Views.Pages
             process = new Process();
             startInfo = new ProcessStartInfo();
             startInfo.FileName = @"git.exe";
-            startInfo.Arguments = " log --oneline origin master --pretty=\"%h^^%s^^%cd\" --date=\"short\" -n 1";
+            startInfo.Arguments = " log --oneline origin dev --pretty=\"%h^^%s^^%cd\" --date=\"short\" -n 1";
             startInfo.UseShellExecute = false;
             startInfo.RedirectStandardOutput = true;
             startInfo.RedirectStandardError = false;
@@ -110,7 +181,6 @@ namespace Awake.Views.Pages
             currHash = msg.Split("^^")[0];
 
             commit.ItemsSource  = CommiteCollection;
-            commit2.ItemsSource = tags;
         }
         private void InitializeData()
         {
@@ -132,16 +202,6 @@ namespace Awake.Views.Pages
             {
                 git工作路径 = initialize.工作路径;
             }
-
-            if (!File.Exists("codetag.json"))
-            {
-                var sw = File.CreateText("codetag.json");
-                sw.WriteLine("[]");
-                sw.Close();
-            }
-            var jsonOptions = new JsonSerializerOptions(JsonSerializerDefaults.Web);
-            var jf = File.ReadAllText("codetag.json");
-            tags = JsonSerializer.Deserialize<List<TagItem>>(jf, jsonOptions);
 
             Process process = new Process();
             ProcessStartInfo startInfo = new ProcessStartInfo();
@@ -205,7 +265,7 @@ namespace Awake.Views.Pages
             Process process = new Process();
             ProcessStartInfo startInfo = new ProcessStartInfo();
             startInfo.FileName = @"git.exe";
-            startInfo.Arguments = " reset --hard";
+            startInfo.Arguments = " reset --hard"; //回退版本到
             startInfo.UseShellExecute = false;
             startInfo.RedirectStandardOutput = true;
             startInfo.CreateNoWindow = true;
@@ -218,7 +278,7 @@ namespace Awake.Views.Pages
             process = new Process();
             startInfo = new ProcessStartInfo();
             startInfo.FileName = @"git.exe";
-            startInfo.Arguments = " checkout " + hash;
+            startInfo.Arguments = " checkout " + hash; //切换到指定分支
             startInfo.UseShellExecute = false;
             startInfo.RedirectStandardOutput = true;
             startInfo.CreateNoWindow = true;
@@ -232,7 +292,6 @@ namespace Awake.Views.Pages
             Debug.WriteLine(msg);
 
             CommiteCollection.Clear();
-            CommiteTagCollection.Clear();
 
             process = new Process();
             startInfo = new ProcessStartInfo();
@@ -275,11 +334,90 @@ namespace Awake.Views.Pages
             lblCurrGit.Content = msg2.Split("\\n")[0].Split(" ")[0];
 
             commit.ItemsSource  = CommiteCollection;
-            commit2.ItemsSource = tags;
         }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Process.Start("explorer.exe", git工作路径);
+            if (initialize.本地路径 == "")
+            {
+                if (initialize.工作路径 == "")
+                {
+                    System.Windows.MessageBox.Show("未选择工作路径，程序错误即将关闭！");
+                    Process.GetCurrentProcess().Kill();
+                }
+
+            }
+
+            if (initialize.启用自定义路径 == true)
+            {
+                git工作路径 = initialize.本地路径;
+            }
+            else
+            {
+                git工作路径 = initialize.工作路径;
+            }
+
+            CommiteCollection.Clear();
+
+            Process process = new Process();
+            ProcessStartInfo startInfo = new ProcessStartInfo();
+            startInfo.FileName = @"git.exe";
+            startInfo.Arguments = " log --oneline --pretty=\"%h^^%s^^%cd\" --date=\"short\" -n 1";
+            startInfo.UseShellExecute = false;
+            startInfo.RedirectStandardOutput = true;
+            startInfo.RedirectStandardError = false;
+            startInfo.CreateNoWindow = true;
+            startInfo.WorkingDirectory = git工作路径;
+
+            process.StartInfo = startInfo;
+            process.Start();
+            process.WaitForExit();
+
+            string msg = process.StandardOutput.ReadToEnd();
+            currHash = msg.Split("^^")[0];
+            //Debug.WriteLine(msg);
+
+            process = new Process();
+            startInfo = new ProcessStartInfo();
+            startInfo.FileName = @"git.exe";
+            startInfo.Arguments = " remote -v";
+            startInfo.UseShellExecute = false;
+            startInfo.RedirectStandardOutput = true;
+            startInfo.RedirectStandardError = false;
+            startInfo.CreateNoWindow = true;
+            startInfo.WorkingDirectory = git工作路径;
+
+            process.StartInfo = startInfo;
+            process.Start();
+            process.WaitForExit();
+
+            string msg2 = process.StandardOutput.ReadToEnd();
+
+            InitializeData();
+            InitializeComponent();
+
+            lblCurrHash.Content = currHash;
+            lblCurrDate.Content = msg.Split("^^")[2];
+            lblCurrMessage.Content = msg.Split("^^")[1];
+            lblCurrGit.Content = msg2.Split("\\n")[0].Split(" ")[0];
+
+            process = new Process();
+            startInfo = new ProcessStartInfo();
+            startInfo.FileName = @"git.exe";
+            startInfo.Arguments = " log --oneline origin master --pretty=\"%h^^%s^^%cd\" --date=\"short\" -n 1";
+            startInfo.UseShellExecute = false;
+            startInfo.RedirectStandardOutput = true;
+            startInfo.RedirectStandardError = false;
+            startInfo.CreateNoWindow = true;
+            startInfo.WorkingDirectory = git工作路径;
+
+            process.StartInfo = startInfo;
+            process.Start();
+            process.WaitForExit();
+
+            msg = process.StandardOutput.ReadToEnd();
+            currHash = msg.Split("^^")[0];
+
+            commit.ItemsSource = CommiteCollection;   
         }
         private void UpdateCode_Click(object sender, RoutedEventArgs e)
         {
@@ -299,12 +437,10 @@ namespace Awake.Views.Pages
             btnUpdateCode.IsEnabled = false;
 
             CommiteCollection.Clear();
-            CommiteTagCollection.Clear();
 
             InitializeData();
 
             commit.ItemsSource  = CommiteCollection;
-            commit2.ItemsSource = tags;
         }
 
     }
