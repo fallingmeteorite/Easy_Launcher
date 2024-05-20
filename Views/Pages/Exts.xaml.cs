@@ -52,8 +52,8 @@ namespace Awake.Views.Pages
             }
 
             InitializeComponent();
-
-           exts.ItemsSource = Store.extLocal;
+            Init.InitExtData();
+            exts.ItemsSource = Store.extLocal;
         }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
