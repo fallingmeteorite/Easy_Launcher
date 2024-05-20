@@ -16,9 +16,6 @@ using Awake.Services;
 
 namespace Awake.Views.Pages
 {
-    /// <summary>
-    /// Interaction logic for DataView.xaml
-    /// </summary>
     public partial class Code
     {
         public string currHash;
@@ -26,7 +23,6 @@ namespace Awake.Views.Pages
         public List<CommitItem> commits2;
         public ObservableCollection<CommitItem> CommiteCollection = new();
         public ObservableCollection<CommitItem> CommiteCollection2 = new();
-        private string git工作路径;
 
         public Code()
         {
@@ -40,15 +36,6 @@ namespace Awake.Views.Pages
 
             }
 
-            if (initialize.启用自定义路径 == true)
-            {
-                git工作路径 = initialize.本地路径;
-            }
-            else
-            {
-                git工作路径 = initialize.工作路径;
-            }
-
             Process process3 = new Process();
             ProcessStartInfo startInfo3 = new ProcessStartInfo();
             startInfo3.FileName = @"git.exe";
@@ -57,17 +44,17 @@ namespace Awake.Views.Pages
             startInfo3.RedirectStandardOutput = true;
             startInfo3.RedirectStandardError = false;
             startInfo3.CreateNoWindow = true;
-            startInfo3.WorkingDirectory = git工作路径;
+            startInfo3.WorkingDirectory = initialize.加载路径;
 
             Process process1 = new Process();
             ProcessStartInfo startInfo1 = new ProcessStartInfo();
             startInfo1.FileName = @"git.exe";
-            startInfo1.Arguments = " log --oneline --pretty=\"%h^^%s^^%cd\" --date=\"short\" -n 1";
+            startInfo1.Arguments = " log --oneline --pretty=\"%h^^%s^^%cd\" --date=format:\"%Y-%m-%d %H:%M:%S\" -n 1";
             startInfo1.UseShellExecute = false;
             startInfo1.RedirectStandardOutput = true;
             startInfo1.RedirectStandardError = false;
             startInfo1.CreateNoWindow = true;
-            startInfo1.WorkingDirectory = git工作路径;
+            startInfo1.WorkingDirectory = initialize.加载路径;
 
             process1.StartInfo = startInfo1;
             process1.Start();
@@ -85,7 +72,7 @@ namespace Awake.Views.Pages
             startInfo1.RedirectStandardOutput = true;
             startInfo1.RedirectStandardError = false;
             startInfo1.CreateNoWindow = true;
-            startInfo1.WorkingDirectory = git工作路径;
+            startInfo1.WorkingDirectory = initialize.加载路径;
 
             process1.StartInfo = startInfo1;
             process1.Start();
@@ -104,12 +91,12 @@ namespace Awake.Views.Pages
             process1 = new Process();
             startInfo1 = new ProcessStartInfo();
             startInfo1.FileName = @"git.exe";
-            startInfo1.Arguments = " log --oneline origin master --pretty=\"%h^^%s^^%cd\" --date=\"short\" -n 1";
+            startInfo1.Arguments = " log --oneline origin master --pretty=\"%h^^%s^^%cd\" --date=format:\"%Y-%m-%d %H:%M:%S\" -n 1";
             startInfo1.UseShellExecute = false;
             startInfo1.RedirectStandardOutput = true;
             startInfo1.RedirectStandardError = false;
             startInfo1.CreateNoWindow = true;
-            startInfo1.WorkingDirectory = git工作路径;
+            startInfo1.WorkingDirectory = initialize.加载路径;
 
             process1.StartInfo = startInfo1;
             process1.Start();
@@ -124,12 +111,12 @@ namespace Awake.Views.Pages
             Process process = new Process();
             ProcessStartInfo startInfo = new ProcessStartInfo();
             startInfo.FileName = @"git.exe";
-            startInfo.Arguments = " log --oneline --pretty=\"%h^^%s^^%cd\" --date=\"short\" -n 1";
+            startInfo.Arguments = " log --oneline --pretty=\"%h^^%s^^%cd\" --date=format:\"%Y-%m-%d %H:%M:%S\" -n 1";
             startInfo.UseShellExecute = false;
             startInfo.RedirectStandardOutput = true;
             startInfo.RedirectStandardError = false;
             startInfo.CreateNoWindow = true;
-            startInfo.WorkingDirectory = git工作路径;
+            startInfo.WorkingDirectory = initialize.加载路径;
 
             process.StartInfo = startInfo;
             process.Start();
@@ -147,7 +134,7 @@ namespace Awake.Views.Pages
             startInfo.RedirectStandardOutput = true;
             startInfo.RedirectStandardError = false;
             startInfo.CreateNoWindow = true;
-            startInfo.WorkingDirectory = git工作路径;
+            startInfo.WorkingDirectory = initialize.加载路径;
 
             process.StartInfo = startInfo;
             process.Start();
@@ -166,12 +153,12 @@ namespace Awake.Views.Pages
             process = new Process();
             startInfo = new ProcessStartInfo();
             startInfo.FileName = @"git.exe";
-            startInfo.Arguments = " log --oneline origin dev --pretty=\"%h^^%s^^%cd\" --date=\"short\" -n 1";
+            startInfo.Arguments = " log --oneline origin dev --pretty=\"%h^^%s^^%cd\" --date=format:\"%Y-%m-%d %H:%M:%S\" -n 1";
             startInfo.UseShellExecute = false;
             startInfo.RedirectStandardOutput = true;
             startInfo.RedirectStandardError = false;
             startInfo.CreateNoWindow = true;
-            startInfo.WorkingDirectory = git工作路径;
+            startInfo.WorkingDirectory = initialize.加载路径;
 
             process.StartInfo = startInfo;
             process.Start();
@@ -184,25 +171,6 @@ namespace Awake.Views.Pages
         }
         private void InitializeData()
         {
-            if (initialize.本地路径 == "")
-            {
-                if (initialize.工作路径 == "")
-                {
-                    System.Windows.MessageBox.Show("未选择工作路径，程序错误即将关闭！");
-                    Process.GetCurrentProcess().Kill();
-                }
-
-            }
-
-            if (initialize.启用自定义路径 == true)
-            {
-                git工作路径 = initialize.本地路径;
-            }
-            else
-            {
-                git工作路径 = initialize.工作路径;
-            }
-
             Process process = new Process();
             ProcessStartInfo startInfo = new ProcessStartInfo();
             startInfo.FileName = @"git.exe";
@@ -211,7 +179,7 @@ namespace Awake.Views.Pages
             startInfo.RedirectStandardOutput = true;
             startInfo.RedirectStandardError = true;
             startInfo.CreateNoWindow = true;
-            startInfo.WorkingDirectory = git工作路径;
+            startInfo.WorkingDirectory = initialize.加载路径;
 
             process.StartInfo = startInfo;
 
@@ -269,7 +237,7 @@ namespace Awake.Views.Pages
             startInfo.UseShellExecute = false;
             startInfo.RedirectStandardOutput = true;
             startInfo.CreateNoWindow = true;
-            startInfo.WorkingDirectory = git工作路径;
+            startInfo.WorkingDirectory = initialize.加载路径;
 
             process.StartInfo = startInfo;
             process.Start();
@@ -282,7 +250,7 @@ namespace Awake.Views.Pages
             startInfo.UseShellExecute = false;
             startInfo.RedirectStandardOutput = true;
             startInfo.CreateNoWindow = true;
-            startInfo.WorkingDirectory = git工作路径;
+            startInfo.WorkingDirectory = initialize.加载路径;
 
             process.StartInfo = startInfo;
             process.Start();
@@ -296,12 +264,12 @@ namespace Awake.Views.Pages
             process = new Process();
             startInfo = new ProcessStartInfo();
             startInfo.FileName = @"git.exe";
-            startInfo.Arguments = " log --oneline --pretty=\"%h^^%s^^%cd\" --date=\"short\" -n 1";
+            startInfo.Arguments = " log --oneline --pretty=\"%h^^%s^^%cd\" --date=format:\"%Y-%m-%d %H:%M:%S\" -n 1";
             startInfo.UseShellExecute = false;
             startInfo.RedirectStandardOutput = true;
             startInfo.RedirectStandardError = false;
             startInfo.CreateNoWindow = true;
-            startInfo.WorkingDirectory = git工作路径;
+            startInfo.WorkingDirectory = initialize.加载路径;
 
             process.StartInfo = startInfo;
             process.Start();
@@ -318,7 +286,7 @@ namespace Awake.Views.Pages
             startInfo.RedirectStandardOutput = true;
             startInfo.RedirectStandardError = false;
             startInfo.CreateNoWindow = true;
-            startInfo.WorkingDirectory = git工作路径;
+            startInfo.WorkingDirectory = initialize.加载路径;
 
             process.StartInfo = startInfo;
             process.Start();
@@ -334,39 +302,23 @@ namespace Awake.Views.Pages
             lblCurrGit.Content = msg2.Split("\\n")[0].Split(" ")[0];
 
             commit.ItemsSource = CommiteCollection;
+            System.Windows.MessageBox.Show("安装完成,请继续操作");
         }
+
+
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            if (initialize.本地路径 == "")
-            {
-                if (initialize.工作路径 == "")
-                {
-                    System.Windows.MessageBox.Show("未选择工作路径，程序错误即将关闭！");
-                    Process.GetCurrentProcess().Kill();
-                }
-
-            }
-
-            if (initialize.启用自定义路径 == true)
-            {
-                git工作路径 = initialize.本地路径;
-            }
-            else
-            {
-                git工作路径 = initialize.工作路径;
-            }
-
             CommiteCollection.Clear();
 
             Process process = new Process();
             ProcessStartInfo startInfo = new ProcessStartInfo();
             startInfo.FileName = @"git.exe";
-            startInfo.Arguments = " log --oneline --pretty=\"%h^^%s^^%cd\" --date=\"short\" -n 1";
+            startInfo.Arguments = " log --oneline --pretty=\"%h^^%s^^%cd\" --date=format:\"%Y-%m-%d %H:%M:%S\" -n 1";
             startInfo.UseShellExecute = false;
             startInfo.RedirectStandardOutput = true;
             startInfo.RedirectStandardError = false;
             startInfo.CreateNoWindow = true;
-            startInfo.WorkingDirectory = git工作路径;
+            startInfo.WorkingDirectory = initialize.加载路径;
 
             process.StartInfo = startInfo;
             process.Start();
@@ -384,7 +336,7 @@ namespace Awake.Views.Pages
             startInfo.RedirectStandardOutput = true;
             startInfo.RedirectStandardError = false;
             startInfo.CreateNoWindow = true;
-            startInfo.WorkingDirectory = git工作路径;
+            startInfo.WorkingDirectory = initialize.加载路径;
 
             process.StartInfo = startInfo;
             process.Start();
@@ -403,12 +355,12 @@ namespace Awake.Views.Pages
             process = new Process();
             startInfo = new ProcessStartInfo();
             startInfo.FileName = @"git.exe";
-            startInfo.Arguments = " log --oneline origin master --pretty=\"%h^^%s^^%cd\" --date=\"short\" -n 1";
+            startInfo.Arguments = " log --oneline origin master --pretty=\"%h^^%s^^%cd\" --date=format:\"%Y-%m-%d %H:%M:%S\" -n 1";
             startInfo.UseShellExecute = false;
             startInfo.RedirectStandardOutput = true;
             startInfo.RedirectStandardError = false;
             startInfo.CreateNoWindow = true;
-            startInfo.WorkingDirectory = git工作路径;
+            startInfo.WorkingDirectory = initialize.加载路径;
 
             process.StartInfo = startInfo;
             process.Start();
@@ -428,7 +380,7 @@ namespace Awake.Views.Pages
             startInfo2.UseShellExecute = true;
             startInfo2.RedirectStandardOutput = false;
             startInfo2.CreateNoWindow = false;
-            startInfo2.WorkingDirectory = git工作路径;
+            startInfo2.WorkingDirectory = initialize.加载路径;
 
             process2.StartInfo = startInfo2;
             process2.Start();

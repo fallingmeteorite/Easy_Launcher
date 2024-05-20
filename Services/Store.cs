@@ -13,6 +13,8 @@ namespace Awake.Services
 {
     public static class Store
     {
+        public static List<ExtRemote> extRemote;
         public static ObservableCollection<ExtItem> extLocal;
+        public static ExtRemote extWebui;
     }
 }

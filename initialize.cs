@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Text;
 using System.Windows.Forms;
@@ -78,9 +79,21 @@ namespace Awake
         public static int _UseGPUindex = 0;
         public static string 相册图片数量 = "";
         public static string 参数列表 = "";//所有启动时传递的参数挂到这里，全局可编辑与访问
+        public static string 加载路径;
 
         public static void Read_setting()
         {
+
+            if (initialize.启用自定义路径 == true)
+            {
+                initialize.加载路径 = initialize.本地路径;
+            }
+            else
+            {
+                initialize.加载路径 = initialize.工作路径;
+            }
+
+
             string filePath = @".AI_launther_log\setting.txt"; // 文本文件路径
 
             try

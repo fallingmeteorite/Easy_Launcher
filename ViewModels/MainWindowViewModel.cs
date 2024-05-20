@@ -79,6 +79,15 @@ namespace Awake.ViewModels
                     Icon = SymbolRegular.ArrowSyncCheckmark20,
                     PageType = typeof(Views.Pages.Code)
                 },
+                                new NavigationItem()
+                {
+                    Width = 140,
+                    HorizontalAlignment = System.Windows.HorizontalAlignment.Left,
+                    Content = "插件修改",
+                    PageTag = "Exts",
+                    Icon = SymbolRegular.ArrowSyncCheckmark20,
+                    PageType = typeof(Views.Pages.Exts)
+                },
                 new NavigationItem()
                 {
                     Width = 140,
@@ -93,8 +102,6 @@ namespace Awake.ViewModels
 
             NavigationFooter = new ObservableCollection<INavigationControl>
             {
-
-
                 new NavigationItem()
                 {
                     Width = 140,
