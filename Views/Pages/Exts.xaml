@@ -11,24 +11,22 @@
     <StackPanel>
         <StackPanel Orientation="Horizontal">
             <StackPanel Margin="5" Orientation="Horizontal" Width="auto">
+                <ui:SymbolIcon Symbol="Folder16" Width="20" />
                 <Button  Margin="5" Content="打开目录" Click="Button_Click"></Button>
-                <!--<Button  Margin="5" Content="检查所有" Click="CheckUpdate_Click"></Button>-->
+                <ui:SymbolIcon Symbol="ArrowSync20" Width="20" />
                 <Button  Margin="5" Content="刷新列表" Click="Refresh_Click"></Button>
+                <ui:SymbolIcon Symbol="ArrowSortDown20" Width="20" />
                 <Button  Margin="5" Content="安装扩展" Click="Setup_Click"></Button>
             </StackPanel>
-            <!--<StackPanel Width="430" VerticalAlignment="Center">
-                <ui:ToggleSwitch>国内加速</ui:ToggleSwitch>
-            </StackPanel>-->
         </StackPanel>
         <DataGrid x:Name="exts"
                  AutoGenerateColumns="False" MaxHeight="720">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="插件名称" Binding="{Binding Name}" Width="*"/>
-                <DataGridTextColumn Header="云端地址" Binding="{Binding GitUrl}" Width="*"/>
-                <DataGridTextColumn Header="hash" Binding="{Binding Hash}" Width="*"/>
-                <DataGridTextColumn Header="日期" Binding="{Binding Date}" Width="*"/>
-                <!--<DataGridCheckBoxColumn Header="最新?" Binding="{Binding hasUpdate}" Width="60"></DataGridCheckBoxColumn>-->
-                <DataGridTemplateColumn Header="操作" Width="*">
+                <DataGridTextColumn Header="插件名称" Binding="{Binding Name}" CanUserResize="False" IsReadOnly="True"  Width="200"/>
+                <DataGridTextColumn Header="云端地址" Binding="{Binding GitUrl}" CanUserResize="False" IsReadOnly="True"  Width="*"/>
+                <DataGridTextColumn Header="hash" Binding="{Binding Hash}" CanUserResize="False" IsReadOnly="True"  Width="80"/>
+                <DataGridTextColumn Header="日期" Binding="{Binding Date}" CanUserResize="False" IsReadOnly="True"  Width="140"/>
+                <DataGridTemplateColumn Header="操作" Width="190">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
