@@ -56,7 +56,7 @@ namespace Awake.Views.Windows
 
             Process process = new Process();
             ProcessStartInfo startInfo = new ProcessStartInfo();
-            startInfo.FileName = @"git.exe";
+            startInfo.FileName = initialize.gitPath_use + @"\mingw64\libexec\git-core\git.exe";
             startInfo.Arguments = " log --oneline --pretty=\"%h^^%s^^%cd\" --date=format:\"%Y-%m-%d %H:%M:%S\" -n 1";
             startInfo.UseShellExecute = false;
             startInfo.RedirectStandardOutput = true;
@@ -72,7 +72,7 @@ namespace Awake.Views.Windows
 
             process = new Process();
             startInfo = new ProcessStartInfo();
-            startInfo.FileName = @"git.exe";
+            startInfo.FileName = initialize.gitPath_use + @"\mingw64\libexec\git-core\git.exe";
             startInfo.Arguments = "  remote -v";
             startInfo.UseShellExecute = false;
             startInfo.RedirectStandardOutput = true;
@@ -116,12 +116,9 @@ namespace Awake.Views.Windows
         private void InitializeData(string ext)
         {
             var jsonOptions = new JsonSerializerOptions(JsonSerializerDefaults.Web);
-            var jf = File.ReadAllText("exttag.json");
-            tags = JsonSerializer.Deserialize<List<ExtTagItem>>(jf, jsonOptions);
-
             Process process = new Process();
             ProcessStartInfo startInfo = new ProcessStartInfo();
-            startInfo.FileName = @"git.exe";
+            startInfo.FileName = initialize.gitPath_use + @"\mingw64\libexec\git-core\git.exe";
             startInfo.Arguments = "  --no-pager log main --pretty=\"%h^^%s^^%cd\" --date=format:\"%Y-%m-%d %H:%M:%S\" -n 150";
             startInfo.UseShellExecute = false;
             startInfo.RedirectStandardOutput = true;
@@ -183,7 +180,7 @@ namespace Awake.Views.Windows
             {
                 process = new Process();
                 startInfo = new ProcessStartInfo();
-                startInfo.FileName = @"git.exe";
+                startInfo.FileName = initialize.gitPath_use + @"\mingw64\libexec\git-core\git.exe";
                 startInfo.Arguments = "  --no-pager log master --pretty=\"%h^^%s^^%cd\" --date=format:\"%Y-%m-%d %H:%M:%S\" -n 150";
                 startInfo.UseShellExecute = false;
                 startInfo.RedirectStandardOutput = true;
@@ -262,7 +259,7 @@ namespace Awake.Views.Windows
 
             Process process = new Process();
             ProcessStartInfo startInfo = new ProcessStartInfo();
-            startInfo.FileName = @"git.exe";
+            startInfo.FileName = initialize.gitPath_use + @"\mingw64\libexec\git-core\git.exe";
             startInfo.Arguments = " checkout " + hash;
             startInfo.UseShellExecute = false;
             startInfo.RedirectStandardOutput = true;
@@ -278,7 +275,7 @@ namespace Awake.Views.Windows
 
             process = new Process();
             startInfo = new ProcessStartInfo();
-            startInfo.FileName = @"git.exe";
+            startInfo.FileName =initialize.gitPath_use + @"\mingw64\libexec\git-core\git.exe";
             startInfo.Arguments = " log --oneline --pretty=\"%h^^%s^^%cd\" --date=format:\"%Y-%m-%d %H:%M:%S\" -n 1";
             startInfo.UseShellExecute = false;
             startInfo.RedirectStandardOutput = true;
@@ -294,7 +291,7 @@ namespace Awake.Views.Windows
 
             process = new Process();
             startInfo = new ProcessStartInfo();
-            startInfo.FileName = @"git.exe";
+            startInfo.FileName = initialize.gitPath_use + @"\mingw64\libexec\git-core\git.exe";
             startInfo.Arguments = " remote -v";
             startInfo.UseShellExecute = false;
             startInfo.RedirectStandardOutput = true;
