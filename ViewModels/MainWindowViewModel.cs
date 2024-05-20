@@ -76,7 +76,7 @@ namespace Awake.ViewModels
                     HorizontalAlignment = System.Windows.HorizontalAlignment.Left,
                     Content = "版本修改",
                     PageTag = "Code",
-                    Icon = SymbolRegular.ArrowSyncCheckmark20,
+                    Icon = SymbolRegular.BranchFork20,
                     PageType = typeof(Views.Pages.Code)
                 },
                                 new NavigationItem()
@@ -85,7 +85,7 @@ namespace Awake.ViewModels
                     HorizontalAlignment = System.Windows.HorizontalAlignment.Left,
                     Content = "插件修改",
                     PageTag = "Exts",
-                    Icon = SymbolRegular.ArrowSyncCheckmark20,
+                    Icon = SymbolRegular.ClipboardText32,
                     PageType = typeof(Views.Pages.Exts)
                 },
                 new NavigationItem()
