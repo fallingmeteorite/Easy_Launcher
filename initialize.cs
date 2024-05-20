@@ -80,19 +80,33 @@ namespace Awake
         public static string 相册图片数量 = "";
         public static string 参数列表 = "";//所有启动时传递的参数挂到这里，全局可编辑与访问
         public static string 加载路径;
+        public static string gitPath_use;
 
         public static void Read_setting()
         {
 
+            if (initialize.本地路径.Length == 3)
+            {
+                initialize.本地路径 = initialize.本地路径.Substring(0, initialize.本地路径.Length - 1);
+            }
+
+
+            if (initialize.工作路径.Length == 3)
+            {
+                initialize.工作路径 = initialize.工作路径.Substring(0, initialize.工作路径.Length - 1);
+            }
+
             if (initialize.启用自定义路径 == true)
             {
                 initialize.加载路径 = initialize.本地路径;
+                initialize.gitPath_use = initialize.gitPath;
+                 
             }
             else
             {
                 initialize.加载路径 = initialize.工作路径;
+                initialize.gitPath_use = initialize.工作路径 + @"\GIT";
             }
-
 
             string filePath = @".AI_launther_log\setting.txt"; // 文本文件路径
 
