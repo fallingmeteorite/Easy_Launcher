@@ -32,11 +32,20 @@ namespace Awake.Views.Pages
     {
         public Exts()
         {
+            if (initialize.启用自定义路径)
+            {
+                if (!File.Exists(initialize.gitPath_use + @"\mingw64\libexec\git-core\git.exe"))
+                {
+                    System.Windows.MessageBox.Show("自定义GIT路径错误或未选择，程序错误即将关闭！");
+                    Process.GetCurrentProcess().Kill();
+                }
+            }
+
             if (initialize.本地路径 == "")
             {
-                if (initialize.工作路径 == "")
+                if (!File.Exists(initialize.工作路径 + @"\GIT\mingw64\libexec\git-core\git.exe"))
                 {
-                    System.Windows.MessageBox.Show("未选择工作路径，程序错误即将关闭！");
+                    System.Windows.MessageBox.Show("工作路径下即整合包未存在GIT，程序错误即将关闭！");
                     Process.GetCurrentProcess().Kill();
                 }
 
@@ -56,7 +65,7 @@ namespace Awake.Views.Pages
 
             Process process = new Process();
             ProcessStartInfo startInfo = new ProcessStartInfo();
-            startInfo.FileName = @"git.exe";
+            startInfo.FileName = initialize.gitPath_use + @"\mingw64\libexec\git-core\git.exe";
             startInfo.Arguments = " reset --hard";
             startInfo.UseShellExecute = false;
             startInfo.RedirectStandardOutput = true;
@@ -68,7 +77,7 @@ namespace Awake.Views.Pages
 
             process = new Process();
             startInfo = new ProcessStartInfo();
-            startInfo.FileName = @"git.exe";
+            startInfo.FileName = initialize.gitPath_use + @"\mingw64\libexec\git-core\git.exe";
             startInfo.Arguments = " pull";
             startInfo.UseShellExecute = true;
             startInfo.RedirectStandardOutput = false;
