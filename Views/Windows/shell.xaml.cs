@@ -171,14 +171,7 @@ namespace Awake.Views.Windows
                 if (启用自定义路径 == true)
                 {
 
-                    if (本地路径.Length == 3)
-                    {
-                        工作路径_start = 本地路径.Substring(0, 本地路径.Length - 1);
-                    }
-                    else
-                    {
-                        工作路径_start = 本地路径;
-                    }
+                    工作路径_start = 本地路径;
 
                     if (File.Exists(venvPath + @"\python.exe"))
                     {
@@ -235,14 +228,7 @@ namespace Awake.Views.Windows
                 else
                 {
 
-                    if (工作路径.Length == 3)
-                    {
-                        工作路径_start = 工作路径.Substring(0, 工作路径.Length - 1);
-                    }
-                    else
-                    {
-                        工作路径_start = 工作路径;
-                    }
+                    工作路径_start = 工作路径;
 
                     标准输出流.AppendText(工作路径_start + @"\launch.py" + 参数列表 + _WebUI显存压力优化设置 + _WebUI主题颜色 + "\n");
                     startinfo.FileName = 工作路径_start + @"\Python3.10\python.exe";
