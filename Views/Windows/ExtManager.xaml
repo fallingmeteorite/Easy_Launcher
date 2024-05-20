@@ -11,10 +11,10 @@
     <ui:DataGrid x:Name="extDirs"
                  AutoGenerateColumns="False" >
         <DataGrid.Columns>
-            <DataGridTextColumn Header="名称" Binding="{Binding Name}" Width="180"/>
-            <DataGridTextColumn Header="描述" Binding="{Binding Desc}" Width="*"></DataGridTextColumn>
-            <DataGridTextColumn Header="地址" Binding="{Binding URL}" Width="200"></DataGridTextColumn>
-            <DataGridCheckBoxColumn Header="已安装" Binding="{Binding Setup}" Width="35"></DataGridCheckBoxColumn>
+            <DataGridTextColumn Header="名称" Binding="{Binding Name}" CanUserResize="False" IsReadOnly="True" Width="180"/>
+            <DataGridTextColumn Header="描述" Binding="{Binding Desc}" CanUserResize="False" IsReadOnly="True" Width="*"></DataGridTextColumn>
+            <DataGridTextColumn Header="地址" Binding="{Binding URL}" CanUserResize="False" IsReadOnly="True" Width="200"></DataGridTextColumn>
+            <DataGridCheckBoxColumn Header="安装" Binding="{Binding Setup}" CanUserResize="False" IsReadOnly="True" Width="35"></DataGridCheckBoxColumn>
             <DataGridTemplateColumn Header="操作" Width="100">
                 <DataGridTemplateColumn.CellTemplate>
                     <DataTemplate>
