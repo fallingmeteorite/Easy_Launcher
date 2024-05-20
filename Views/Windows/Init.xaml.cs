@@ -28,22 +28,6 @@ namespace Awake.Views.Windows
     /// </summary>
     public partial class Init : UiWindow
     {
-        private string 插件路径;
-
-        public Init()
-        {
-            if (initialize.本地路径 == "")
-            {
-                if (initialize.工作路径 == "")
-                {
-                    System.Windows.MessageBox.Show("未选择工作路径，程序错误即将关闭！");
-                    Process.GetCurrentProcess().Kill();
-                }
-
-            }
-
-            InitializeComponent();
-        }
 
         public static void InitExtData()
         {
@@ -57,7 +41,7 @@ namespace Awake.Views.Windows
 
             process = new Process();
             startInfo = new ProcessStartInfo();
-            startInfo.FileName = @"git.exe";
+            startInfo.FileName = initialize.gitPath_use + @"\mingw64\libexec\git-core\git.exe";
             startInfo.Arguments = " config --global --add safe.directory *";
             startInfo.UseShellExecute = false;
             startInfo.RedirectStandardOutput = false;
@@ -87,7 +71,7 @@ namespace Awake.Views.Windows
             {
                 process = new Process();
                 startInfo = new ProcessStartInfo();
-                startInfo.FileName = @"git.exe";
+                startInfo.FileName = initialize.gitPath_use + @"\mingw64\libexec\git-core\git.exe";
                 startInfo.Arguments = " remote -v ";
                 startInfo.UseShellExecute = false;
                 startInfo.RedirectStandardOutput = true;
@@ -111,7 +95,7 @@ namespace Awake.Views.Windows
 
                     process = new Process();
                     startInfo = new ProcessStartInfo();
-                    startInfo.FileName = @"git.exe";
+                    startInfo.FileName = initialize.gitPath_use + @"\mingw64\libexec\git-core\git.exe";
                     startInfo.Arguments = " remote set-url origin "+ "https://github.com/AUTOMATIC1111/stable-diffusion-webui/tree/" + item1.GitUrl.Split("//")[item1.GitUrl.Split("//").Length-1].Split("/")[2];
                     startInfo.UseShellExecute = false;
                     startInfo.RedirectStandardOutput = true;
@@ -124,7 +108,7 @@ namespace Awake.Views.Windows
 
                     process = new Process();
                     startInfo = new ProcessStartInfo();
-                    startInfo.FileName = @"git.exe";
+                    startInfo.FileName = initialize.gitPath_use + @"\mingw64\libexec\git-core\git.exe";
                     startInfo.Arguments = " log --oneline --pretty=\"%h^^%s^^%cd\" --date=format:\"%Y-%m-%d %H:%M:%S\" -n 1";
                     startInfo.UseShellExecute = false;
                     startInfo.RedirectStandardOutput = true;
