@@ -30,7 +30,7 @@ namespace Awake.Views.Windows
             var jsonOptions = new JsonSerializerOptions(JsonSerializerDefaults.Web);
 
             using (var request = new HttpRequestMessage(HttpMethod.Get,
-                "https://github.com/AUTOMATIC1111/stable-diffusion-webui/wiki/Extensions-index.md"))
+                "https://raw.githubusercontent.com/wiki/AUTOMATIC1111/stable-diffusion-webui/Extensions-index.md"))
             {
                 var response = httpClient.Send(request);
 
@@ -69,7 +69,7 @@ namespace Awake.Views.Windows
 
             Process process = new Process();
             ProcessStartInfo startInfo = new ProcessStartInfo();
-            startInfo.FileName = @"git.exe";
+            startInfo.FileName = initialize.gitPath_use + @"\mingw64\libexec\git-core\git.exe";
             startInfo.Arguments = " clone " + btn.Tag;
             startInfo.UseShellExecute = true;
             startInfo.RedirectStandardOutput = false;
