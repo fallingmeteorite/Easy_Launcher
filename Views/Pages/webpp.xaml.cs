@@ -1,4 +1,4 @@
-﻿using Awake.Views.Windows;
+﻿﻿using Awake.Views.Windows;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -73,47 +73,47 @@ namespace Awake.Views.Pages
 
         public webpp()
         {
+            InitializeComponent();
+            GetSystemInfo();
 
             if (File.Exists(@".AI_launther_log\startpath.txt") == false)
-            {
-
-                InitializeComponent();
-                GetSystemInfo();
+            {    
                 File.WriteAllText(@".AI_launther_log\startpath.txt", "暂未设置部署路径");
                 磁盘剩余显示.Text = "磁盘剩余空间：未知";
 
-                工作路径展示.Text = initialize.工作路径;
+                工作路径展示.Text = "暂未设置部署路径";
+            }
+            else
+            {
+                工作路径展示.Text =initialize.工作路径;
+            }
+            if (initialize.gitPath != "")
+            {
+                Git路径展示.Text = initialize.gitPath;
+            }
+            else
+            {
+                Git路径展示.Text = "暂未设置部署路径";
+            }
 
-                if (initialize.gitPath != "")
-                {
-                    Git路径展示.Text = initialize.gitPath;
-                }
-                else
-                {
-                    Git路径展示.Text = "暂未设置部署路径";
-                }
+            if (initialize.venvPath != "")
+            {
+                VENV路径展示.Text = initialize.venvPath;
 
-                if (initialize.venvPath != "")
-                {
-                    VENV路径展示.Text = initialize.venvPath;
+            }
+            else
+            {
+                VENV路径展示.Text = "暂未设置部署路径";
+            }
 
-                }
-                else
-                {
-                    VENV路径展示.Text = "暂未设置部署路径";
-                }
+            if (initialize.本地路径 != "")
+            {
+                本地工作路径展示.Text = initialize.本地路径;
 
-                if (initialize.本地路径 != "")
-                {
-                    本地工作路径展示.Text = initialize.本地路径;
-
-                }
-                else
-                {
-                    本地工作路径展示.Text = "暂未设置部署路径";
-                }
-
-
+            }
+            else
+            {
+                本地工作路径展示.Text = "暂未设置部署路径";
             }
 
             try
