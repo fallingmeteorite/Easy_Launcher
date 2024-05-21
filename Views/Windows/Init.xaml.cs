@@ -119,7 +119,6 @@ namespace Awake.Views.Windows
                             if (item1.GitUrl.Split("//")[item1.GitUrl.Split("//").Length - 1].Split("/")[2].Replace(".git", "") == Store.extRemote[j].url.Split("//")[1].Split("/")[2].Replace(".git", ""))
                             {
                                 item1.hasUpdate = true;
-                                //Debug.WriteLine(Store.extRemote[j].url);
                                 if (item1.Hash == Store.extRemote[j].hash)
                                 {
                                     item1.hasUpdate = false;
