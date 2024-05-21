@@ -114,6 +114,7 @@ namespace Awake.Views.Windows
         public string url { get; set; }
         public string description { get; set; }
         public string added { get; set; }
+        public string[] Tags { get; set; }
     }
 
     public class Extension2
@@ -123,5 +124,6 @@ namespace Awake.Views.Windows
         public string Desc { get; set; }
         public string Addad { get; set; }
         public bool Setup { get; set; }
+        public string[] Tags { get; set; }
     }
 }
