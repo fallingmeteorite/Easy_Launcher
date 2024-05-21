@@ -74,6 +74,20 @@ namespace Awake.Views.Pages
         {
             Button btn = (Button)sender;
 
+            Process process1 = new Process();
+            ProcessStartInfo startInfo1 = new ProcessStartInfo();
+            startInfo1.FileName = initialize.gitPath_use + @"\mingw64\libexec\git-core\git.exe";
+            startInfo1.Arguments = " fetch  --all"; //同步云端更新日志到本地
+            startInfo1.UseShellExecute = false;
+            startInfo1.RedirectStandardOutput = true;
+            startInfo1.RedirectStandardError = false;
+            startInfo1.CreateNoWindow = true;
+            startInfo1.WorkingDirectory = (string)btn.Tag;
+
+            process1.StartInfo = startInfo1;
+            process1.Start();
+            process1.WaitForExit();
+
             Process process = new Process();
             ProcessStartInfo startInfo = new ProcessStartInfo();
             startInfo.FileName = initialize.gitPath_use + @"\mingw64\libexec\git-core\git.exe";
@@ -101,6 +115,8 @@ namespace Awake.Views.Pages
 
             Init.InitExtData();
             exts.ItemsSource = Store.extLocal;
+            System.Windows.MessageBox.Show("安装完成,请继续操作");
+
         }
         private void openExt_Click(object sender, RoutedEventArgs e)
         {
@@ -115,11 +131,19 @@ namespace Awake.Views.Pages
         }
         private void verManager_Click(object sender, RoutedEventArgs e)
         {
-            Button btn = (Button)sender;
-            int idx = int.Parse(btn.Tag.ToString());
+            try
+            {
+                Button btn = (Button)sender;
+                int idx = int.Parse(btn.Tag.ToString());
 
-            VerManager ma = new VerManager(Store.extLocal[idx].GitUrl, Store.extLocal[idx].Path);
-            ma.Show();
+                VerManager ma = new VerManager(Store.extLocal[idx].GitUrl, Store.extLocal[idx].Path);
+                ma.Show();
+            }
+            catch
+            {
+                System.Windows.MessageBox.Show("获取失败,可能是插件问题");
+            }
+            
         }
         private void Refresh_Click(object sender, RoutedEventArgs e)
         {
