@@ -95,7 +95,7 @@ namespace Awake.Views.Pages
         {
             Button btn = (Button)sender;
             string ext = btn.Tag.ToString();
-            Process.Start("Explorer.exe", initialize.加载路径 + ext);
+            Process.Start("Explorer.exe", ext);
         }
         private void Setup_Click(object sender, RoutedEventArgs e)
         {
