@@ -13,6 +13,7 @@ using System.Collections.ObjectModel;
 using Awake.Models;
 using System.Windows.Controls;
 using Wpf.Ui.Controls;
+using System.Security.Policy;
 
 namespace Awake.Views.Windows
 {
@@ -70,7 +71,7 @@ namespace Awake.Views.Windows
             Process process = new Process();
             ProcessStartInfo startInfo = new ProcessStartInfo();
             startInfo.FileName = initialize.gitPath_use + @"\mingw64\libexec\git-core\git.exe";
-            startInfo.Arguments = " clone " + btn.Tag;
+            startInfo.Arguments = " clone " + btn.Tag; 
             startInfo.UseShellExecute = true;
             startInfo.RedirectStandardOutput = false;
             startInfo.CreateNoWindow = false;
@@ -114,7 +115,7 @@ namespace Awake.Views.Windows
         public string url { get; set; }
         public string description { get; set; }
         public string added { get; set; }
-        public string[] Tags { get; set; }
+        public bool Setup { get; set; }
     }
 
     public class Extension2
@@ -124,6 +125,5 @@ namespace Awake.Views.Windows
         public string Desc { get; set; }
         public string Addad { get; set; }
         public bool Setup { get; set; }
-        public string[] Tags { get; set; }
     }
 }
