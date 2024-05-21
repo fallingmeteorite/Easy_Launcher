@@ -54,6 +54,20 @@ namespace Awake.Views.Windows
 
             InitializeComponent();
 
+            Process process1 = new Process();
+            ProcessStartInfo startInfo1 = new ProcessStartInfo();
+            startInfo1.FileName = initialize.gitPath_use + @"\mingw64\libexec\git-core\git.exe";
+            startInfo1.Arguments = " fetch  --all";
+            startInfo1.UseShellExecute = false;
+            startInfo1.RedirectStandardOutput = true;
+            startInfo1.RedirectStandardError = false;
+            startInfo1.CreateNoWindow = true;
+            startInfo1.WorkingDirectory = ext;
+
+            process1.StartInfo = startInfo1;
+            process1.Start();
+            process1.WaitForExit();
+
             Process process = new Process();
             ProcessStartInfo startInfo = new ProcessStartInfo();
             startInfo.FileName = initialize.gitPath_use + @"\mingw64\libexec\git-core\git.exe";
@@ -94,20 +108,6 @@ namespace Awake.Views.Windows
             currHash = (string)lblCurrHash.Content;
 
             InitializeData(ext);
-
-            for (int i = 0; i < tags.Count; i++)
-            {
-                if (currExt != tags[i].Ext) continue;
-                CommitItem item1 = new CommitItem();
-                item1.Hash = tags[i].Hash;
-                item1.Message = tags[i].Message;
-                item1.Date = tags[i].Date;
-                item1.Tag = tags[i].Tag;
-                item1.Id = i;
-                item1.Enable = true;
-                item1.Checked = false;
-                CommiteTagCollection.Add(item1);
-            }
 
             commit.ItemsSource  = CommiteCollection;
             commit2.ItemsSource = CommiteTagCollection;
@@ -152,15 +152,6 @@ namespace Awake.Views.Windows
                 item1.Id = idx++;
                 item1.Enable = true;
                 item1.Checked = false;
-
-                for (int j = 0; j < tags.Count(); j++)
-                {
-                    if (currExt != tags[j].Ext) continue;
-                    if (item1.Hash == tags[j].Hash)
-                    {
-                        item1.Tag = tags[j].Tag;
-                    }
-                }
 
                 if (currHash == item1.Hash)
                 {
@@ -335,4 +326,7 @@ namespace Awake.Views.Windows
         }
 
     }
+
+
+
 }
