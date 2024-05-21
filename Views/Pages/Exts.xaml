@@ -24,7 +24,7 @@
             <DataGrid.Columns>
                 <DataGridTextColumn Header="插件名称" Binding="{Binding Name}" CanUserResize="False" IsReadOnly="True"  Width="200"/>
                 <DataGridTextColumn Header="云端地址" Binding="{Binding GitUrl}" CanUserResize="False" IsReadOnly="True"  Width="*"/>
-                <DataGridTextColumn Header="hash" Binding="{Binding Hash}" CanUserResize="False" IsReadOnly="True"  Width="80"/>
+                <DataGridTextColumn Header="hash" Binding="{Binding Hash}" CanUserResize="False" IsReadOnly="True"  Width="60"/>
                 <DataGridTextColumn Header="日期" Binding="{Binding Date}" CanUserResize="False" IsReadOnly="True"  Width="140"/>
                 <DataGridTemplateColumn Header="操作" Width="190">
                     <DataGridTemplateColumn.CellTemplate>
