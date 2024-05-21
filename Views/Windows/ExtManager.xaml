@@ -19,7 +19,7 @@
                 <DataGridTemplateColumn.CellTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
-                            <Button Content="安装此版本"  Tag="{Binding Hash}" Click="Setup_Click" Width="100"/>
+                            <Button Content="安装此版本"  Tag="{Binding URL}" Click="Setup_Click" Width="100"/>
                         </StackPanel>
                     </DataTemplate>
                 </DataGridTemplateColumn.CellTemplate>
