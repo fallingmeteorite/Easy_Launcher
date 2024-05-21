@@ -57,7 +57,7 @@ namespace Awake.Views.Windows
             Process process1 = new Process();
             ProcessStartInfo startInfo1 = new ProcessStartInfo();
             startInfo1.FileName = initialize.gitPath_use + @"\mingw64\libexec\git-core\git.exe";
-            startInfo1.Arguments = " fetch  --all";
+            startInfo1.Arguments = " fetch  --all"; //同步云端更新日志到本地
             startInfo1.UseShellExecute = false;
             startInfo1.RedirectStandardOutput = true;
             startInfo1.RedirectStandardError = false;
