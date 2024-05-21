@@ -308,22 +308,9 @@ namespace Awake.Views.Windows
 
             InitializeData(currExt);
 
-            for (int i = 0; i < tags.Count; i++)
-            {
-                if (currExt != tags[i].Ext) continue;
-                CommitItem item1 = new CommitItem();
-                item1.Hash = tags[i].Hash;
-                item1.Message = tags[i].Message;
-                item1.Date = tags[i].Date;
-                item1.Tag = tags[i].Tag;
-                item1.Id = i;
-                item1.Enable = true;
-                item1.Checked = false;
-                CommiteTagCollection.Add(item1);
-            }
-
             commit.ItemsSource = CommiteCollection;
             commit2.ItemsSource = CommiteTagCollection;
+            System.Windows.MessageBox.Show("安装完成,请继续操作");
         }
 
     }
