@@ -55,7 +55,7 @@ namespace Awake.Views.Windows
             var httpClient = new HttpClient();
             var jsonOptions = new JsonSerializerOptions(JsonSerializerDefaults.Web);
             using (var request = new HttpRequestMessage(HttpMethod.Get,
-                "https://raw.githubusercontent.com/Fymphony/automatic111-webui-exts/master/exts_ver.json"))
+                "https://raw.githubusercontent.com/fallingmeteorite/automatic111-webui-exts/master/exts_ver.json"))
             {
                 var response = httpClient.Send(request);
                 response.EnsureSuccessStatusCode();
@@ -118,14 +118,11 @@ namespace Awake.Views.Windows
                         {
                             if (item1.GitUrl.Split("//")[item1.GitUrl.Split("//").Length - 1].Split("/")[2].Replace(".git", "") == Store.extRemote[j].url.Split("//")[1].Split("/")[2].Replace(".git", ""))
                             {
+                                item1.hasUpdate = true;
                                 //Debug.WriteLine(Store.extRemote[j].url);
                                 if (item1.Hash == Store.extRemote[j].hash)
                                 {
                                     item1.hasUpdate = false;
-                                }
-                                else
-                                {
-                                    item1.hasUpdate = true;
                                 }
                             }
                         }
