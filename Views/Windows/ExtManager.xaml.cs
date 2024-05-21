@@ -39,7 +39,7 @@ namespace Awake.Views.Windows
                 exts = JsonSerializer.Deserialize<ExtObj>(stream, jsonOptions);
                 var extsDir1 = Directory.EnumerateDirectories(initialize.加载路径 + @"\extensions");
 
-                for (var i = 0; i<exts.extensions.Count(); i++)
+                for (var i = 0; i < exts.extensions.Count(); i++)
                 {
                     Extension2 ext2 = new Extension2();
                     ext2.Name = exts.extensions[i].name;
@@ -82,7 +82,7 @@ namespace Awake.Views.Windows
 
             ExtCollection.Clear();
             var extsDir1 = Directory.EnumerateDirectories(initialize.加载路径 + @"\extensions");
-            for (var i = 0; i<exts.extensions.Count(); i++)
+            for (var i = 0; i < exts.extensions.Count(); i++)
             {
                 Extension2 ext2 = new Extension2();
                 ext2.Name = exts.extensions[i].name;
