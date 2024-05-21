@@ -34,14 +34,25 @@ namespace Awake.Views.Pages
         {
             if (initialize.启用自定义路径)
             {
+                initialize.加载路径 = initialize.本地路径;
+                initialize.gitPath_use = initialize.gitPath;
+
+            }
+            else
+            {
+                initialize.加载路径 = initialize.工作路径;
+                initialize.gitPath_use = initialize.工作路径 + @"\GIT";
+            }
+
+            if (initialize.启用自定义路径)
+            {
                 if (!File.Exists(initialize.gitPath_use + @"\mingw64\libexec\git-core\git.exe"))
                 {
                     System.Windows.MessageBox.Show("自定义GIT路径错误或未选择，程序错误即将关闭！");
                     Process.GetCurrentProcess().Kill();
                 }
             }
-
-            if (initialize.本地路径 == "")
+            else
             {
                 if (!File.Exists(initialize.工作路径 + @"\GIT\mingw64\libexec\git-core\git.exe"))
                 {
