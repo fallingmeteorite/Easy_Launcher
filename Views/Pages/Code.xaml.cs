@@ -26,11 +26,11 @@ namespace Awake.Views.Pages
 
         public Code()
         {
-
             if (initialize.启用自定义路径)
             {
                 if (!File.Exists(initialize.gitPath_use + @"\mingw64\libexec\git-core\git.exe"))
                 {
+                    File.WriteAllText(@".\logs\error.txt", initialize.gitPath_use + @"\mingw64\libexec\git-core\git.exe");
                     System.Windows.MessageBox.Show("自定义GIT路径错误或未选择，程序错误即将关闭！");
                     Process.GetCurrentProcess().Kill();
                 }
