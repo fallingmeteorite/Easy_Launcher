@@ -67,7 +67,7 @@ namespace Awake.Views.Windows
                 return;
             }
             List<string> extsDir = new List<string>(Directory.EnumerateDirectories(initialize.加载路径 + @"\extensions"));
-            for (int i = 0; i<extsDir.Count(); i++)
+            for (int i = 0; i < extsDir.Count(); i++)
             {
                 process = new Process();
                 startInfo = new ProcessStartInfo();
@@ -81,12 +81,12 @@ namespace Awake.Views.Windows
                 process.StartInfo = startInfo;
                 process.Start();
                 process.WaitForExit();
-   
+
                 string msg = process.StandardOutput.ReadToEnd();
                 ExtItem item1 = new ExtItem();
                 item1.Index = i;
                 item1.Name = extsDir[i].Split("\\").LastOrDefault();
-                item1.Path =  extsDir[i];
+                item1.Path = extsDir[i];
                 if (msg.Length > 0)
                 {
                     if (msg.Split("\\n").Length <= 0) continue;
@@ -101,7 +101,7 @@ namespace Awake.Views.Windows
                     startInfo.RedirectStandardOutput = true;
                     startInfo.RedirectStandardError = false;
                     startInfo.CreateNoWindow = true;
-                    startInfo.WorkingDirectory =  extsDir[i];
+                    startInfo.WorkingDirectory = extsDir[i];
 
                     process.StartInfo = startInfo;
                     process.Start();
@@ -112,11 +112,11 @@ namespace Awake.Views.Windows
                     item1.Hash = data[0];
                     item1.Date = data[2];
 
-                    for (int j = 0; j< Store.extRemote.Count; j++)
+                    for (int j = 0; j < Store.extRemote.Count; j++)
                     {
                         if (Store.extRemote[j].url.Split("//").Length > 1)
                         {
-                            if (item1.GitUrl.Split("//")[item1.GitUrl.Split("//").Length-1].Split("/")[2].Replace(".git", "") == Store.extRemote[j].url.Split("//")[1].Split("/")[2].Replace(".git", ""))
+                            if (item1.GitUrl.Split("//")[item1.GitUrl.Split("//").Length - 1].Split("/")[2].Replace(".git", "") == Store.extRemote[j].url.Split("//")[1].Split("/")[2].Replace(".git", ""))
                             {
                                 //Debug.WriteLine(Store.extRemote[j].url);
                                 if (item1.Hash == Store.extRemote[j].hash)
@@ -130,7 +130,8 @@ namespace Awake.Views.Windows
                             }
                         }
                     }
-                }  else
+                }
+                else
                 {
                     item1.GitUrl = "异常";
                 }
