@@ -109,7 +109,7 @@ namespace Awake.Views.Windows
 
             InitializeData(ext);
 
-            commit.ItemsSource  = CommiteCollection;
+            commit.ItemsSource = CommiteCollection;
             commit2.ItemsSource = CommiteTagCollection;
         }
 
@@ -138,14 +138,14 @@ namespace Awake.Views.Windows
             process.OutputDataReceived += new DataReceivedEventHandler(delegate (object sender, DataReceivedEventArgs e)
             {
                 if (e.Data == null) return;
-                
+
                 CommitItem item1 = new CommitItem();
                 string[] itemarr = e.Data.Split("^^");
                 if (itemarr.Length < 3)
                 {
                     return;
                 }
-                
+
                 item1.Hash = itemarr[0];
                 item1.Message = itemarr[1];
                 item1.Date = itemarr[2];
@@ -234,7 +234,8 @@ namespace Awake.Views.Windows
                 {
                     CommiteCollection.Add(commits[i]);
                 }
-            } else
+            }
+            else
             {
                 for (int i = 0; i < commits.Count(); i++)
                 {
@@ -266,7 +267,7 @@ namespace Awake.Views.Windows
 
             process = new Process();
             startInfo = new ProcessStartInfo();
-            startInfo.FileName =initialize.gitPath_use + @"\mingw64\libexec\git-core\git.exe";
+            startInfo.FileName = initialize.gitPath_use + @"\mingw64\libexec\git-core\git.exe";
             startInfo.Arguments = " log --oneline --pretty=\"%h^^%s^^%cd\" --date=format:\"%Y-%m-%d %H:%M:%S\" -n 1";
             startInfo.UseShellExecute = false;
             startInfo.RedirectStandardOutput = true;
@@ -321,7 +322,7 @@ namespace Awake.Views.Windows
                 CommiteTagCollection.Add(item1);
             }
 
-            commit.ItemsSource  = CommiteCollection;
+            commit.ItemsSource = CommiteCollection;
             commit2.ItemsSource = CommiteTagCollection;
         }
 
