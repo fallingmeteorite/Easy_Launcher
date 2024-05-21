@@ -96,19 +96,6 @@ namespace Awake.Views.Windows
                     process = new Process();
                     startInfo = new ProcessStartInfo();
                     startInfo.FileName = initialize.gitPath_use + @"\mingw64\libexec\git-core\git.exe";
-                    startInfo.Arguments = " remote set-url origin "+ "https://github.com/AUTOMATIC1111/stable-diffusion-webui/tree/" + item1.GitUrl.Split("//")[item1.GitUrl.Split("//").Length-1].Split("/")[2];
-                    startInfo.UseShellExecute = false;
-                    startInfo.RedirectStandardOutput = true;
-                    startInfo.CreateNoWindow = true;
-                    startInfo.WorkingDirectory = extsDir[i]; 
-
-                    process.StartInfo = startInfo;
-                    process.Start();
-                    process.WaitForExit();
-
-                    process = new Process();
-                    startInfo = new ProcessStartInfo();
-                    startInfo.FileName = initialize.gitPath_use + @"\mingw64\libexec\git-core\git.exe";
                     startInfo.Arguments = " log --oneline --pretty=\"%h^^%s^^%cd\" --date=format:\"%Y-%m-%d %H:%M:%S\" -n 1";
                     startInfo.UseShellExecute = false;
                     startInfo.RedirectStandardOutput = true;
