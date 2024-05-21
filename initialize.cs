@@ -85,29 +85,6 @@ namespace Awake
         public static void Read_setting()
         {
 
-            if (initialize.本地路径.Length == 3)
-            {
-                initialize.本地路径 = initialize.本地路径.Substring(0, initialize.本地路径.Length - 1);
-            }
-
-
-            if (initialize.工作路径.Length == 3)
-            {
-                initialize.工作路径 = initialize.工作路径.Substring(0, initialize.工作路径.Length - 1);
-            }
-
-            if (initialize.启用自定义路径 == true)
-            {
-                initialize.加载路径 = initialize.本地路径;
-                initialize.gitPath_use = initialize.gitPath;
-                 
-            }
-            else
-            {
-                initialize.加载路径 = initialize.工作路径;
-                initialize.gitPath_use = initialize.工作路径 + @"\GIT";
-            }
-
             string filePath = @".AI_launther_log\setting.txt"; // 文本文件路径
 
             try
@@ -216,8 +193,6 @@ namespace Awake
             }
         }
 
-
-
         public static void 选择工作路径()
         {
             FolderBrowserDialog folder = new FolderBrowserDialog();
@@ -225,6 +200,10 @@ namespace Awake
             if (folder.ShowDialog() == DialogResult.OK)
             {
                 initialize.工作路径 = folder.SelectedPath;
+                if (initialize.工作路径.Length == 3)
+                {
+                    initialize.工作路径 = initialize.工作路径.Substring(0, initialize.工作路径.Length - 1);
+                }
                 File.WriteAllText(@".AI_launther_log\startpath.txt", initialize.工作路径);
             }
         }
@@ -254,10 +233,14 @@ namespace Awake
         public static void 本地运行路径()
         {
             FolderBrowserDialog folder = new FolderBrowserDialog();
-            folder.Description = "请选择本地SD所在目录";
+            folder.Description = "请选择自定义SD所在目录";
             if (folder.ShowDialog() == DialogResult.OK)
             {
                 initialize.本地路径 = folder.SelectedPath;
+                if (initialize.本地路径.Length == 3)
+                {
+                    initialize.本地路径 = initialize.本地路径.Substring(0, initialize.本地路径.Length - 1);
+                }
                 File.WriteAllText(@".AI_launther_log\startpath_local.txt", initialize.本地路径);
 
             }
@@ -330,7 +313,11 @@ namespace Awake
             {
                 // 如果文件存在，读取其中的内容到startpath全局变量中
                 initialize.工作路径 = File.ReadAllText(@".AI_launther_log\startpath.txt");
-
+              
+                if (initialize.工作路径.Length == 3)
+                {
+                    initialize.工作路径 = initialize.工作路径.Substring(0, initialize.工作路径.Length - 1);
+                }              
             }
 
 
@@ -340,7 +327,7 @@ namespace Awake
             if (File.Exists(@".AI_launther_log\gitpath.txt"))
             {
                 // 如果文件存在，读取其中的内容到gitpath全局变量中
-                initialize.gitPath = File.ReadAllText(@".AI_launther_log\gitpath.txt");
+                initialize.gitPath = File.ReadAllText(@".AI_launther_log\gitpath.txt");   
             }
         }
         public static void CheckVENVPathFile()//这里在初始化后从log里读取VENV的路径
@@ -358,6 +345,10 @@ namespace Awake
             {
                 // 如果文件存在，读取其中的内容到venvpath全局变量中
                 initialize.本地路径 = File.ReadAllText(@".AI_launther_log\startpath_local.txt");
+                if (initialize.本地路径.Length == 3)
+                {
+                    initialize.本地路径 = initialize.本地路径.Substring(0, initialize.本地路径.Length - 1);
+                }
             }
         }
         public static void 相册计数()
