@@ -106,7 +106,7 @@ namespace Awake.Views.Pages
         {
             Button btn = (Button)sender;
             int idx = int.Parse(btn.Tag.ToString());
-           
+
             VerManager ma = new VerManager(Store.extLocal[idx].GitUrl, Store.extLocal[idx].Path);
             ma.Show();
         }
