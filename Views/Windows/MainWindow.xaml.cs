@@ -267,7 +267,7 @@ namespace Awake.Views.Windows
         #endregion INavigationWindow methods
         protected override void OnClosed(EventArgs e)
         {
-            
+
             base.OnClosed(e);
             File.WriteAllText(@".AI_launther_log\UIalpha.txt", initialize.图片亮度.ToString());
             File.WriteAllText(@".AI_launther_log\UI.txt", initialize.背景颜色);
