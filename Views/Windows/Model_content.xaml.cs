@@ -120,7 +120,7 @@ namespace Awake.Views.Windows
 
 
             }
-            catch (Exception ex)
+            catch
             {
 
             }
@@ -137,8 +137,7 @@ namespace Awake.Views.Windows
                 image1.EndInit();
                 作者头像.ImageSource = image1;
             }
-            catch (
-            Exception ex)
+            catch
             {
 
             }
