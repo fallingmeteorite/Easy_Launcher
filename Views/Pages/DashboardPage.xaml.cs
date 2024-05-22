@@ -47,18 +47,18 @@ namespace Awake.Views.Pages
             {
                 ViewModel = viewModel;
                 InitializeComponent();
-                _imagePaths = new List<string> { "pack://application:,,,/Views/Pages/001.png",
-                "pack://application:,,,/Views/Pages/002.png",
-                "pack://application:,,,/Views/Pages/003.png",
-                "pack://application:,,,/Views/Pages/004.png",
-                "pack://application:,,,/Views/Pages/005.png",
-                "pack://application:,,,/Views/Pages/006.png",
-                "pack://application:,,,/Views/Pages/007.png",
-                "pack://application:,,,/Views/Pages/008.png",
-                "pack://application:,,,/Views/Pages/009.png",
-                "pack://application:,,,/Views/Pages/010.png",
-                "pack://application:,,,/Views/Pages/011.png",
-                "pack://application:,,,/Views/Pages/012.png"
+                _imagePaths = new List<string> { "pack://application:,,,/img/001.png",
+                "pack://application:,,,/img/002.png",
+                "pack://application:,,,/img/003.png",
+                "pack://application:,,,/img/004.png",
+                "pack://application:,,,/img/005.png",
+                "pack://application:,,,/img/006.png",
+                "pack://application:,,,/img/007.png",
+                "pack://application:,,,/img/008.png",
+                "pack://application:,,,/img/009.png",
+                "pack://application:,,,/img/010.png",
+                "pack://application:,,,/img/011.png",
+                "pack://application:,,,/img/012.png"
             };
                 _timer = new DispatcherTimer { Interval = TimeSpan.FromSeconds(5) };
                 _timer.Tick += TimerTick;
