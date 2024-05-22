@@ -167,7 +167,7 @@ namespace Awake.Views.Pages
                     显卡选择器.Items.Add(显卡名);
                     显卡选择器.SelectedIndex = initialize.显卡列表.Count - 1;
                 }
-                catch (Exception ex) { }
+                catch { }
             }
             initialize._GPUname = 显卡选择器.SelectedItem.ToString();
             initialize._UseGPUindex = 显卡选择器.SelectedIndex;
@@ -379,7 +379,7 @@ namespace Awake.Views.Pages
                     }
 
                 }
-                catch (Exception ex) { }
+                catch { }
             }
             if (显卡选择器.Items.Count == 0)
             {
