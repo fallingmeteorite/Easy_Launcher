@@ -111,7 +111,7 @@ x:Class="Awake.Views.Windows.shell"
 
         <Grid x:Name="SD启动" Grid.ColumnSpan="2">
             <Grid.Background>
-                <ImageBrush ImageSource="/Views/Windows/SD启动.png" Stretch="UniformToFill"/>
+                <ImageBrush ImageSource="/img/SD启动.png" Stretch="UniformToFill"/>
             </Grid.Background>
 
         </Grid>
