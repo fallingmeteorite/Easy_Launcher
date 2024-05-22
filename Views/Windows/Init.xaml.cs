@@ -114,16 +114,21 @@ namespace Awake.Views.Windows
 
                     for (int j = 0; j < Store.extRemote.Count; j++)
                     {
-                        if (Store.extRemote[j].url.Split("//").Length > 1)
+                        try
                         {
-                            if (item1.GitUrl.Split("//")[item1.GitUrl.Split("//").Length - 1].Split("/")[2].Replace(".git", "") == Store.extRemote[j].url.Split("//")[1].Split("/")[2].Replace(".git", ""))
-                            {
+                            if(item1.GitUrl.Split("//")[item1.GitUrl.Split("//").Length - 1].Split("/")[2].Replace(".git", "") == Store.extRemote[j].url.Split("//")[item1.GitUrl.Split("//").Length - 1].Split("/")[2].Replace(".git", ""))
+                        {
                                 item1.hasUpdate = true;
+
                                 if (item1.Hash == Store.extRemote[j].hash)
                                 {
                                     item1.hasUpdate = false;
                                 }
                             }
+                        }
+                        catch
+                        {
+
                         }
                     }
                 }
@@ -131,7 +136,6 @@ namespace Awake.Views.Windows
                 {
                     item1.GitUrl = "异常";
                 }
-
                 Store.extLocal.Add(item1);
             }
         }
