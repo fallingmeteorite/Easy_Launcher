@@ -73,6 +73,27 @@
     <None Remove="Assets\applicationIcon-256.png" />
     <None Remove="Assets\git_logo.png" />
     <None Remove="Assets\python_logo.png" />
+    <None Remove="img\.net.png" />
+    <None Remove="img\001.png" />
+    <None Remove="img\002.png" />
+    <None Remove="img\003.png" />
+    <None Remove="img\004.png" />
+    <None Remove="img\005.png" />
+    <None Remove="img\006.png" />
+    <None Remove="img\007.png" />
+    <None Remove="img\008.png" />
+    <None Remove="img\009.png" />
+    <None Remove="img\010.png" />
+    <None Remove="img\011.png" />
+    <None Remove="img\012.png" />
+    <None Remove="img\backui.png" />
+    <None Remove="img\github.png" />
+    <None Remove="img\mainlogo.png" />
+    <None Remove="img\Newtonsoft.png" />
+    <None Remove="img\python_logo.jpg" />
+    <None Remove="img\Ray_Source.png" />
+    <None Remove="img\SD启动.png" />
+    <None Remove="img\toolkit.png" />
     <None Remove="Ray_Source.png" />
     <None Remove="Views\Pages\.net.png" />
     <None Remove="Views\Pages\001.png" />
@@ -99,36 +120,33 @@
 
   <ItemGroup>
     <Resource Include="Assets\applicationIcon-256.png" />
+    <Resource Include="img\.net.png" />
+    <Resource Include="img\001.png" />
+    <Resource Include="img\002.png" />
+    <Resource Include="img\003.png" />
+    <Resource Include="img\004.png" />
+    <Resource Include="img\005.png" />
+    <Resource Include="img\006.png" />
+    <Resource Include="img\007.png" />
+    <Resource Include="img\008.png" />
+    <Resource Include="img\009.png" />
+    <Resource Include="img\010.png" />
+    <Resource Include="img\011.png" />
+    <Resource Include="img\012.png" />
+    <Resource Include="img\backui.png" />
+    <Resource Include="img\github.png" />
+    <Resource Include="img\mainlogo.png" />
+    <Resource Include="img\Newtonsoft.png" />
+    <Resource Include="img\python_logo.jpg" />
+    <Resource Include="img\Ray_Source.png" />
+    <Resource Include="img\SD启动.png" />
+    <Resource Include="img\toolkit.png" />
     <Resource Include="Ray_Source.png" />
-    <Resource Include="Views\Pages\006.png" />
   </ItemGroup>
 
   <ItemGroup>
     <Resource Include="Assets\git_logo.png" />
     <Resource Include="Assets\python_logo.png" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Resource Include="Views\Pages\.net.png" />
-    <Resource Include="Views\Pages\001.png" />
-    <Resource Include="Views\Pages\002.png" />
-    <Resource Include="Views\Pages\003.png" />
-    <Resource Include="Views\Pages\004.png" />
-    <Resource Include="Views\Pages\005.png" />
-    <Resource Include="Views\Pages\007.png" />
-    <Resource Include="Views\Pages\008.png" />
-    <Resource Include="Views\Pages\009.png" />
-    <Resource Include="Views\Pages\010.png" />
-    <Resource Include="Views\Pages\011.png" />
-    <Resource Include="Views\Pages\012.png" />
-    <Resource Include="Views\Pages\github.png" />
-    <Resource Include="Views\Pages\mainlogo.png" />
-    <Resource Include="Views\Pages\Newtonsoft.png" />
-    <Resource Include="Views\Pages\python_logo.jpg" />
-    <Resource Include="Views\Pages\Ray_Source.png" />
-    <Resource Include="Views\Pages\toolkit.png" />
-    <Resource Include="Views\Windows\backui.png" />
-    <Resource Include="Views\Windows\SD启动.png" />
   </ItemGroup>
 
 </Project>
