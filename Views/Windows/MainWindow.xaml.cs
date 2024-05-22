@@ -56,7 +56,9 @@ namespace Awake.Views.Windows
                     {
                         _UseGPUindex = initialize.显卡列表.Count - 1;//默认启动后选最后一张GPU，核显什么的排在前面
                     }
-                    catch (Exception ex) { }
+                    catch
+                    {
+                    }
 
                     //计算机名称类型.Text = "系统名称：" + Machinename + "   系统类型：" + systemType;
                     //计算机内存信息.Text = "内存信息：" + memorynum + " 插槽" + "  共计" + memorysize + " GB";
