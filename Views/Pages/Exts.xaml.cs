@@ -143,7 +143,7 @@ namespace Awake.Views.Pages
             {
                 System.Windows.MessageBox.Show("获取失败,可能是插件问题");
             }
-            
+
         }
         private void Refresh_Click(object sender, RoutedEventArgs e)
         {
