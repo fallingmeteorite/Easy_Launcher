@@ -116,8 +116,8 @@ namespace Awake.Views.Windows
                     {
                         try
                         {
-                            if(item1.GitUrl.Split("//")[item1.GitUrl.Split("//").Length - 1].Split("/")[2].Replace(".git", "") == Store.extRemote[j].url.Split("//")[item1.GitUrl.Split("//").Length - 1].Split("/")[2].Replace(".git", ""))
-                        {
+                            if (item1.GitUrl.Split("//")[item1.GitUrl.Split("//").Length - 1].Split("/")[2].Replace(".git", "") == Store.extRemote[j].url.Split("//")[item1.GitUrl.Split("//").Length - 1].Split("/")[2].Replace(".git", ""))
+                            {
                                 item1.hasUpdate = true;
 
                                 if (item1.Hash == Store.extRemote[j].hash)
