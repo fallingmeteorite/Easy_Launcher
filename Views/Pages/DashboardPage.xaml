@@ -88,7 +88,7 @@
                                             ">
                                     <Border x:Name="宣传01" CornerRadius="15" Height="190" Width="920">
                                         <Border.Background >
-                                            <ImageBrush x:Name="背景图"  Stretch="UniformToFill" ImageSource="/Views/Pages/004.png"/>
+                                            <ImageBrush x:Name="背景图"  Stretch="UniformToFill" ImageSource="/img/004.png"/>
                                         </Border.Background>
 
                                         <Canvas>
