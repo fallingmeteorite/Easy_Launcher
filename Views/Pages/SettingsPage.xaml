@@ -33,7 +33,7 @@
                         <StackPanel Orientation="Horizontal">
                             <Border BorderThickness="1"  CornerRadius="65" Height="130" Width="130">
                                 <Border.Background>
-                                    <ImageBrush ImageSource="/Views/Pages/Ray_Source.png"/>
+                                    <ImageBrush ImageSource="/img/Ray_Source.png"/>
                                 </Border.Background>
                                 <ui:SymbolIcon Symbol="Group20" FontSize="85" HorizontalAlignment="Left" Margin="56,52,0,0" VerticalAlignment="Top"/>
 
@@ -182,7 +182,7 @@
                 <StackPanel Orientation="Horizontal">
                     <Border Width="100" Height="100" Margin="10,0,10,0" VerticalAlignment="Top">
                         <Border.Background>
-                            <ImageBrush ImageSource="/Views/Pages/toolkit.png"/>
+                            <ImageBrush ImageSource="/img/toolkit.png"/>
                         </Border.Background>
                     </Border>
                     <StackPanel  >
@@ -204,7 +204,7 @@ THE SOFTWARE IS PROVIDED AS IS, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED
                 <StackPanel Margin="0,20,0,0" Orientation="Horizontal">
                     <Border Width="100" Height="100" Margin="10,0,10,0" VerticalAlignment="Top">
                         <Border.Background>
-                            <ImageBrush ImageSource="/Views/Pages/Newtonsoft.png"/>
+                            <ImageBrush ImageSource="/img/Newtonsoft.png"/>
                         </Border.Background>
                     </Border>
                     <StackPanel  >
@@ -240,7 +240,7 @@ The above copyright notice and this permission notice shall be included in all c
                 <StackPanel Margin="0,20,0,0" Orientation="Horizontal">
                     <Border Width="100" Height="100" Margin="10,0,10,0" VerticalAlignment="Top">
                         <Border.Background>
-                            <ImageBrush ImageSource="/Views/Pages/.net.png" Stretch="UniformToFill"/>
+                            <ImageBrush ImageSource="/img/.net.png" Stretch="UniformToFill"/>
                         </Border.Background>
                     </Border>
                     <StackPanel  >
