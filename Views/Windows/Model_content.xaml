@@ -21,7 +21,7 @@
     </ui:UiWindow.Background>
     <Grid>
         <Grid.Background>
-            <ImageBrush x:Name="主题背景图" Stretch="UniformToFill" ImageSource="/Views/Windows/backui.png" 
+            <ImageBrush x:Name="主题背景图" Stretch="UniformToFill" ImageSource="/img/backui.png" 
          />
         </Grid.Background>
 
