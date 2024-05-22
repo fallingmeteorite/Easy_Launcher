@@ -65,7 +65,7 @@ namespace Awake.Views.Pages
                 _timer.Start();
                 loatmodel(0, "", "[]", 1);
             }
-            catch (Exception ex)
+            catch
             {
             }
 
@@ -159,7 +159,7 @@ namespace Awake.Views.Pages
 
 
             }
-            catch (Exception ex)//捕获异常拿去调试或者控制404一类的UI动画逻辑
+            catch //捕获异常拿去调试或者控制404一类的UI动画逻辑
             {
 
 
