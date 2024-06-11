@@ -148,9 +148,10 @@ namespace Awake.Views.Pages
                 }
 
             }
-            catch
+            catch (Exception error)
             {
-
+                File.WriteAllText(@".\logs\error.txt", error.Message.ToString());
+                throw;
             }
         }
 
@@ -167,7 +168,11 @@ namespace Awake.Views.Pages
                     显卡选择器.Items.Add(显卡名);
                     显卡选择器.SelectedIndex = initialize.显卡列表.Count - 1;
                 }
-                catch { }
+                catch (Exception error)
+                {
+                    File.WriteAllText(@".\logs\error.txt", error.Message.ToString());
+                    throw;
+                }
             }
             initialize._GPUname = 显卡选择器.SelectedItem.ToString();
             initialize._UseGPUindex = 显卡选择器.SelectedIndex;

@@ -65,8 +65,10 @@ namespace Awake.Views.Pages
                 _timer.Start();
                 loatmodel(0, "", "[]", 1);
             }
-            catch
+            catch (Exception error)
             {
+                File.WriteAllText(@".\logs\error.txt", error.Message.ToString());
+                throw;
             }
 
         }
@@ -159,10 +161,10 @@ namespace Awake.Views.Pages
 
 
             }
-            catch //捕获异常拿去调试或者控制404一类的UI动画逻辑
+            catch (Exception error)
             {
-
-
+                File.WriteAllText(@".\logs\error.txt", error.Message.ToString());
+                throw;
             }
 
         }

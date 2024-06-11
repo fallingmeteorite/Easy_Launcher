@@ -56,8 +56,10 @@ namespace Awake.Views.Windows
                     {
                         _UseGPUindex = initialize.显卡列表.Count - 1;//默认启动后选最后一张GPU，核显什么的排在前面
                     }
-                    catch
+                    catch (Exception error)
                     {
+                        File.WriteAllText(@".\logs\error.txt", error.Message.ToString());
+                        throw;
                     }
 
                     //计算机名称类型.Text = "系统名称：" + Machinename + "   系统类型：" + systemType;
@@ -195,8 +197,7 @@ namespace Awake.Views.Windows
             }
             catch (Exception error)
             {
-                string str1 = error.Message;
-                File.WriteAllText(@".\logs\error.txt", str1);
+                File.WriteAllText(@".\logs\error.txt", error.Message.ToString());
                 throw;
             }
         }
@@ -239,8 +240,7 @@ namespace Awake.Views.Windows
             }
             catch (Exception error)
             {
-                string str1 = error.Message;
-                File.WriteAllText(@".\logs\error.txt", str1);
+                File.WriteAllText(@".\logs\error.txt", error.Message.ToString());
                 throw;
             }
 
