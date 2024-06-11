@@ -9,8 +9,6 @@ using System.Windows;
 using System.Windows.Controls;
 namespace Awake
 {
-
-
     /// <summary>
     //不使用第三方库写一个简单的.NET6 C# WPF程序，由一个“下载”按钮，一个“取消”按钮与一个“进度条”组成，在按下“下载”按钮时开始下载，开始下载后按下“下载”按钮暂停，暂停后按下“下载”按钮继续下载之前暂停的同一任务，按下取消按钮后取消之前的下载任务并删除下载缓存.在下载过程中将下载进度显示到进度条
     /// </summary>
@@ -87,12 +85,6 @@ namespace Awake
                 模型保存名称 = _模型名 + _modelname + ".safetensors";
 
             }
-
-
-
-
-
-
 
             模型名称.Text = _modelname;
             模型版本ID.Text = "模型版本ID：" + _modelVersionId;
@@ -179,10 +171,6 @@ namespace Awake
 
                                 Stream fileStream = new FileStream(modelpath, FileMode.Create);
 
-
-
-
-
                                 byte[] read = new byte[1024];
                                 long progressBarValue = 0;
                                 int realReadLen = netStream.Read(read, 0, read.Length);
@@ -214,8 +202,6 @@ namespace Awake
                                 netStream.Close();
                                 fileStream.Close();
 
-
-
                                 // 释放线程
                                 ThreadPool.QueueUserWorkItem((obj) => { }, null);
                                 // 文件下载完成后，释放下载按钮的Dispatcher
@@ -227,29 +213,26 @@ namespace Awake
                                     下载按钮.Content = "下载完成,点击打开";
                                     下载按钮.IsEnabled = true;
 
-                                }), null);
+                                }
+                                ), null);
                             }
-                            catch (Exception ex)
+                            catch (Exception error)
                             {
-                                MessageBox.Show(ex.Message);//开发中调试窗口
+                                File.WriteAllText(@".\logs\error.txt", error.Message.ToString());
+                                throw;
                             }
-
                         }, null);
                     }
-
-                    catch (Exception ex)
+                    catch (Exception error)
                     {
-                        MessageBox.Show(ex.Message);//开发中调试窗口
-
+                        File.WriteAllText(@".\logs\error.txt", error.Message.ToString());
+                        throw;
                     }
-
-
-
                 }
-                catch (Exception ex)
+                catch (Exception error)
                 {
-                    MessageBox.Show(ex.Message);//开发中调试窗口
-
+                    File.WriteAllText(@".\logs\error.txt", error.Message.ToString());
+                    throw;
                 }
             }
             if (is_downloaded == true)
@@ -257,53 +240,7 @@ namespace Awake
                 //用文件资源管理器打开模型
                 System.Diagnostics.Process.Start("explorer.exe", 模型保存路径);
             }
-
-            //try
-            //{
-            //    is_download = true;
-            //    下载按钮.IsEnabled = false;
-
-            //    string modelpath = System.IO.Path.Combine(initialize.工作路径, modelNme);
-            //    //await DownloadFileAsync(downloadUrl, modelNme, (sender, args) => progressBar.Value = args.ProgressPercentage);
-
-
-            //    WebRequest request = WebRequest.Create(downloadUrl);
-            //    WebResponse respone = request.GetResponse();
-            //    progressBar.Maximum = respone.ContentLength;
-
-
-            //    ThreadPool.QueueUserWorkItem((obj) =>
-            //    {
-            //        Stream netStream = respone.GetResponseStream();
-            //        Stream fileStream = new FileStream(modelpath, FileMode.Create);
-            //        byte[] read = new byte[1024];
-            //        long progressBarValue = 0;
-            //        int realReadLen = netStream.Read(read, 0, read.Length);
-            //        while (realReadLen > 0)
-            //        {
-            //            fileStream.Write(read, 0, realReadLen);
-            //            progressBarValue += realReadLen;
-            //            progressBar.Dispatcher.BeginInvoke(new ProgressBarSetter(SetProgressBar), progressBarValue);
-            //            realReadLen = netStream.Read(read, 0, read.Length);
-            //        }
-            //        netStream.Close();
-            //        fileStream.Close();
-
-
-            //    }, null);
-
-            //    is_download = false;
-            //    下载按钮.IsEnabled = true;
-            //    下载按钮.Content = "下载完成";
-            //}
-            //catch {
-            //}
-
-
-
-
-
-
+       
         }
 
         private async void cancelButton_Click(object sender, RoutedEventArgs e)
