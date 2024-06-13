@@ -56,6 +56,7 @@ namespace Awake
                 services.AddScoped<ViewModels.SettingsViewModel>();
                 services.AddScoped<Views.Pages.Code>();
                 services.AddScoped<Views.Pages.Exts>();
+                services.AddScoped<Views.Pages.Models>();
 
                 // Configuration
                 services.Configure<AppConfig>(context.Configuration.GetSection(nameof(AppConfig)));
