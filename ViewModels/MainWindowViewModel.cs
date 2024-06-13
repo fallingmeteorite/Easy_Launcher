@@ -51,16 +51,16 @@ namespace Awake.ViewModels
                     Icon = SymbolRegular.Desktop24,
                     PageType = typeof(Views.Pages.DashboardPage)
                 },
-                //                new NavigationItem()
-                //{
-                //    Width = 140,
-                //    HorizontalAlignment = System.Windows.HorizontalAlignment.Left,
-                //    Content = "作品灵感",
-                //    PageTag = "a2",
-                //    Icon = SymbolRegular.DeveloperBoard24,
-                //    PageType = typeof(Views.Pages.a2)
-                //},
+                new NavigationItem()
+                {
+                    Width = 140,
+                    HorizontalAlignment = System.Windows.HorizontalAlignment.Left,
+                    Content = "安装中心",
+                    PageTag = "web",
+                    Icon = SymbolRegular.WrenchScrewdriver24,
+                    PageType = typeof(Views.Pages.webpp)
 
+                },
                 new NavigationItem()
                 {
                     Width = 140,
@@ -79,7 +79,7 @@ namespace Awake.ViewModels
                     Icon = SymbolRegular.BranchFork20,
                     PageType = typeof(Views.Pages.Code)
                 },
-                                new NavigationItem()
+                new NavigationItem()
                 {
                     Width = 140,
                     HorizontalAlignment = System.Windows.HorizontalAlignment.Left,
@@ -92,12 +92,12 @@ namespace Awake.ViewModels
                 {
                     Width = 140,
                     HorizontalAlignment = System.Windows.HorizontalAlignment.Left,
-                    Content = "安装中心",
-                    PageTag = "web",
-                    Icon = SymbolRegular.WrenchScrewdriver24,
-                    PageType = typeof(Views.Pages.webpp)
+                    Content = "模型管理",
+                    PageTag = "Models",
+                    Icon = SymbolRegular.Cube12,
+                    PageType = typeof(Views.Pages.Models)
+                },
 
-                }
             };
 
             NavigationFooter = new ObservableCollection<INavigationControl>
