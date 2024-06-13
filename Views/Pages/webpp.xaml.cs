@@ -571,11 +571,8 @@ namespace Awake.Views.Pages
             }
             catch (Exception error)
             {
-
-                string str1 = error.Message;
-                File.WriteAllText(@".\logs\error.txt", str1);
+                File.WriteAllText(@".\logs\error.txt", error.Message.ToString());
                 throw;
-                // 处理或显示异常信息  
             }
 
             安装组.Visibility = Visibility.Collapsed;
@@ -642,8 +639,7 @@ namespace Awake.Views.Pages
                     }
                     catch (Exception error)
                     {
-                        string str1 = error.Message;
-                        File.WriteAllText(@".\logs\error.txt", str1);
+                        File.WriteAllText(@".\logs\error.txt", error.Message.ToString());
                         throw;
                     }
                 }
