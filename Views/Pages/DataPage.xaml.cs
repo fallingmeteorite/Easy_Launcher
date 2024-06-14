@@ -151,7 +151,6 @@ namespace Awake.Views.Pages
             catch (Exception error)
             {
                 File.WriteAllText(@".\logs\error.txt", error.Message.ToString());
-                throw;
             }
         }
 
@@ -171,7 +170,6 @@ namespace Awake.Views.Pages
                 catch (Exception error)
                 {
                     File.WriteAllText(@".\logs\error.txt", error.Message.ToString());
-                    throw;
                 }
             }
             initialize._GPUname = 显卡选择器.SelectedItem.ToString();
