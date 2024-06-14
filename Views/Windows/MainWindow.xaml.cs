@@ -59,7 +59,6 @@ namespace Awake.Views.Windows
                     catch (Exception error)
                     {
                         File.WriteAllText(@".\logs\error.txt", error.Message.ToString());
-                        throw;
                     }
 
                     //计算机名称类型.Text = "系统名称：" + Machinename + "   系统类型：" + systemType;
@@ -198,7 +197,6 @@ namespace Awake.Views.Windows
             catch (Exception error)
             {
                 File.WriteAllText(@".\logs\error.txt", error.Message.ToString());
-                throw;
             }
         }
         async Task _loadpage()
@@ -241,7 +239,6 @@ namespace Awake.Views.Windows
             catch (Exception error)
             {
                 File.WriteAllText(@".\logs\error.txt", error.Message.ToString());
-                throw;
             }
 
         }
