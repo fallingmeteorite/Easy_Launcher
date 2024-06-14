@@ -85,13 +85,26 @@ namespace Awake
                 模型保存名称 = _模型名 + _modelname + ".safetensors";
 
             }
+            try
+            {
 
-            模型名称.Text = _modelname;
-            模型版本ID.Text = "模型版本ID：" + _modelVersionId;
-            模型文件名称.Text = "模型文件名称：" + _modelSourceName;
-            模型下载源.Text = "模型下载地址：" + _modelSource;
-            模型大小.Text = "模型文件大小：" + _modelSourceSize;
-            模型hash.Text = "模型文件Hash：" + _modelSourceHash;
+                模型名称.Text = _modelname;
+                模型版本ID.Text = "模型版本ID：" + _modelVersionId;
+                模型文件名称.Text = "模型文件名称：" + _modelSourceName;
+                模型下载源.Text = "模型下载地址：" + _modelSource;
+                模型大小.Text = "模型文件大小：" + _modelSourceSize;
+                模型hash.Text = "模型文件Hash：" + _modelSourceHash;
+            }
+            catch
+            {
+                模型名称.Text = "null";
+                模型版本ID.Text = "null";
+                模型文件名称.Text = "null";
+                模型下载源.Text = "null";
+                模型大小.Text = "null";
+                模型hash.Text = "null";
+            }
+
             if (模型名称.Text == "")
             {
                 模型名称.Text = "未知";
@@ -219,20 +232,17 @@ namespace Awake
                             catch (Exception error)
                             {
                                 File.WriteAllText(@".\logs\error.txt", error.Message.ToString());
-                                throw;
                             }
                         }, null);
                     }
                     catch (Exception error)
                     {
                         File.WriteAllText(@".\logs\error.txt", error.Message.ToString());
-                        throw;
                     }
                 }
                 catch (Exception error)
                 {
                     File.WriteAllText(@".\logs\error.txt", error.Message.ToString());
-                    throw;
                 }
             }
             if (is_downloaded == true)
