@@ -68,7 +68,6 @@ namespace Awake.Views.Pages
             catch (Exception error)
             {
                 File.WriteAllText(@".\logs\error.txt", error.Message.ToString());
-                throw;
             }
 
         }
@@ -164,7 +163,6 @@ namespace Awake.Views.Pages
             catch (Exception error)
             {
                 File.WriteAllText(@".\logs\error.txt", error.Message.ToString());
-                throw;
             }
 
         }
