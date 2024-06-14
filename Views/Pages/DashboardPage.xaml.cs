@@ -29,12 +29,12 @@ namespace Awake.Views.Pages
         int 模型排列 = 0;//模型排列优先级状态量
         string 模型种类 = "[]";//默认所有模型种类
         int 加载页数 = 1;//第一页的模型
-        private string 模型名称;
-        private string 模型封面地址;
-        private string 模型作者名称;
-        private string 模型作者头像地址;
-        private string 模型种类名称;
-        private string 模型UUID;
+        private string 模型名称 = string.Empty;
+        private string 模型封面地址 = string.Empty;
+        private string 模型作者名称 = string.Empty;
+        private string 模型作者头像地址 = string.Empty;
+        private string 模型种类名称 = string.Empty;
+        private string 模型UUID = string.Empty;
 
 
         private readonly List<string> _imagePaths;
