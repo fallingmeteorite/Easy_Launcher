@@ -572,7 +572,6 @@ namespace Awake.Views.Pages
             catch (Exception error)
             {
                 File.WriteAllText(@".\logs\error.txt", error.Message.ToString());
-                throw;
             }
 
             安装组.Visibility = Visibility.Collapsed;
@@ -640,7 +639,6 @@ namespace Awake.Views.Pages
                     catch (Exception error)
                     {
                         File.WriteAllText(@".\logs\error.txt", error.Message.ToString());
-                        throw;
                     }
                 }
 
