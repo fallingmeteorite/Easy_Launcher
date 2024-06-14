@@ -7,13 +7,14 @@
       mc:Ignorable="d" 
       d:Background="{DynamicResource ApplicationBackgroundBrush}"
       Foreground="{DynamicResource TextFillColorPrimaryBrush}"
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="700"
+      d:DesignWidth="980"
       Title="模型管理">
     <TabControl x:Name="tabs" SelectionChanged="TabControl_SelectionChanged">
-        <TabItem>
+        <TabItem Margin="0,0,-80,0">
             <TabItem.Header>
                 <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="Stable Diffusion"/>
+                    <TextBlock Text="StableDiffusion"/>
                 </StackPanel>
             </TabItem.Header>
             <StackPanel>
@@ -27,13 +28,20 @@
                         <DataGridTextColumn Header="短Hash" Binding="{Binding ShortHash}" Width="*" />
                         <DataGridTextColumn Header="大小|MB" Binding="{Binding Size}" Width="*" />
                         <DataGridTextColumn Header="日期" Binding="{Binding Date}" Width="*" />
-                        <DataGridTemplateColumn Header="操作" Width="*">
+                        <DataGridTemplateColumn Header="操作" Width="180">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                        <Button Click="Delete_SD_Click" Content="删除模型" Tag="{Binding Name}"  Width="180"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
                     </DataGrid.Columns>
                 </DataGrid>
             </StackPanel>
         </TabItem>
-        <TabItem>
+        <TabItem Margin="80,0,-80,0">
             <TabItem.Header>
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Text="Embedding"/>
@@ -47,10 +55,11 @@
                         <DataGridTextColumn Header="描述" Binding="{Binding  Desc}" Width="*" />
                         <DataGridTextColumn Header="大小|KB" Binding="{Binding Size}" Width="*" />
                         <DataGridTextColumn Header="日期" Binding="{Binding Date}" Width="*" />
-                        <DataGridTemplateColumn Header="操作" Width="*">
+                        <DataGridTemplateColumn Header="操作" Width="180">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                        <Button Click="Delete_EM_Click" Content="删除模型" Tag="{Binding Name}"  Width="180"/>
                                     </StackPanel>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
@@ -59,7 +68,7 @@
                 </DataGrid>
             </StackPanel>
         </TabItem>
-        <TabItem>
+        <TabItem Margin="80,0,-80,0">
             <TabItem.Header>
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Text="HyperNetwork"/>
@@ -73,13 +82,20 @@
                         <DataGridTextColumn Header="描述" Binding="{Binding  Desc}" Width="*" />
                         <DataGridTextColumn Header="大小|KB" Binding="{Binding Size}" Width="*" />
                         <DataGridTextColumn Header="日期" Binding="{Binding Date}" Width="*" />
-                        <DataGridTemplateColumn Header="操作" Width="*">
+                        <DataGridTemplateColumn Header="操作" Width="180">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                        <Button Click="Delete_HN_Click" Content="删除模型" Tag="{Binding Name}"  Width="180"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
                     </DataGrid.Columns>
                 </DataGrid>
             </StackPanel>
         </TabItem>
-        <TabItem>
+        <TabItem Margin="80,0,-80,0">
             <TabItem.Header>
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Text="VAE"/>
@@ -95,13 +111,20 @@
                         <DataGridTextColumn Header="描述" Binding="{Binding  Desc}" Width="*" />
                         <DataGridTextColumn Header="大小|MB" Binding="{Binding Size}" Width="*" />
                         <DataGridTextColumn Header="日期" Binding="{Binding Date}" Width="*" />
-                        <DataGridTemplateColumn Header="操作" Width="*">
+                        <DataGridTemplateColumn Header="操作" Width="180">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                        <Button Click="Delete_VAE_Click" Content="删除模型" Tag="{Binding Name}"  Width="180"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
                     </DataGrid.Columns>
                 </DataGrid>
             </StackPanel>
         </TabItem>
-        <TabItem>
+        <TabItem Margin="80,0,-80,0">
             <TabItem.Header>
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Text="Lora"/>
@@ -115,10 +138,11 @@
                         <DataGridTextColumn Header="描述" Binding="{Binding  Desc}" Width="*" />
                         <DataGridTextColumn Header="大小|MB" Binding="{Binding Size}" Width="*" />
                         <DataGridTextColumn Header="日期" Binding="{Binding Date}" Width="*" />
-                        <DataGridTemplateColumn Header="操作" Width="*">
+                        <DataGridTemplateColumn Header="操作" Width="180">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                        <Button Click="Delete_Lora_Click" Content="删除模型" Tag="{Binding Name}"  Width="180"/>
                                     </StackPanel>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
