@@ -15,16 +15,16 @@ namespace Awake.Views.Windows
     public partial class shell : UiWindow
     {
         public string 启动文件 = "launch.py";//这里是默认的启动文件
-        string cpuname = "";
-        string Machinename = "";
-        string systemType = "";
+        string cpuname = string.Empty;
+        string Machinename = string.Empty;
+        string systemType = string.Empty;
         float memorysize = 1;
         int memorynum = 1;
-        string gpuname = "";
-        private DispatcherTimer _timer;
-        private Process _process;
-        private Process 启动魔法;
-        private string 工作路径_start;
+        string gpuname = string.Empty;
+        private DispatcherTimer _timer = null;
+        private Process _process = null;
+        private Process 启动魔法 = null;
+        private string 工作路径_start = null;
 
         public shell()
         {
