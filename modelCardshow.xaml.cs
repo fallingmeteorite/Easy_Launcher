@@ -105,7 +105,6 @@ namespace Awake
             }
 
         }
-
         private void _modelCard_Click(object sender, RoutedEventArgs e)
         {
             Model_content model_Content = new Model_content(模型_UUID, _nickname, _avatar, _modelType, _imageURL);//继续传递模型的UUID参数，以便在详情页中继续请求简介/下载地址等
