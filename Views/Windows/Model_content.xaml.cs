@@ -123,7 +123,6 @@ namespace Awake.Views.Windows
             catch (Exception error)
             {
                 File.WriteAllText(@".\logs\error.txt", error.Message.ToString());
-                throw;
             }
             try
             {
@@ -141,7 +140,6 @@ namespace Awake.Views.Windows
             catch (Exception error)
             {
                 File.WriteAllText(@".\logs\error.txt", error.Message.ToString());
-                throw;
             }
         }
         async Task _GetModelDetals(string uuid)
@@ -234,13 +232,11 @@ namespace Awake.Views.Windows
                 catch (Exception error)
                 {
                     File.WriteAllText(@".\logs\error.txt", error.Message.ToString());
-                    throw;
                 }
             }
             catch (Exception error)
             {
                 File.WriteAllText(@".\logs\error.txt", error.Message.ToString());
-                throw;
             }
         }
         protected override void OnClosed(EventArgs e)
