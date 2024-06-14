@@ -274,12 +274,9 @@ namespace Awake.Views.Windows
                 }
 
             }
-            catch (Exception ex)
+            catch (Exception error)
             {
-                System.Windows.MessageBox.Show("进程出现问题,请查看报错日志!");
-                string str1 = ex.Message;
-                File.WriteAllText(@".\logs\error.txt", str1);
-                throw;
+                File.WriteAllText(@".\logs\error.txt", error.Message.ToString());
             }
         }
         private void TimerTick(object sender, EventArgs e)
