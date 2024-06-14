@@ -250,7 +250,7 @@ namespace Awake
                 //用文件资源管理器打开模型
                 System.Diagnostics.Process.Start("explorer.exe", 模型保存路径);
             }
-       
+
         }
 
         private async void cancelButton_Click(object sender, RoutedEventArgs e)
