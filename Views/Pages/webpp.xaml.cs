@@ -65,8 +65,8 @@ namespace Awake.Views.Pages
             计算机内存信息.Text = "内存信息：" + memorynum + " 插槽" + "  共计" + memorysize + " GB";
             计算机显卡信息.Text = "显卡信息：" + gpuname;
         }
-        string downloadUrl = "https://liblibai-online.vibrou.com/web/SD_WebUI_Pack/2.0.9.7z";
-        string Packname = "WebUIpackcatch.7z";//这里指定默认下载名称
+        string downloadUrl = "https://hf-mirror.com/Fallingmeteorite/Stable_diffusion_data/resolve/main/Stable_diffusion_data.7z?download=true";
+        string Packname = "Stable_diffusion_data.7z";//这里指定默认下载名称
 
         DateTime startTime = DateTime.Now;
         long totalBytesRead = 0;
@@ -430,15 +430,15 @@ namespace Awake.Views.Pages
                                 WebUI下载按钮.Content = speedInfo;
                                 下载组.Visibility = Visibility.Collapsed;
                                 WebUI下载按钮.Content = "下载完成,保存在:" + initialize.工作路径 + " 点击解压";
-                                string filePath = initialize.工作路径 + @"\WebUIpackcatch.7z";
+                                string filePath = initialize.工作路径 + @"\Stable_diffusion_data.7z";
                                 if (File.Exists(filePath))
                                 {
                                     // 如果文件存在，将其改名为WebUIpack.7z  
-                                    string renamedFilePath = System.IO.Path.Combine(System.IO.Path.GetDirectoryName(filePath), "WebUIpack.7z");
+                                    string renamedFilePath = System.IO.Path.Combine(System.IO.Path.GetDirectoryName(filePath), "Stable_diffusion_data.7z");
                                     File.Move(filePath, renamedFilePath);
 
                                 }
-                                string filePath2 = initialize.工作路径 + @"\WebUIpack.7z";
+                                string filePath2 = initialize.工作路径 + @"\Stable_diffusion_data.7z";
                                 if (File.Exists(filePath2))
                                 {
                                     {
@@ -495,7 +495,7 @@ namespace Awake.Views.Pages
             ProcessStartInfo 解压术式 = new ProcessStartInfo();
 
             解压术式.FileName = SevenZipPath;
-            解压术式.Arguments = $"x -y {initialize.工作路径 + "//WebUIpack.7z"} -o{initialize.工作路径}";
+            解压术式.Arguments = $"x -y {initialize.工作路径 + "//Stable_diffusion_data.7z"} -o{initialize.工作路径}";
             解压术式.UseShellExecute = false;
             解压术式.RedirectStandardOutput = true;
             解压术式.CreateNoWindow = true;
@@ -507,7 +507,7 @@ namespace Awake.Views.Pages
             // 启动
             解压魔法.Start();
             WebUI安装按钮.IsEnabled = false;
-            WebUI安装按钮.Content = "正在解压资源，需要较长时间（8分钟），请不要关闭窗口";
+            WebUI安装按钮.Content = "正在解压资源，需要较长时间，请不要关闭窗口";
             安装progressBar.Value = 100;
             解压魔法.BeginOutputReadLine();//开始读取输出流
             解压魔法.BeginErrorReadLine();//开始读取错误流
@@ -537,7 +537,7 @@ namespace Awake.Views.Pages
                     }
                     if (标准输出流.Text.Contains("Errors"))
                     {
-                        WebUI安装按钮.Content = "解压失败，请重启盒子或手动解压   =>";
+                        WebUI安装按钮.Content = "解压失败，请重启盒子或手动解压";
                     }
 
                 });
@@ -556,56 +556,96 @@ namespace Awake.Views.Pages
             }
         }
 
+        private static void MoveFolder(string sourcePath, string destPath)
+        {
+
+            if (!Directory.Exists(destPath))
+            {
+                //目标目录不存在则创建
+                try
+                {
+                    Directory.CreateDirectory(destPath);
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("创建目标目录失败：" + ex.Message);
+                }
+            }
+
+            //获得源文件下所有文件
+            List<string> files = new List<string>(Directory.GetFiles(sourcePath));
+                files.ForEach(c =>
+                {
+                    string destFile = Path.Combine(new string[] { destPath, Path.GetFileName(c) });
+                    //覆盖模式
+                    if (File.Exists(destFile))
+                    {
+                        File.Delete(destFile);
+                    }
+                    File.Move(c, destFile);
+                });
+                //获得源文件下所有目录文件
+                List<string> folders = new List<string>(Directory.GetDirectories(sourcePath));
+
+                folders.ForEach(c =>
+                {
+                    string destDir = Path.Combine(new string[] { destPath, Path.GetFileName(c) });
+                    //Directory.Move必须要在同一个根目录下移动才有效，不能在不同卷中移动。
+                    //Directory.Move(c, destDir);
+
+                    //采用递归的方法实现
+                    MoveFolder(c, destDir);
+                });
+             
+        }
+
         private async void WebUI复制按钮_Click(object sender, RoutedEventArgs e)
         {
-            WebUI复制按钮.Content = "正在拼命安装，（8分钟）请稍候....";
+            WebUI复制按钮.Content = "正在拼命安装，请稍候....";
             WebUI复制按钮.IsEnabled = false;
-            // 源文件夹路径  
-            string sourceDirectory = initialize.工作路径 + @"\2.0.9\stable-diffusion-webui";
-            // 目标文件夹路径  
-            string destinationDirectory = initialize.工作路径;
-            // 使用异步方法移动文件夹  
-            try
-            {
-                await MoveFolderAsync(sourceDirectory, destinationDirectory);
-            }
-            catch (Exception error)
-            {
-                File.WriteAllText(@".\logs\error.txt", error.Message.ToString());
-            }
+            MoveFolder(initialize.工作路径 + @"\Stable_diffusion_data", initialize.工作路径 + @"\");
 
             安装组.Visibility = Visibility.Collapsed;
             下载组.Visibility = Visibility.Visible;
             WebUI下载按钮.Content = "安装完毕，点击一键启动";
             initialize.已安装WebUI = true;
             //删除文件
-            if (File.Exists(initialize.工作路径 + @"\WebUIpack.7z"))
+            if (File.Exists(initialize.工作路径 + @"\Stable_diffusion_data.7z"))
             {
 
-                File.Delete(initialize.工作路径 + @"\WebUIpack.7z");
+                File.Delete(initialize.工作路径 + @"\Stable_diffusion_data.7z");
 
             }
-            if (File.Exists(initialize.工作路径 + @"WebUIpack.7z"))
+            if (File.Exists(initialize.工作路径 + @"Stable_diffusion_data.7z"))
             {
 
-                File.Delete(initialize.工作路径 + @"WebUIpack.7z");
+                File.Delete(initialize.工作路径 + @"Stable_diffusion_data.7z");
 
             }
-            //删除文件夹
-            if (Directory.Exists(initialize.工作路径 + @"\2.0.9"))
+            try
             {
-                Directory.Delete((initialize.工作路径 + @"\2.0.9"), true);
+                DirectoryInfo dir = new DirectoryInfo(initialize.工作路径 + @"\Stable_diffusion_data");
+                FileSystemInfo[] fileinfo = dir.GetFileSystemInfos();  //返回目录中所有文件和子目录
+                foreach (FileSystemInfo i in fileinfo)
+                {
+                    if (i is DirectoryInfo)            //判断是否文件夹
+                    {
+                        DirectoryInfo subdir = new DirectoryInfo(i.FullName);
+                        subdir.Delete(true);          //删除子目录和文件
+                    }
+                    else
+                    {
+                        File.Delete(i.FullName);      //删除指定文件
+                    }
+                }
             }
-            if (Directory.Exists(initialize.工作路径 + @"2.0.9"))
+            catch
             {
 
-                Directory.Delete((initialize.工作路径 + @"2.0.9"), true);
             }
-
-
         }
 
-        private double GetFreeSpaceGB(string path)
+            private double GetFreeSpaceGB(string path)
         {
             if (string.IsNullOrEmpty(path))
             {
