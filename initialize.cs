@@ -254,7 +254,7 @@ namespace Awake
         }
         public static bool CheckWebUIdownloaded() //检查WebUI是否下载
         {
-            string instellPath = initialize.工作路径 + @"\WebUIpack.7z";
+            string instellPath = initialize.工作路径 + @"\Stable_diffusion_data.7z";
             if (File.Exists(instellPath))
             {
                 return true;
@@ -266,7 +266,7 @@ namespace Awake
         }
         public static bool CheckWebUIunzip() //检查WebUI是否解压
         {
-            string instellPath = initialize.工作路径 + @"\2.0.9\stable-diffusion-webui\webui-user.bat";
+            string instellPath = initialize.工作路径 + @"\webui-user.bat";
             if (File.Exists(instellPath))
             {
                 return true;
