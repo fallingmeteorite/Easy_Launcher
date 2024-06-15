@@ -202,9 +202,8 @@ namespace Awake.Views.Windows
                     startinfo.WorkingDirectory = 工作路径_start;
 
                     // 设置临时环境变量  
-                    Environment.SetEnvironmentVariable("Path", Environment.GetEnvironmentVariable("Path") + ";" + gitPath + @"\bin", EnvironmentVariableTarget.Process);//确保整个系统可以使用到Git
                     startinfo.EnvironmentVariables["TF_CPP_MIN_LOG_LEVEL"] = "3";//屏蔽Tensorflow中的Warning
-                    startinfo.EnvironmentVariables["GIT"] = gitPath + @"\mingw64\libexec\git-core\git.exe";//保证WenUI可以使用到git
+                    startinfo.EnvironmentVariables["GIT"] = gitPath + @"\git.exe";//保证WenUI可以使用到git
                     startinfo.EnvironmentVariables["GIT_PYTHON_REFRESH"] = "quiet";
                     startinfo.EnvironmentVariables["GIT_SSL_NO_VERIFY"] = "true";
 
@@ -231,7 +230,7 @@ namespace Awake.Views.Windows
                     工作路径_start = 工作路径;
 
                     标准输出流.AppendText(工作路径_start + @"\launch.py" + 参数列表 + _WebUI显存压力优化设置 + _WebUI主题颜色 + "\n");
-                    startinfo.FileName = 工作路径_start + @"\Python3.10\python.exe";
+                    startinfo.FileName = 工作路径_start + @"\Python\python.exe";
                     startinfo.Arguments = 工作路径_start + @"\launch.py" + 参数列表 + _WebUI显存压力优化设置 + _WebUI主题颜色;
                     startinfo.WorkingDirectory = 工作路径_start;
 
@@ -241,20 +240,12 @@ namespace Awake.Views.Windows
                         启动参数 += " --device - id " + (_UseGPUindex - 1);
 
                     }
-                    else
-                    {
-
-                        启动参数 += " --device-name directml --skip-torch-cuda-test";
-
-                    }
 
                     // 设置临时环境变量  
-                    Environment.SetEnvironmentVariable("Path", Environment.GetEnvironmentVariable("Path") + ";" + 工作路径_start + "\\Git\\bin", EnvironmentVariableTarget.Process);//确保整个系统可以使用到Git
                     startinfo.EnvironmentVariables["TF_CPP_MIN_LOG_LEVEL"] = "3";//屏蔽Tensorflow中的Warning
-                    startinfo.EnvironmentVariables["GIT"] = 工作路径_start + @"\Git\mingw64\libexec\git-core\git.exe";//保证WenUI可以使用到git
-                    startinfo.EnvironmentVariables["TRANSFORMERS_CACHE"] = 工作路径_start + @"\deploy\.cache\huggingface\transformers";
+                    startinfo.EnvironmentVariables["GIT"] = 工作路径_start + @"\GIT\mingw64\bin\git.exe";//保证WenUI可以使用到git
                     startinfo.EnvironmentVariables["GIT_PYTHON_REFRESH"] = "quiet";
-                    startinfo.EnvironmentVariables["HUGGINGFACE_HUB_CACHE"] = 工作路径_start + @"\deploy\.cache\huggingface\hub";
+                    startinfo.EnvironmentVariables["HUGGINGFACE_HUB_CACHE"] = 工作路径_start + @".\.hf_cache\huggingface\hub";
                     startinfo.EnvironmentVariables["GIT_SSL_NO_VERIFY"] = "true";
 
                     startinfo.RedirectStandardOutput = true;
