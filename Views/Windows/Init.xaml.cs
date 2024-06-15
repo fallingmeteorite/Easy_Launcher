@@ -41,7 +41,7 @@ namespace Awake.Views.Windows
 
             process = new Process();
             startInfo = new ProcessStartInfo();
-            startInfo.FileName = initialize.gitPath_use + @"\mingw64\libexec\git-core\git.exe";
+            startInfo.FileName = initialize.gitPath_use;
             startInfo.Arguments = " config --global --add safe.directory *";
             startInfo.UseShellExecute = false;
             startInfo.RedirectStandardOutput = false;
@@ -71,7 +71,7 @@ namespace Awake.Views.Windows
             {
                 process = new Process();
                 startInfo = new ProcessStartInfo();
-                startInfo.FileName = initialize.gitPath_use + @"\mingw64\libexec\git-core\git.exe";
+                startInfo.FileName = initialize.gitPath_use;
                 startInfo.Arguments = " remote -v ";
                 startInfo.UseShellExecute = false;
                 startInfo.RedirectStandardOutput = true;
@@ -95,7 +95,7 @@ namespace Awake.Views.Windows
 
                     process = new Process();
                     startInfo = new ProcessStartInfo();
-                    startInfo.FileName = initialize.gitPath_use + @"\mingw64\libexec\git-core\git.exe";
+                    startInfo.FileName = initialize.gitPath_use;
                     startInfo.Arguments = " log --oneline --pretty=\"%h^^%s^^%cd\" --date=format:\"%Y-%m-%d %H:%M:%S\" -n 1";
                     startInfo.UseShellExecute = false;
                     startInfo.RedirectStandardOutput = true;
