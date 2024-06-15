@@ -35,18 +35,8 @@ namespace Awake.Views.Pages
             if (initialize.启用自定义路径)
             {
                 initialize.加载路径 = initialize.本地路径;
-                initialize.gitPath_use = initialize.gitPath;
-
-            }
-            else
-            {
-                initialize.加载路径 = initialize.工作路径;
-                initialize.gitPath_use = initialize.工作路径 + @"\GIT";
-            }
-
-            if (initialize.启用自定义路径)
-            {
-                if (!File.Exists(initialize.gitPath_use + @"\mingw64\libexec\git-core\git.exe"))
+                initialize.gitPath_use = initialize.gitPath + @"\git.exe";
+                if (!File.Exists(initialize.gitPath_use))
                 {
                     System.Windows.MessageBox.Show("自定义GIT路径错误或未选择，程序错误即将关闭！");
                     Process.GetCurrentProcess().Kill();
@@ -54,7 +44,9 @@ namespace Awake.Views.Pages
             }
             else
             {
-                if (!File.Exists(initialize.工作路径 + @"\GIT\mingw64\libexec\git-core\git.exe"))
+                initialize.加载路径 = initialize.工作路径;
+                initialize.gitPath_use = initialize.工作路径 + @"\GIT\mingw64\bin\git.exe";
+                if (!File.Exists(initialize.gitPath_use))
                 {
                     System.Windows.MessageBox.Show("工作路径下即整合包未存在GIT，程序错误即将关闭！");
                     Process.GetCurrentProcess().Kill();
@@ -76,7 +68,7 @@ namespace Awake.Views.Pages
 
             Process process1 = new Process();
             ProcessStartInfo startInfo1 = new ProcessStartInfo();
-            startInfo1.FileName = initialize.gitPath_use + @"\mingw64\libexec\git-core\git.exe";
+            startInfo1.FileName = initialize.gitPath_use;
             startInfo1.Arguments = " fetch  --all"; //同步云端更新日志到本地
             startInfo1.UseShellExecute = false;
             startInfo1.RedirectStandardOutput = true;
@@ -90,7 +82,7 @@ namespace Awake.Views.Pages
 
             Process process = new Process();
             ProcessStartInfo startInfo = new ProcessStartInfo();
-            startInfo.FileName = initialize.gitPath_use + @"\mingw64\libexec\git-core\git.exe";
+            startInfo.FileName = initialize.gitPath_use;
             startInfo.Arguments = " reset --hard";
             startInfo.UseShellExecute = false;
             startInfo.RedirectStandardOutput = true;
@@ -102,7 +94,7 @@ namespace Awake.Views.Pages
 
             process = new Process();
             startInfo = new ProcessStartInfo();
-            startInfo.FileName = initialize.gitPath_use + @"\mingw64\libexec\git-core\git.exe";
+            startInfo.FileName = initialize.gitPath_use;
             startInfo.Arguments = " pull";
             startInfo.UseShellExecute = true;
             startInfo.RedirectStandardOutput = false;
