@@ -97,7 +97,7 @@
                                 </StackPanel>
                             </Expander.Header>
                             <StackPanel x:Name="模型下载卡片列表">
-                                <TextBlock x:Name="模型版本ID" FontSize="12">V2.0.9.7 全量StableDiffusion WebUI整合包大小：15.6 GB 运行所需空间：60 GB  支持NVIDIA | AMD |intel显卡运行</TextBlock>
+                                <TextBlock x:Name="模型版本ID" FontSize="12">SD整合包只支持  NVIDIA 显卡运行（已设置相关优化）</TextBlock>
                                 <StackPanel Orientation="Horizontal">
                                     <ScrollViewer x:Name="命令行区域" Height="80" HorizontalAlignment="Center" Width="850">
                                         <TextBlock TextWrapping="Wrap"  x:Name="标准输出流" FontSize="12"><Run Text="下载过程中请勿离开本页面"/><Run Language="zh-cn" Text="，防止下载文件损坏"/></TextBlock>
@@ -203,7 +203,7 @@
                                     </Canvas>
                                     <StackPanel Margin="15,0,0,0" Width="350">
                                         <TextBlock Text="配置Git路径"   FontSize="16" Margin="0,0,0,5"/>
-                                        <TextBlock Text="路径下必须有bin,mingw64文件夹" FontSize="12"/>
+                                        <TextBlock Text="路径下必须有git.exe文件夹" FontSize="12"/>
 
                                     </StackPanel>
                                     <TextBlock x:Name="Git路径展示" Text="暂未设置部署路径"   FontSize="16" VerticalAlignment="Center"/>
