@@ -29,24 +29,6 @@ namespace Awake
         {
             InitializeComponent();
 
-            try
-            {
-                HttpWebRequest myHttpWebRequest = (HttpWebRequest)WebRequest.Create(avatar);
-                myHttpWebRequest.UserAgent = "Mozilla/5.0 (Windows NT 6.1; WOW64; Trident/7.0; rv:11.0) like Gecko";
-                myHttpWebRequest.Method = "GET";
-                HttpWebResponse myHttpWebResponse = (HttpWebResponse)myHttpWebRequest.GetResponse();
-            }
-            catch
-            { }
-            try
-            {
-                HttpWebRequest myHttpWebRequest = (HttpWebRequest)WebRequest.Create(imageUrl);
-                myHttpWebRequest.UserAgent = "Mozilla/5.0 (Windows NT 6.1; WOW64; Trident/7.0; rv:11.0) like Gecko";
-                myHttpWebRequest.Method = "GET";
-                HttpWebResponse myHttpWebResponse = (HttpWebResponse)myHttpWebRequest.GetResponse();
-            }
-            catch
-            { }
             File.WriteAllText(@".\logs\error.txt", null);
             LoadImageFromUrlAsync(imageUrl, avatar);
 
