@@ -102,7 +102,7 @@ namespace Awake.Views.Pages
             return hashMD5;
         }
 
-            private void Delete_SD_Click(object sender, RoutedEventArgs e)
+        private void Delete_SD_Click(object sender, RoutedEventArgs e)
         {
 
             try
