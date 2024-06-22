@@ -40,7 +40,7 @@
                             </Border>
                             <StackPanel Width="704">
                                 <TextBlock Text="光源绘梦-SD-WebUI-启动器" FontSize="24" HorizontalAlignment="Center" VerticalAlignment="Top" FontWeight="Bold" Margin="5,0,0,0"/>
-                                <TextBlock Text="开源的AI绘画启动器|工具箱|基于GPL v3许可证开源" FontSize="16" Width="396" Height="18"/>
+                                <TextBlock Text="开源的AI绘画启动器|工具箱|基于GPL v3许可证开源" FontSize="16" Width="396" Height="26"/>
                                 <ui:Hyperlink NavigateUri="https://space.bilibili.com/666714573" HorizontalAlignment="Center" FontSize="16" FontWeight="Bold" Content="Astro Artistry | 绘梦星空"/>
                                 <ui:Hyperlink NavigateUri="https://github.com/Astro-Artistry-Dev-Team/Open-SD-WebUI-Launcher" FontSize="16" FontWeight="Bold" Width="677" Content="https://github.com/Astro-Artistry-Dev-Team/Open-SD-WebUI-Launcher" Margin="25,0,0,0"/>
 
@@ -151,7 +151,7 @@
                         </Border>
                         <StackPanel Margin="20,0,0,0" HorizontalAlignment="Left">
                             <TextBlock Text="[网站]" FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Margin="0,0,0,5"/>
-                            <TextBlock TextWrapping="Wrap" Text="解构原典——NAI3.0进阶魔法书" FontSize="14" HorizontalAlignment="Center"/>
+                            <TextBlock TextWrapping="Wrap" Text="解构原典" FontSize="14" HorizontalAlignment="Center"/>
 
                         </StackPanel>
                     </StackPanel>
