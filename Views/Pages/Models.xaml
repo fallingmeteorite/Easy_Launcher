@@ -23,11 +23,10 @@
                 </StackPanel>
                 <DataGrid x:Name="cks" AutoGenerateColumns="False">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="文件名" Binding="{Binding Name}" Width="*" />
-                        <DataGridTextColumn Header="描述" Binding="{Binding  Desc}" Width="*" />
-                        <DataGridTextColumn Header="短Hash" Binding="{Binding ShortHash}" Width="*" />
-                        <DataGridTextColumn Header="大小|MB" Binding="{Binding Size}" Width="*" />
-                        <DataGridTextColumn Header="日期" Binding="{Binding Date}" Width="*" />
+                        <DataGridTextColumn Header="文件名" Binding="{Binding Name}" Width="*" CanUserResize="False" IsReadOnly="True"/>
+                        <DataGridTextColumn Header="Hash" Binding="{Binding ShortHash}" Width="*" CanUserResize="False" IsReadOnly="True"/>
+                        <DataGridTextColumn Header="大小|MB" Binding="{Binding Size}" Width="100" CanUserResize="False" IsReadOnly="True"/>
+                        <DataGridTextColumn Header="日期" Binding="{Binding Date}" Width="120" CanUserResize="False" IsReadOnly="True"/>
                         <DataGridTemplateColumn Header="操作" Width="180">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
@@ -52,9 +51,9 @@
                 <DataGrid x:Name="embs" AutoGenerateColumns="False">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="文件名" Binding="{Binding Name}" Width="*" />
-                        <DataGridTextColumn Header="描述" Binding="{Binding  Desc}" Width="*" />
-                        <DataGridTextColumn Header="大小|KB" Binding="{Binding Size}" Width="*" />
-                        <DataGridTextColumn Header="日期" Binding="{Binding Date}" Width="*" />
+                        <DataGridTextColumn Header="Hash" Binding="{Binding ShortHash}" Width="*" />
+                        <DataGridTextColumn Header="大小|MB" Binding="{Binding Size}" Width="100" CanUserResize="False" IsReadOnly="True"/>
+                        <DataGridTextColumn Header="日期" Binding="{Binding Date}" Width="120" CanUserResize="False" IsReadOnly="True"/>
                         <DataGridTemplateColumn Header="操作" Width="180">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
@@ -78,10 +77,10 @@
                 <Button Click="OpenHys_Click" Width="250">打开目录</Button>
                 <DataGrid x:Name="hys" AutoGenerateColumns="False">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="文件名" Binding="{Binding Name}" Width="*" />
-                        <DataGridTextColumn Header="描述" Binding="{Binding  Desc}" Width="*" />
-                        <DataGridTextColumn Header="大小|KB" Binding="{Binding Size}" Width="*" />
-                        <DataGridTextColumn Header="日期" Binding="{Binding Date}" Width="*" />
+                        <DataGridTextColumn Header="文件名" Binding="{Binding Name}" Width="*" CanUserResize="False" IsReadOnly="True"/>
+                        <DataGridTextColumn Header="Hash" Binding="{Binding ShortHash}" Width="*" CanUserResize="False" IsReadOnly="True"/>
+                        <DataGridTextColumn Header="大小|MB" Binding="{Binding Size}" Width="100" CanUserResize="False" IsReadOnly="True"/>
+                        <DataGridTextColumn Header="日期" Binding="{Binding Date}" Width="120" CanUserResize="False" IsReadOnly="True"/>
                         <DataGridTemplateColumn Header="操作" Width="180">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
@@ -107,10 +106,10 @@
                 </StackPanel>
                 <DataGrid x:Name="vaes" AutoGenerateColumns="False">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="文件名" Binding="{Binding Name}" Width="*" />
-                        <DataGridTextColumn Header="描述" Binding="{Binding  Desc}" Width="*" />
-                        <DataGridTextColumn Header="大小|MB" Binding="{Binding Size}" Width="*" />
-                        <DataGridTextColumn Header="日期" Binding="{Binding Date}" Width="*" />
+                        <DataGridTextColumn Header="文件名" Binding="{Binding Name}" Width="*" CanUserResize="False" IsReadOnly="True"/>
+                        <DataGridTextColumn Header="Hash" Binding="{Binding ShortHash}" Width="*" CanUserResize="False" IsReadOnly="True"/>
+                        <DataGridTextColumn Header="大小|MB" Binding="{Binding Size}" Width="100" CanUserResize="False" IsReadOnly="True"/>
+                        <DataGridTextColumn Header="日期" Binding="{Binding Date}" Width="120" CanUserResize="False" IsReadOnly="True"/>
                         <DataGridTemplateColumn Header="操作" Width="180">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
@@ -134,10 +133,10 @@
                 <Button Click="OpenLoRA_Click" Width="250">打开目录</Button>
                 <DataGrid x:Name="loras" AutoGenerateColumns="False">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="文件名" Binding="{Binding Name}" Width="*" />
-                        <DataGridTextColumn Header="描述" Binding="{Binding  Desc}" Width="*" />
-                        <DataGridTextColumn Header="大小|MB" Binding="{Binding Size}" Width="*" />
-                        <DataGridTextColumn Header="日期" Binding="{Binding Date}" Width="*" />
+                        <DataGridTextColumn Header="文件名" Binding="{Binding Name}" Width="*" CanUserResize="False" IsReadOnly="True"/>
+                        <DataGridTextColumn Header="Hash" Binding="{Binding ShortHash}" Width="*" CanUserResize="False" IsReadOnly="True"/>
+                        <DataGridTextColumn Header="大小|MB" Binding="{Binding Size}" Width="100" CanUserResize="False" IsReadOnly="True"/>
+                        <DataGridTextColumn Header="日期" Binding="{Binding Date}" Width="120" CanUserResize="False" IsReadOnly="True"/>
                         <DataGridTemplateColumn Header="操作" Width="180">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
