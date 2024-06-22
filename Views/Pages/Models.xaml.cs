@@ -81,7 +81,28 @@ namespace Awake.Views.Pages
             Process.Start("Explorer.exe",
                initialize.加载路径 + "\\models\\lora");
         }
-        private void Delete_SD_Click(object sender, RoutedEventArgs e)
+        public static String ComputeMD5(String fileName)
+        {
+            String hashMD5 = String.Empty;
+            //检查文件是否存在
+            using (System.IO.FileStream fs = new System.IO.FileStream(fileName, System.IO.FileMode.Open, System.IO.FileAccess.Read))
+            {
+                //计算文件的MD5值
+                System.Security.Cryptography.MD5 calculator = System.Security.Cryptography.MD5.Create();
+                Byte[] buffer = calculator.ComputeHash(fs);
+                calculator.Clear();
+                //将字节数组转换成十六进制的字符串形式
+                StringBuilder stringBuilder = new StringBuilder();
+                for (int i = 0; i < buffer.Length; i++)
+                {
+                    stringBuilder.Append(buffer[i].ToString("x2"));
+                }
+                hashMD5 = stringBuilder.ToString();
+            }//关闭文件流
+            return hashMD5;
+        }
+
+            private void Delete_SD_Click(object sender, RoutedEventArgs e)
         {
 
             try
@@ -99,6 +120,7 @@ namespace Awake.Views.Pages
                     {
                         if (fInfo.Extension != ".ckpt" && fInfo.Extension != ".safetensors") continue;
 
+                        string hash_show = ComputeMD5(fInfo.FullName);
                         DateTime date = fInfo.CreationTime;
                         FileStream fileStream = fInfo.Open(FileMode.Open, FileAccess.Read);
                         fileStream.Position = 0;
@@ -106,7 +128,7 @@ namespace Awake.Views.Pages
 
                         CheckPoint ck = new CheckPoint();
                         ck.Name = fInfo.Name;
-                        ck.ShortHash = "";
+                        ck.ShortHash = hash_show;
                         ck.Date = date;
                         ck.Index = idx++;
                         ck.isRemote = false;
@@ -142,6 +164,7 @@ namespace Awake.Views.Pages
                 {
                     if (fInfo.Extension != ".ckpt" && fInfo.Extension != ".safetensors") continue;
 
+                    string hash_show = ComputeMD5(fInfo.FullName);
                     DateTime date = fInfo.CreationTime;
                     FileStream fileStream = fInfo.Open(FileMode.Open, FileAccess.Read);
                     fileStream.Position = 0;
@@ -149,6 +172,7 @@ namespace Awake.Views.Pages
 
                     CheckPoint ck = new CheckPoint();
                     ck.Name = fInfo.Name;
+                    ck.ShortHash = hash_show;
                     ck.Date = date;
                     ck.Size = fInfo.Length / 1024 / 1024;
 
@@ -181,6 +205,7 @@ namespace Awake.Views.Pages
                 {
                     if (fInfo.Extension != ".ckpt" && fInfo.Extension != ".safetensors") continue;
 
+                    string hash_show = ComputeMD5(fInfo.FullName);
                     DateTime date = fInfo.CreationTime;
                     FileStream fileStream = fInfo.Open(FileMode.Open, FileAccess.Read);
                     fileStream.Position = 0;
@@ -188,6 +213,7 @@ namespace Awake.Views.Pages
 
                     CheckPoint ck = new CheckPoint();
                     ck.Name = fInfo.Name;
+                    ck.ShortHash = hash_show;
                     ck.Date = date;
                     ck.Size = fInfo.Length / 1024 / 1024;
 
@@ -222,6 +248,7 @@ namespace Awake.Views.Pages
                 {
                     if (fInfo.Extension != ".pt" && fInfo.Extension != ".safetensors") continue;
 
+                    string hash_show = ComputeMD5(fInfo.FullName);
                     DateTime date = fInfo.CreationTime;
                     FileStream fileStream = fInfo.Open(FileMode.Open, FileAccess.Read);
                     fileStream.Position = 0;
@@ -229,6 +256,7 @@ namespace Awake.Views.Pages
 
                     Embedding ck = new Embedding();
                     ck.Name = fInfo.Name;
+                    ck.ShortHash = hash_show;
                     ck.Date = date;
                     ck.Size = fInfo.Length / 1024;
 
@@ -262,6 +290,7 @@ namespace Awake.Views.Pages
                 {
                     if (fInfo.Extension != ".pt" && fInfo.Extension != ".safetensors") continue;
 
+                    string hash_show = ComputeMD5(fInfo.FullName);
                     DateTime date = fInfo.CreationTime;
                     FileStream fileStream = fInfo.Open(FileMode.Open, FileAccess.Read);
                     fileStream.Position = 0;
@@ -269,6 +298,7 @@ namespace Awake.Views.Pages
 
                     Embedding ck = new Embedding();
                     ck.Name = fInfo.Name;
+                    ck.ShortHash = hash_show;
                     ck.Date = date;
                     ck.Size = fInfo.Length / 1024;
 
@@ -311,6 +341,7 @@ namespace Awake.Views.Pages
                         {
                             if (fInfo.Extension != ".pt" && fInfo.Extension != ".safetensors") continue;
 
+                            string hash_show = ComputeMD5(fInfo.FullName);
                             DateTime date = fInfo.CreationTime;
                             FileStream fileStream = fInfo.Open(FileMode.Open, FileAccess.Read);
                             fileStream.Position = 0;
@@ -318,6 +349,7 @@ namespace Awake.Views.Pages
 
                             Embedding ck = new Embedding();
                             ck.Name = fInfo.Name;
+                            ck.ShortHash = hash_show;
                             ck.Date = date;
                             ck.Size = fInfo.Length / 1024;
 
@@ -336,6 +368,7 @@ namespace Awake.Views.Pages
                         {
                             if (fInfo.Extension != ".pt" && fInfo.Extension != ".safetensors") continue;
 
+                            string hash_show = ComputeMD5(fInfo.FullName);
                             DateTime date = fInfo.CreationTime;
                             FileStream fileStream = fInfo.Open(FileMode.Open, FileAccess.Read);
                             fileStream.Position = 0;
@@ -343,6 +376,7 @@ namespace Awake.Views.Pages
 
                             Embedding ck = new Embedding();
                             ck.Name = fInfo.Name;
+                            ck.ShortHash = hash_show;
                             ck.Date = date;
                             ck.Size = fInfo.Length / 1024;
 
@@ -361,6 +395,7 @@ namespace Awake.Views.Pages
                         {
                             if (fInfo.Extension != ".ckpt" && fInfo.Extension != ".safetensors") continue;
 
+                            string hash_show = ComputeMD5(fInfo.FullName);
                             DateTime date = fInfo.CreationTime;
                             FileStream fileStream = fInfo.Open(FileMode.Open, FileAccess.Read);
                             fileStream.Position = 0;
@@ -368,6 +403,7 @@ namespace Awake.Views.Pages
 
                             CheckPoint ck = new CheckPoint();
                             ck.Name = fInfo.Name;
+                            ck.ShortHash = hash_show;
                             ck.Date = date;
                             ck.Size = fInfo.Length / 1024 / 1024;
 
@@ -386,6 +422,7 @@ namespace Awake.Views.Pages
                         {
                             if (fInfo.Extension != ".ckpt" && fInfo.Extension != ".safetensors") continue;
 
+                            string hash_show = ComputeMD5(fInfo.FullName);
                             DateTime date = fInfo.CreationTime;
                             FileStream fileStream = fInfo.Open(FileMode.Open, FileAccess.Read);
                             fileStream.Position = 0;
@@ -393,6 +430,7 @@ namespace Awake.Views.Pages
 
                             CheckPoint ck = new CheckPoint();
                             ck.Name = fInfo.Name;
+                            ck.ShortHash = hash_show;
                             ck.Date = date;
                             ck.Size = fInfo.Length / 1024 / 1024;
 
@@ -421,6 +459,7 @@ namespace Awake.Views.Pages
                         {
                             if (fInfo.Extension != ".ckpt" && fInfo.Extension != ".safetensors") continue;
 
+                            string hash_show = ComputeMD5(fInfo.FullName);
                             DateTime date = fInfo.CreationTime;
                             FileStream fileStream = fInfo.Open(FileMode.Open, FileAccess.Read);
                             fileStream.Position = 0;
@@ -428,7 +467,7 @@ namespace Awake.Views.Pages
 
                             CheckPoint ck = new CheckPoint();
                             ck.Name = fInfo.Name;
-                            ck.ShortHash = "";
+                            ck.ShortHash = hash_show;
                             ck.Date = date;
                             ck.Index = idx++;
                             ck.isRemote = false;
@@ -473,6 +512,7 @@ namespace Awake.Views.Pages
             public string Desc { get; set; }
             public long Size { get; set; }
             public DateTime Date { get; set; }
+            public string ShortHash { get; internal set; }
         }
         public static void PrintByteArray(byte[] array)
         {
