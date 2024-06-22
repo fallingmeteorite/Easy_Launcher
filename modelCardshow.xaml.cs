@@ -1,5 +1,6 @@
 ﻿using Awake.Views.Windows;
 using System;
+using System.Diagnostics.Eventing.Reader;
 using System.IO;
 using System.Net;
 using System.Net.Http;
@@ -46,52 +47,55 @@ namespace Awake
             }
             catch
             { }
-
+            File.WriteAllText(@".\logs\error.txt", null);
             LoadImageFromUrlAsync(imageUrl, avatar);
 
             async Task LoadImageFromUrlAsync(string imageUrl, string avatar)
             {
-                // 将图片设置为Image控件的Source
-                try
-                {
-                    HttpClient client2 = new HttpClient();
-                    var imageBytes2 = await client2.GetByteArrayAsync(imageUrl);
-                    var image2 = new BitmapImage();
-                    image2.BeginInit();
-                    image2.CacheOption = BitmapCacheOption.OnLoad;
-                    image2.CreateOptions = BitmapCreateOptions.DelayCreation;
-                    image2.StreamSource = new MemoryStream(imageBytes2);
-                    image2.EndInit();
-                    if (check_url == true)
+                if (File.ReadAllText(@".\logs\error.txt") == null )
                     {
-                        File.WriteAllText(@".\logs\error.txt", check_url.ToString());
-                        模型封面.ImageSource = image2;
+                        // 将图片设置为Image控件的Source
+                        try
+                        {
+                            HttpClient client2 = new HttpClient();
+                            var imageBytes2 = await client2.GetByteArrayAsync(imageUrl);
+                            var image2 = new BitmapImage();
+                            image2.BeginInit();
+                            image2.CacheOption = BitmapCacheOption.OnLoad;
+                            image2.CreateOptions = BitmapCreateOptions.DelayCreation;
+                            image2.StreamSource = new MemoryStream(imageBytes2);
+                            image2.EndInit();
+                            if (check_url == true)
+                            {
+                                File.WriteAllText(@".\logs\error.txt", check_url.ToString());
+                                模型封面.ImageSource = image2;
+                            }
+                        }
+                        catch (Exception error)
+                        {
+                            File.WriteAllText(@".\logs\error.txt", error.Message.ToString());
+                        }
+
+                        try
+                        {
+                            HttpClient client1 = new HttpClient();
+
+                            var imageBytes1 = await client1.GetByteArrayAsync(avatar);
+
+                            var image1 = new BitmapImage();
+                            image1.BeginInit();
+                            image1.CacheOption = BitmapCacheOption.OnLoad;
+                            image1.CreateOptions = BitmapCreateOptions.DelayCreation;
+                            image1.StreamSource = new MemoryStream(imageBytes1);
+                            image1.EndInit();
+                            作者头像.ImageSource = image1;
+                        }
+                        catch (Exception error)
+                        {
+                            File.WriteAllText(@".\logs\error.txt", error.Message.ToString());
+                            check_url = false;
+                        }
                     }
-                }
-                catch (Exception error)
-                {
-                    File.WriteAllText(@".\logs\error.txt", error.Message.ToString());
-                }
-
-                try
-                {
-                    HttpClient client1 = new HttpClient();
-
-                    var imageBytes1 = await client1.GetByteArrayAsync(avatar);
-
-                    var image1 = new BitmapImage();
-                    image1.BeginInit();
-                    image1.CacheOption = BitmapCacheOption.OnLoad;
-                    image1.CreateOptions = BitmapCreateOptions.DelayCreation;
-                    image1.StreamSource = new MemoryStream(imageBytes1);
-                    image1.EndInit();
-                    作者头像.ImageSource = image1;
-                }
-                catch (Exception error)
-                {
-                    File.WriteAllText(@".\logs\error.txt", error.Message.ToString());
-                    check_url = false;
-                }
 
                 模型名称.Text = modelname;
                 模型类型.Text = modelTypeName;
