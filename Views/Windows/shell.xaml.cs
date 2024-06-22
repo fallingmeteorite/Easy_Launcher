@@ -206,11 +206,14 @@ namespace Awake.Views.Windows
                     startinfo.EnvironmentVariables["GIT"] = gitPath + @"\git.exe";//保证WenUI可以使用到git
                     startinfo.EnvironmentVariables["GIT_PYTHON_REFRESH"] = "quiet";
                     startinfo.EnvironmentVariables["GIT_SSL_NO_VERIFY"] = "true";
+                    startinfo.EnvironmentVariables["HF_ENDPOINT"] = "https://hf-mirror.com";
+
 
                     startinfo.RedirectStandardOutput = true;
                     startinfo.RedirectStandardError = true;
                     startinfo.CreateNoWindow = true;
                     startinfo.UseShellExecute = false;//不使用终端打开
+
                     启动魔法.OutputDataReceived += new DataReceivedEventHandler(OutputHandler);//绑定标准输出流的事件处理函数
                     启动魔法.ErrorDataReceived += new DataReceivedEventHandler(ErrorHandler);//绑定标准错误流的事件处理函数
                     启动魔法.StartInfo = startinfo;
@@ -247,11 +250,13 @@ namespace Awake.Views.Windows
                     startinfo.EnvironmentVariables["GIT_PYTHON_REFRESH"] = "quiet";
                     startinfo.EnvironmentVariables["HUGGINGFACE_HUB_CACHE"] = 工作路径_start + @".\.hf_cache\huggingface\hub";
                     startinfo.EnvironmentVariables["GIT_SSL_NO_VERIFY"] = "true";
+                    startinfo.EnvironmentVariables["HF_ENDPOINT"] = "https://hf-mirror.com";
 
                     startinfo.RedirectStandardOutput = true;
                     startinfo.RedirectStandardError = true;
                     startinfo.CreateNoWindow = true;
                     startinfo.UseShellExecute = false;//不使用终端打开
+
                     启动魔法.OutputDataReceived += new DataReceivedEventHandler(OutputHandler);//绑定标准输出流的事件处理函数
                     启动魔法.ErrorDataReceived += new DataReceivedEventHandler(ErrorHandler);//绑定标准错误流的事件处理函数
                     启动魔法.StartInfo = startinfo;
